@@ -11,19 +11,19 @@ function Header() {
             </ol>
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img src="./Assets/header_img1.jpg" className="d-block w-100" alt="..." />
+                    <img src="./Assets/header1.jpg" className="d-block w-100" alt="..." />
                     <div className="carousel-content">
                         <h1> Weekend Getaway</h1>
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <img src="./Assets/header_img2.jpg" className="d-block w-100" alt="..." />
+                    <img src="./Assets/header2.jpg" className="d-block w-100" alt="..." />
                     <div className="carousel-content">
                         <h1> Weekend Getaway</h1>
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <img src="./Assets/header_img3.jpg" className="d-block w-100" alt="..." />
+                    <img src="./Assets/header3.jpg" className="d-block w-100" alt="..." />
                     <div className="carousel-content">
                         <h1> Weekend Getaway</h1>
                     </div>
