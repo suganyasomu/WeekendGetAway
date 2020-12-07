@@ -1,5 +1,6 @@
 .carousel-item {
     height: 28rem;
+    /* height: auto; */
     background: rgb(212, 212, 212);
 }
 
