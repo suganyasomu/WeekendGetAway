@@ -1,3 +1,4 @@
 module.exports = {
-  Hotspring: require("./hotspring")
+  Hotspring: require("./hotspring"),
+  Itinerary: require("./itinerary")
 };
