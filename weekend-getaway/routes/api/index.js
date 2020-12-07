@@ -1,7 +1,9 @@
 const router = require("express").Router();
-const bookRoutes = require("./books");
+const itineraryRoutes = require("./itinerary");
+const hotspringRoutes = require("./hotspring");
 
-// Book routes
-router.use("/books", bookRoutes);
+//routes
+router.use("/itinerary", itineraryRoutes);
+router.use("/hotspring", hotspringRoutes);
 
 module.exports = router;
