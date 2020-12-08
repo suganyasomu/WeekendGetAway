@@ -1,10 +1,17 @@
-import React from"react";
+import React, {useCallback,useContext}from"react";
 import Map from "../components/Map";
 import Navbar from "../components/Navbar";
+import { withRouter, Redirect } from "react-router";
 import SearchResults from "../components/SearchResults";
 import SearchContainer from "../components/SearchContainer";
+import app from "../base";
+import firebase from 'firebase';
+import  {AuthContext} from "../Auth.js";
 
-function Home() {
+
+
+   function Home(){
+
     return (
         <div>
             <Navbar />
@@ -27,7 +34,9 @@ function Home() {
                     </section>
                 </div>
             </div>
-
+            <div>
+            <button onClick={() => app.auth().signOut()}>Sign out</button>
+        </div>
         </div>
     );
 }
