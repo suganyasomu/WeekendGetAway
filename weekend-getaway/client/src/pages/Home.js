@@ -1,23 +1,24 @@
 import React, {useState, useEffect, useCallback,useContext}from"react";
-import Map from "../components/Map";
+// import Map from "../components/Map";
 import Navbar from "../components/Navbar";
-import { withRouter, Redirect } from "react-router";
+// import { withRouter, Redirect } from "react-router";
 import SearchResults from "../components/SearchResults";
 import SearchContainer from "../components/SearchContainer";
 import app from "../base";
-import firebase from 'firebase';
-import  {AuthContext} from "../Auth.js";
+// import firebase from 'firebase';
+// import  {AuthContext} from "../Auth.js";
 import API from "../utils/API";
 
 
 function Home(){
     // initialize state variables
     const [ search, setSearch ] = useState("");
+    const [ campsites, setCampsites] = useState(""); // just campsite name for now
 
     // Mount initial info
-    useEffect( () => {
+    // useEffect( () => {
 
-    });
+    // });
 
     // Search API's base on  user input (campsite)
     function searchCampsites(query) {
@@ -25,7 +26,7 @@ function Home(){
 
         API.getCampsites(query)
             .then(res =>
-                console.log(res)
+                setCampsites(res.data)
             )
             .catch(err => console.log(err));
     }
@@ -47,17 +48,15 @@ function Home(){
         // setSearch("");
     };
 
-function signout(){
-    app.auth().signOut().then(function() {
-        
-        window.location="/login"
-      }).catch(function(error) {
-          console.log(error)
-        // An error happened.
-      });
-}
-
-
+    function signout(){
+        app.auth().signOut().then(function() {
+            
+            window.location="/login"
+        }).catch(function(error) {
+            console.log(error)
+            // An error happened.
+        });
+    }
 
 
     return (
@@ -85,14 +84,13 @@ function signout(){
                 </div>
 
                 <div className="row">
-                    <section className="col-6">
+                    <section className="col-12">
                         <SearchResults 
-                            search={search}
+                            searched={search}
+                            results={campsites}
                         />
                     </section>
-                    <section className="col-6">
-                        <Map />
-                    </section>
+
                 </div>
             </div>
 
