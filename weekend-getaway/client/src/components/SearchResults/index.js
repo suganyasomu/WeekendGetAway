@@ -1,9 +1,9 @@
 import React from"react";
 
-function SearchResults() {
+function SearchResults(props) {
     return (
         <div>
-            <h3>Search Results</h3>
+            <h3>Results for: {props.search}</h3>
         </div>
     );
 }
