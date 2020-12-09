@@ -13,4 +13,7 @@ router
   .put(itineraryController.update)
   .delete(itineraryController.remove);
 
+  router
+  .route("/api/history/:Uid")
+  .post();
 module.exports = router;

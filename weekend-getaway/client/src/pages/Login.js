@@ -2,7 +2,7 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "../base.js";
 import  {AuthContext} from "../Auth.js";
-
+import API from "../utils/API"
 
 const Login = ({ history }) => {
     console.log(history)
@@ -25,6 +25,8 @@ const Login = ({ history }) => {
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
+    const uid=app.auth().currentUser.uid;
+    API.getUid(uid);
     return <Redirect to="/" />;
   }
 

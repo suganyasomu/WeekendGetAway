@@ -3,8 +3,11 @@ import axios from "axios";
 export default {
   // Get campsites based on user input location
   getCampsites: function(id) {
-    return axios.get("/api/campsites" + id);
+    return axios.get("/api/campsites/" + id);
+  },
+  getUid:function(uid){
+    console.log("UID is called");
+    return axios.post("/api/history/"+ uid);
   }
-  
 
 };
