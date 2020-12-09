@@ -9,6 +9,7 @@ import firebase from 'firebase';
 import  {AuthContext} from "../Auth.js";
 import API from "../utils/API";
 
+
 function Home(){
     // initialize state variables
     const [ search, setSearch ] = useState("");
@@ -46,6 +47,17 @@ function Home(){
         // setSearch("");
     };
 
+function signout(){
+    app.auth().signOut().then(function() {
+        
+        window.location="/login"
+      }).catch(function(error) {
+          console.log(error)
+        // An error happened.
+      });
+}
+
+
 
 
     return (
@@ -56,7 +68,7 @@ function Home(){
                 <div className="row">
                     <span className="col-10"> </span>
                     <div className="col-2">
-                        <button className="btn btn-outline-secondary" onClick={() => app.auth().signOut()}>Sign out</button>
+                        <button className="btn btn-outline-secondary" onClick={signout}>Sign out</button>
                     </div>
                 </div>
 
