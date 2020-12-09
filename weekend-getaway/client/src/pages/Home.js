@@ -8,6 +8,15 @@ import app from "../base";
 import firebase from 'firebase';
 import  {AuthContext} from "../Auth.js";
 
+function signout(){
+    app.auth().signOut().then(function() {
+        
+        window.location="/login"
+      }).catch(function(error) {
+          console.log(error)
+        // An error happened.
+      });
+}
 
 
    function Home(){
@@ -35,7 +44,7 @@ import  {AuthContext} from "../Auth.js";
                 </div>
             </div>
             <div>
-            <button onClick={() => app.auth().signOut()}>Sign out</button>
+            <button onClick={signout}>Sign out</button>
         </div>
         </div>
     );
