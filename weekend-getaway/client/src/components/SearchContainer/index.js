@@ -1,9 +1,7 @@
-import React, { useState } from"react";
+import React from"react";
 
 function SearchContainer(props) {
     // console.log(props);
-
-    const [inputValue, setInputValue] = useState("");
     
     return (
         <form className="input-group mb-3">
