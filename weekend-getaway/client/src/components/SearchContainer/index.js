@@ -1,11 +1,23 @@
-import React from"react";
+import React, { useState } from"react";
 
-function SearchContainer() {
+function SearchContainer(props) {
+    // console.log(props);
+
+    const [inputValue, setInputValue] = useState("");
+    
     return (
         <form className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="campsite" aria-label="search for campsite" />
+            <input 
+                type="text" 
+                className="form-control" 
+                name="search"
+                value={props.search} 
+                onChange={props.handleInputChange} 
+                placeholder="location" 
+                aria-label="search by location" 
+            />
             <div className="input-group-append">
-                <button className="btn btn-outline-secondary" type="button">Submit</button>
+                <button className="btn btn-outline-secondary" type="submit" onClick={props.handleFormSubmit} > Submit </button>
             </div>
         </form>
     );
