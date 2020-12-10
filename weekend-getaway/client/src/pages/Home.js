@@ -12,7 +12,7 @@ import API from "../utils/API";
 function Home() {
   // initialize state variables
   const [search, setSearch] = useState("");
-  const [campsites, setCampsites] = useState(""); // just campsite name for now
+  const [campsites, setCampsites] = useState([]); // just campsite name for now
 
   // Mount initial info
   // useEffect( () => {
@@ -21,11 +21,13 @@ function Home() {
 
   // Search API's base on  user input (campsite)
   function searchCampsites(query) {
-    console.log(query);
+    // console.log(query);
 
     API.getCampsites(query)
-      .then((res) => setCampsites(res.data))
-      .catch((err) => console.log(err));
+    // .then((res) => console.log(res.data.RECDATA) )
+    .then((res) => setCampsites(res.data.RECDATA) )
+    .catch((err) => console.log(err))
+
   }
 
   const handleInputChange = (event) => {
@@ -35,14 +37,18 @@ function Home() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    setSearch(event.target.value);
     // console.log(search);
 
     // send the searched term to the function
-    searchCampsites(search);
+    if(search === "" ) {
+      alert("Please enter a city");
+    }
+    else {
+      searchCampsites(search);
+    }
 
-    // clear the input form
-    // setSearch("");
+    console.log(campsites);
+
   };
 
   function signout() {
