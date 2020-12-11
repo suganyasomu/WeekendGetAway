@@ -2,10 +2,11 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "../base.js";
 import  {AuthContext} from "../Auth.js";
-import API from "../utils/API"
+import API from "../utils/API";
+
 
 const Login = ({ history }) => {
-    console.log(history)
+  console.log(history);
   const handleLogin = useCallback(
     async event => {
       event.preventDefault();
@@ -23,10 +24,12 @@ const Login = ({ history }) => {
   );
 
   const { currentUser } = useContext(AuthContext);
+  // console.log(currentUser);
 
   if (currentUser) {
     const uid=app.auth().currentUser.uid;
     API.getUid(uid);
+    alert("You are now logged in!")
     return <Redirect to="/" />;
   }
 
