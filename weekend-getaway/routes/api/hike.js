@@ -15,8 +15,26 @@ router.route("/").get(async (req, res) => {
       `https://www.hikingproject.com/data/get-trails?lat=${latLng.lat}&lon=${latLng.lng}&key=${authKey}`
     )
     .then(function (result) {
-      res.json(result.data);
-      console.log(result.data);
+      let list = result.data.trails;
+
+      let hikes = [];
+
+      list.forEach(function (thisHike) {
+        let info = {
+          name: thisHike.name,
+          lat: thisHike.latitude,
+          lng: thisHike.longitude,
+          summary: thisHike.summary,
+          elevationChange: Math.abs(thisHike.high - thisHike.low),
+          difficulty: thisHike.difficulty,
+          url: thisHike.url,
+          length: thisHike.length,
+          image: thisHike.imgSmall,
+          condition: thisHike.conditionStatus,
+        };
+        hikes.push(info);
+      });
+      res.json(hikes);
     });
 });
 

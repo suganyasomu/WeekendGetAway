@@ -19,8 +19,23 @@ router.route("/").get(async (req, res) => {
       }
     )
     .then(function (result) {
-      res.json(result.data);
-      console.log(result.data);
+      let list = result.data.RECDATA;
+
+      let campsites = [];
+
+      list.forEach(function (thisCampsite) {
+        let info = {
+          name: thisCampsite.FacilityName,
+          lat: thisCampsite.FacilityLatitude,
+          lng: thisCampsite.FacilityLongitude,
+          reservable: thisCampsite.Reservable,
+          phone: thisCampsite.FacilityPhone,
+          fee: thisCampsite.FacilityUseFeeDescription,
+          description: thisCampsite.FacilityDescription,
+        };
+        campsites.push(info);
+      });
+      res.json(campsites);
     });
 });
 
