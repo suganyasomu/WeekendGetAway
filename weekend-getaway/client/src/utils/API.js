@@ -12,7 +12,7 @@ export default {
     return axios.get("/api/mtbike/", { params: { search: city } });
   },
   getLocation: function (city) {
-    return axios.get("/api/mtbike/", { params: { search: city } });
+    return axios.get("/api/location/", { params: { search: city } });
   },
   getUid: function (uid) {
     console.log("UID is called");

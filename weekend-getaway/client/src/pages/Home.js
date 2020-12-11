@@ -4,8 +4,8 @@ import Navbar from "../components/Navbar";
 import SearchResults from "../components/SearchResults";
 import SearchContainer from "../components/SearchContainer";
 import app from "../base";
-import firebase from 'firebase';
-import  {AuthContext} from "../Auth.js";
+import firebase from "firebase";
+import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 
 function Home() {
@@ -17,7 +17,7 @@ function Home() {
   // useEffect( () => {
 
   // });
-  
+
   // Check if user is logged in or not:
   const { currentUser } = useContext(AuthContext);
 
@@ -26,10 +26,9 @@ function Home() {
     // console.log(query);
 
     API.getCampsites(query)
-    // .then((res) => console.log(res.data.RECDATA) )
-    .then((res) => setCampsites(res.data.RECDATA) )
-    .catch((err) => console.log(err))
-
+      // .then((res) => console.log(res.data))
+      .then((res) => setCampsites(res.data))
+      .catch((err) => console.log(err));
   }
 
   const handleInputChange = (event) => {
@@ -41,10 +40,9 @@ function Home() {
     event.preventDefault();
     // console.log(search);
     // send the searched term to the function
-    if(search === "" ) {
+    if (search === "") {
       alert("Please enter a city");
-    }
-    else {
+    } else {
       searchCampsites(search);
     }
     console.log(campsites);
@@ -70,13 +68,9 @@ function Home() {
 
       <div className="container">
         <div className="row">
-          <span className="col-8">  </span>
-          <span className="col-2"> 
-            {currentUser ? (
-              <p> You are logged in! </p> 
-            ) : (
-              <p> Guest </p> 
-            )}
+          <span className="col-8"> </span>
+          <span className="col-2">
+            {currentUser ? <p> You are logged in! </p> : <p> Guest </p>}
           </span>
           <div className="col-2">
             <button className="btn btn-outline-secondary" onClick={signout}>
@@ -99,7 +93,11 @@ function Home() {
 
         <div className="row">
           <section className="col-12">
-            <SearchResults searched={search} results={campsites} userStatus={currentUser} />
+            <SearchResults
+              searched={search}
+              results={campsites}
+              userStatus={currentUser}
+            />
           </section>
         </div>
       </div>
