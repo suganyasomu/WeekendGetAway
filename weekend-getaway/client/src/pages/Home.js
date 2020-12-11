@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
-import Navbar from "../components/Navbar";
 // import { withRouter, Redirect } from "react-router";
 import SearchResults from "../components/SearchResults";
 import SearchContainer from "../components/SearchContainer";
@@ -64,13 +63,17 @@ function Home() {
 
   return (
     <div>
-      <Navbar />
 
       <div className="container">
         <div className="row">
-          <span className="col-8"> </span>
-          <span className="col-2">
-            {currentUser ? <p> You are logged in! </p> : <p> Guest </p>}
+
+          <span className="col-8">  </span>
+          <span className="col-2"> 
+            {currentUser ? (
+              <p> You are logged in! </p> 
+            ) : (
+              <p> Guest - Login to Save to your Itinerary </p> 
+            )}
           </span>
           <div className="col-2">
             <button className="btn btn-outline-secondary" onClick={signout}>

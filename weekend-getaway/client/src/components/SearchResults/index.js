@@ -13,7 +13,7 @@ function SearchResults(props) {
             {props.results.map((res, index) => {
                 let id = index+1;
                     return (
-                        <Card key={id} style={{ width: '18rem' }}>
+                        <Card key={id} className="campsiteCard" style={{ width: '30rem' }}>
                             <Card.Body>
                                 {props.userStatus ? (
                                     <button className="btn saveBtn" title="Save to Itinerary"> <FontAwesomeIcon icon="heart" size="lg" /> </button> 
