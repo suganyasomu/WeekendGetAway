@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
-// import Map from "../components/Map";
 import Navbar from "../components/Navbar";
 // import { withRouter, Redirect } from "react-router";
 import SearchResults from "../components/SearchResults";
 import SearchContainer from "../components/SearchContainer";
 import app from "../base";
-// import firebase from 'firebase';
-// import  {AuthContext} from "../Auth.js";
+import firebase from 'firebase';
+import  {AuthContext} from "../Auth.js";
 import API from "../utils/API";
 
 function Home() {
@@ -18,6 +17,9 @@ function Home() {
   // useEffect( () => {
 
   // });
+  
+  // Check if user is logged in or not:
+  const { currentUser } = useContext(AuthContext);
 
   // Search API's base on  user input (campsite)
   function searchCampsites(query) {
@@ -38,7 +40,6 @@ function Home() {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     // console.log(search);
-
     // send the searched term to the function
     if(search === "" ) {
       alert("Please enter a city");
@@ -46,9 +47,7 @@ function Home() {
     else {
       searchCampsites(search);
     }
-
     console.log(campsites);
-
   };
 
   function signout() {
@@ -57,6 +56,7 @@ function Home() {
       .signOut()
       .then(function () {
         window.location = "/login";
+        alert("You have logged out");
       })
       .catch(function (error) {
         console.log(error);
@@ -70,7 +70,14 @@ function Home() {
 
       <div className="container">
         <div className="row">
-          <span className="col-10"> </span>
+          <span className="col-8">  </span>
+          <span className="col-2"> 
+            {currentUser ? (
+              <p> You are logged in! </p> 
+            ) : (
+              <p> Guest </p> 
+            )}
+          </span>
           <div className="col-2">
             <button className="btn btn-outline-secondary" onClick={signout}>
               Sign out
@@ -92,7 +99,7 @@ function Home() {
 
         <div className="row">
           <section className="col-12">
-            <SearchResults searched={search} results={campsites} />
+            <SearchResults searched={search} results={campsites} userStatus={currentUser} />
           </section>
         </div>
       </div>
