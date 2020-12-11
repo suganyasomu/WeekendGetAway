@@ -15,8 +15,26 @@ router.route("/").get(async (req, res) => {
       `https://www.mtbproject.com/data/get-trails?lat=${latLng.lat}&lon=${latLng.lng}&key=${authKey}`
     )
     .then(function (result) {
-      res.json(result.data);
-      console.log(result.data);
+      let list = result.data.trails;
+      let biking = [];
+
+      list.forEach(function (thisBike) {
+        let info = {
+          name: thisBike.name,
+          lat: thisBike.latitude,
+          lng: thisBike.longitude,
+          summary: thisBike.summary,
+          elevationChange: Math.abs(thisBike.high - thisBike.low),
+          difficulty: thisBike.difficulty,
+          url: thisBike.url,
+          length: thisBike.length,
+          image: thisBike.imgSmall,
+          condition: thisBike.conditionStatus,
+          type: thisBike.type,
+        };
+        biking.push(info);
+      });
+      res.json(biking);
     });
 });
 
