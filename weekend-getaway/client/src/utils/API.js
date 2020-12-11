@@ -14,6 +14,9 @@ export default {
   getLocation: function (city) {
     return axios.get("/api/location/", { params: { search: city } });
   },
+  getWeather: function (city) {
+    return axios.get("/api/weather/", { params: { search: city } });
+  },
   getUid: function (uid) {
     console.log("UID is called");
     return axios.post("/api/history/" + uid);
