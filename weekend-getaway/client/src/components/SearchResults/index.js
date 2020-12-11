@@ -20,11 +20,14 @@ function SearchResults(props) {
                                 ) : (
                                     <span>  </span> 
                                 )}
-                                <Card.Title> {res.FacilityName} </Card.Title>
+                                <Card.Title> Campsite: {res.name} </Card.Title>
                                 {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
                                 <Card.Text>
-                                    Description: 
+                                    {/* Description: {res.description} */}
                                 </Card.Text>
+                                <Card.Text> Reservable: {res.reservable} </Card.Text>
+                                <Card.Text> Fee: {res.fee} </Card.Text>
+                                <Card.Text> Phone Number: {res.phone} </Card.Text>
                                 <Card.Link href="#">Campsite Link</Card.Link>
                             </Card.Body>
                         </Card>
