@@ -5,11 +5,12 @@ import {
     Link,
     Route
 } from 'react-router-dom';
+import "./style.css";
 
 
 function Navigation() {
     return (
-        <div>
+        <div className="navigationContainer">
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Brand href="/">Weekend Getaway</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
