@@ -5,12 +5,12 @@ const Schema = mongoose.Schema;
 const ItinerarySchema = new Schema({
     user: {type: String, required: true},
     campsite: {type: String, required: true},
-    begin_date: {type: Date, required: true},
-    end_date: {type: Date, required: true},
+    begin_date: {type: Date, required: false},
+    end_date: {type: Date, required: false},
     activities: [
         {
-            activity: {type: String, required: true},
-            date_planned: {type: Date, required: true}
+            activity: {type: String, required: false},
+            date_planned: {type: Date, required: false}
         }
     ]
 
