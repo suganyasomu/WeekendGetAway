@@ -3,21 +3,38 @@ import "./style.css";
 import Card from 'react-bootstrap/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import API from "../../utils/API";
+import $ from "jquery";
 
 function SearchResults(props) {
     // console.log(props);
 
-    const [save, setState] = useState([]);
+    const [save, setState] = useState({
+        campsite: ""
+    }
+    );
+
+    // function handleInputChange(event) {
+    //     const { name, value } = event.target;
+    //     setState({...save, [name]: value})
+    //   };
 
     // Save campsite info to DB
-    function handleFormSubmit(event) {
-        event.preventDefault();
+    function handleFormSubmit(campsite) {
+        // event.preventDefault();
+        console.log(campsite);
+
+        // const { name, value } = event.target;
+        // setState({...save, campsite: campsite})
+
+        // console.log(save.campsite);
         console.log("save button was clicked!");
+        console.log(props.userStatus.uid);
         // setState();
 
         // Save selected campsite to DB
         API.saveToItinerary({
-            campsite: {save}
+            user: props.userStatus.uid,
+            campsite: campsite
         })
         .then(res => console.log("Save campsite to database!") )
         .catch(err => console.log(err));
@@ -34,7 +51,9 @@ function SearchResults(props) {
                     <Card key={id} className="campsiteCard" style={{ width: '30rem' }}>
                         <Card.Body>
                             {props.userStatus ? (
-                                <button onClick={handleFormSubmit} className="btn saveBtn" title="Save to Itinerary"> <FontAwesomeIcon icon="heart" size="lg" /> </button> 
+                                <div onClick={() => handleFormSubmit(res.name)} data-campsite={res.name} className="btn saveBtn" title="Save to Itinerary"> 
+                                <FontAwesomeIcon  icon="heart" size="lg" /> 
+                                </div> 
                             ) : (
                                 <span>  </span> 
                             )}
