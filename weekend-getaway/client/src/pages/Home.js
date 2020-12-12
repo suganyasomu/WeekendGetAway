@@ -7,10 +7,11 @@ import firebase from "firebase";
 import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 
+
 function Home() {
   // initialize state variables
   const [search, setSearch] = useState("");
-  const [campsites, setCampsites] = useState([]); // just campsite name for now
+  const [campsites, setCampsites] = useState([]);
 
   // Mount initial info
   // useEffect( () => {
