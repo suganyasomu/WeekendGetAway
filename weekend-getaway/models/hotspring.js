@@ -5,7 +5,7 @@ const hotspringSchema = new Schema({
   state_code: { type: String, required: true },
     loc: {
     type: {type: String, default: "Point"},
-    coordinates : [ { Number } ]
+    coordinates : [  Number  ]
 },
   spring_name: { type: String, required: false },
   degrees_f: { type: String, required: false },
