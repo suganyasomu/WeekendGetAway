@@ -5,7 +5,7 @@ function UserItinerary() {
         <div>
             <h3> Saved Trips </h3>
 
-            
+            {/* Pull data from MongoDB */}
         </div>
 
     );

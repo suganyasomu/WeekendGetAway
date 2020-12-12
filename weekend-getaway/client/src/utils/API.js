@@ -24,4 +24,7 @@ export default {
     console.log("UID is called");
     return axios.post("/api/history/" + uid);
   },
+  saveToItinerary: function(campData) {
+    return axios.post("/api/itinerary/" + campData );
+  }
 };
