@@ -11,6 +11,9 @@ export default {
   getBike: function (city) {
     return axios.get("/api/mtbike/", { params: { search: city } });
   },
+  getHotspring: function (city) {
+    return axios.get("/api/hotspring", { params: { search: city } })
+  },
   getUid: function (uid) {
     console.log("UID is called");
     return axios.post("/api/history/" + uid);
