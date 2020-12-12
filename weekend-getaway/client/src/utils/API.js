@@ -25,6 +25,6 @@ export default {
     return axios.post("/api/history/" + uid);
   },
   saveToItinerary: function(campData) {
-    return axios.post("/api/itinerary/" + campData );
+    return axios.post("/api/itinerary/", campData );
   }
 };
