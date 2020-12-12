@@ -21,7 +21,6 @@ import {  faHeart } from '@fortawesome/free-solid-svg-icons'
 library.add( faHeart ); // initialize font-awesome library w/ selected icons
 
 function App() {
-  
 
   return (
     <AuthProvider>
@@ -44,7 +43,7 @@ function App() {
             <Footer />
           </div>
         </Router>
-        </AuthProvider>
+    </AuthProvider>
     
   );
 }

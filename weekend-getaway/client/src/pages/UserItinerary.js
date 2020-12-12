@@ -4,6 +4,8 @@ function UserItinerary() {
     return (
         <div>
             <h3> Saved Trips </h3>
+
+            
         </div>
 
     );
