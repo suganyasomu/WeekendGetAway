@@ -3,8 +3,10 @@ const Schema = mongoose.Schema;
 
 const hotspringSchema = new Schema({
   state_code: { type: String, required: true },
-  lattitude: { type: String, required: true },
-  longitude: { type: String, required: true },
+    loc: {
+    type: {type: String, default: "Point"},
+    coordinates : [ { Number } ]
+},
   spring_name: { type: String, required: false },
   degrees_f: { type: String, required: false },
   degrees_c: { type: String, required: false },
