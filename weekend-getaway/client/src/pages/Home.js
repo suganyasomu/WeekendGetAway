@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
-// import Map from "../components/Map";
-import Navbar from "../components/Navbar";
 // import { withRouter, Redirect } from "react-router";
 import SearchResults from "../components/SearchResults";
 import SearchContainer from "../components/SearchContainer";
 import app from "../base";
-// import firebase from 'firebase';
-// import  {AuthContext} from "../Auth.js";
+import firebase from "firebase";
+import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 
 function Home() {
@@ -19,15 +17,17 @@ function Home() {
 
   // });
 
+  // Check if user is logged in or not:
+  const { currentUser } = useContext(AuthContext);
+
   // Search API's base on  user input (campsite)
   function searchCampsites(query) {
     // console.log(query);
 
     API.getCampsites(query)
-    // .then((res) => console.log(res.data.RECDATA) )
-    .then((res) => setCampsites(res.data.RECDATA) )
-    .catch((err) => console.log(err))
-
+      // .then((res) => console.log(res.data))
+      .then((res) => setCampsites(res.data))
+      .catch((err) => console.log(err));
   }
 
   const handleInputChange = (event) => {
@@ -38,17 +38,13 @@ function Home() {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     // console.log(search);
-
     // send the searched term to the function
-    if(search === "" ) {
+    if (search === "") {
       alert("Please enter a city");
-    }
-    else {
+    } else {
       searchCampsites(search);
     }
-
     console.log(campsites);
-
   };
 
   function signout() {
@@ -57,6 +53,7 @@ function Home() {
       .signOut()
       .then(function () {
         window.location = "/login";
+        alert("You have logged out");
       })
       .catch(function (error) {
         console.log(error);
@@ -66,11 +63,18 @@ function Home() {
 
   return (
     <div>
-      <Navbar />
 
       <div className="container">
         <div className="row">
-          <span className="col-10"> </span>
+
+          <span className="col-8">  </span>
+          <span className="col-2"> 
+            {currentUser ? (
+              <p> You are logged in! </p> 
+            ) : (
+              <p> Guest - Login to Save to your Itinerary </p> 
+            )}
+          </span>
           <div className="col-2">
             <button className="btn btn-outline-secondary" onClick={signout}>
               Sign out
@@ -92,7 +96,11 @@ function Home() {
 
         <div className="row">
           <section className="col-12">
-            <SearchResults searched={search} results={campsites} />
+            <SearchResults
+              searched={search}
+              results={campsites}
+              userStatus={currentUser}
+            />
           </section>
         </div>
       </div>

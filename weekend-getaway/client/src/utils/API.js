@@ -11,6 +11,12 @@ export default {
   getBike: function (city) {
     return axios.get("/api/mtbike/", { params: { search: city } });
   },
+  getLocation: function (city) {
+    return axios.get("/api/location/", { params: { search: city } });
+  },
+  getWeather: function (city) {
+    return axios.get("/api/weather/", { params: { search: city } });
+  },
   getHotspring: function (city) {
     return axios.get("/api/hotspring", { params: { search: city } })
   },
