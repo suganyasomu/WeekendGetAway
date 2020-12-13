@@ -26,8 +26,14 @@ function Home() {
 
     API.getCampsites(query)
       // .then((res) => console.log(res.data))
-      .then((res) => setCampsites(res.data))
-      .catch((err) => console.log(err));
+      .then(function(res){
+        setCampsites(res.data)
+      console.log(res.data[0].lat);
+      console.log(res.data[0].lng);
+      })
+.catch((err) => console.log(err));
+     
+
   }
 
   const handleInputChange = (event) => {

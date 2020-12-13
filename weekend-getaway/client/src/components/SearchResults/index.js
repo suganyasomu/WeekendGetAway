@@ -5,7 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import API from "../../utils/API";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import Map from "../Map"
+import Aside from "../Aside"
+import Col from "../Col"
+import Row from "../Row"
 function SearchResults(props) {
     // console.log(props);
 
@@ -70,11 +73,15 @@ function SearchResults(props) {
             
             <div className="row">
                 <div className="resultsContainer">
+
                     <h3>Campites for: {props.searched}</h3>
                     
                     {props.results.map((res, index) => {
                         let id = index+1;
                         return (
+                            <div>
+                                <Row>
+                                <Col size="md-6">
                             <Card key={id} className="campsiteCard" style={{ width: '30rem' }}>
                                 <Card.Body>
                                   {props.userStatus ? (
@@ -94,7 +101,17 @@ function SearchResults(props) {
                                     <Card.Text> Phone Number: {res.phone} </Card.Text>
                                     <Card.Link href="#">Campsite Link</Card.Link>
                                 </Card.Body>
-                            </Card>
+                            </Card> 
+                            </Col>
+                           
+                            <Col size="md-6">
+                                
+                            <Aside>
+                            <Map/>
+                            </Aside>
+                            </Col>
+                            </Row>
+                            </div>
                         )
                     })} 
                 </div>
