@@ -7,7 +7,6 @@ import firebase from "firebase";
 import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 
-
 function Home() {
   // initialize state variables
   const [search, setSearch] = useState("");
@@ -64,16 +63,14 @@ function Home() {
 
   return (
     <div>
-
       <div className="container">
         <div className="row">
-
-          <span className="col-8">  </span>
-          <span className="col-2"> 
+          <span className="col-8"> </span>
+          <span className="col-2">
             {currentUser ? (
-              <p> You are logged in! </p> 
+              <p> You are logged in! </p>
             ) : (
-              <p> Guest - Login to Save to your Itinerary </p> 
+              <p> Guest - Login to Save to your Itinerary </p>
             )}
           </span>
           <div className="col-2">

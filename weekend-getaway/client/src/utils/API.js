@@ -18,13 +18,16 @@ export default {
     return axios.get("/api/weather/", { params: { search: city } });
   },
   getHotspring: function (city) {
-    return axios.get("/api/hotspring", { params: { search: city } })
+    return axios.get("/api/hotspring", { params: { search: city } });
+  },
+  getNatParks: function (city) {
+    return axios.get("/api/natParks", { params: { search: city } });
   },
   getUid: function (uid) {
     console.log("UID is called");
     return axios.post("/api/history/" + uid);
   },
-  saveToItinerary: function(campData) {
-    return axios.post("/api/itinerary/", campData );
-  }
+  saveToItinerary: function (campData) {
+    return axios.post("/api/itinerary/", campData);
+  },
 };
