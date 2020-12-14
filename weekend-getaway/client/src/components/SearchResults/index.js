@@ -9,6 +9,7 @@ import Map from "../Map"
 import Aside from "../Aside"
 import Col from "../Col"
 import Row from "../Row"
+
 function SearchResults(props) {
     // console.log(props);
 
@@ -16,7 +17,7 @@ function SearchResults(props) {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
-
+  
     // Save campsite info to DB
     function handleFormSubmit(campsite) {
         // event.preventDefault();

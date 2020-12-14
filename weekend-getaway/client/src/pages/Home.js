@@ -28,8 +28,7 @@ function Home() {
       // .then((res) => console.log(res.data))
       .then(function(res){
         setCampsites(res.data)
-      console.log(res.data[0].lat);
-      console.log(res.data[0].lng);
+   
       })
 .catch((err) => console.log(err));
      
@@ -49,6 +48,7 @@ function Home() {
       alert("Please enter a city");
     } else {
       searchCampsites(search);
+    
     }
     console.log(campsites);
   };
