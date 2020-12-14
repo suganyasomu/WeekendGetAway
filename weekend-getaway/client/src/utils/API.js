@@ -30,4 +30,5 @@ export default {
   saveToItinerary: function (campData) {
     return axios.post("/api/itinerary/", campData);
   },
+
 };
