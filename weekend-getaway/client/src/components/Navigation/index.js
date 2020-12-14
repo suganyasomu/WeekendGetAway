@@ -1,4 +1,4 @@
-import React from"react";
+import React, {useContext} from"react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import {
     BrowserRouter as Router,
@@ -6,9 +6,14 @@ import {
     Route
 } from 'react-router-dom';
 import "./style.css";
+import { AuthContext } from "../../Auth";
+
 
 
 function Navigation() {
+    // Check if user is logged in or not:
+    const { currentUser } = useContext(AuthContext);
+    
     return (
         <div className="navigationContainer">
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -30,6 +35,11 @@ function Navigation() {
                             Login
                         </Nav.Link>
                         <Nav.Link href="/signup"> Signup </Nav.Link>
+                        {currentUser ? (
+                            <Nav.Link href="/itinerary"> Itinerary </Nav.Link>
+                            ) : (
+                            <span>  </span> 
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -1,4 +1,4 @@
-import React from"react";
+import React, {useContext} from"react";
 import './App.css';
 
 import {
@@ -12,11 +12,13 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import SignUp from "./pages/SignUp"
+import SignUp from "./pages/SignUp";
+import UserItinerary from "./pages/UserItinerary";
 import {AuthProvider} from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {  faHeart } from '@fortawesome/free-solid-svg-icons'
+import {  faHeart } from '@fortawesome/free-solid-svg-icons';
+
 
 library.add( faHeart ); // initialize font-awesome library w/ selected icons
 
@@ -39,6 +41,9 @@ function App() {
               <Route path="/signup">
                 <SignUp />
               </Route>
+              <Route path="/itinerary">
+                  <UserItinerary />
+              </Route>              
             </Switch>
             <Footer />
           </div>
