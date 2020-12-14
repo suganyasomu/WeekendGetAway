@@ -85,13 +85,13 @@ function SearchResults(props) {
                                 <Col size="md-6">
                             <Card key={id} className="campsiteCard" style={{ width: '30rem' }}>
                                 <Card.Body>
-                                  {props.userStatus ? (
-                                    <div onClick={() => handleFormSubmit(res.name)} data-campsite={res.name} className="btn saveBtn" title="Save to Itinerary"> 
-                                    <FontAwesomeIcon  icon="heart" size="lg" /> 
-                                    </div> 
-                                  ) : (
-                                <span>  </span> 
-                            )}
+                                    {props.userStatus ? (
+                                        <div onClick={() => handleFormSubmit(res.name)} data-campsite={res.name} className="btn saveBtn" title="Save to Itinerary"> 
+                                        <FontAwesomeIcon  icon="heart" size="lg" /> 
+                                        </div> 
+                                        ) : (
+                                        <span>  </span> 
+                                    )}
                                     <Card.Title> Campsite: {res.name} </Card.Title>
                                     {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
                                     <Card.Text>
