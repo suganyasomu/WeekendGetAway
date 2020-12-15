@@ -72,18 +72,24 @@ function Home() {
       <div className="container">
         <div className="row">
           <span className="col-8"> </span>
-          <span className="col-2">
+          
             {currentUser ? (
-              <p> You are logged in! </p>
+              <span className="col-2">
+                <p> You are logged in! </p>
+              </span>
             ) : (
-              <p> Guest - Login to Save to your Itinerary </p>
+              <span className="col-4">
+                <p> Guest - Login to Save to your Itinerary </p>
+              </span>
             )}
-          </span>
-          <div className="col-2">
-            <button className="btn btn-outline-secondary" onClick={signout}>
-              Sign out
-            </button>
-          </div>
+          
+          {currentUser && 
+            <div className="col-2">
+              <button className="btn btn-outline-secondary" onClick={signout}>
+                Sign out
+              </button>
+            </div>
+          }
         </div>
 
         <div className="row">

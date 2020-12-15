@@ -6,14 +6,14 @@ router.route("/")
   .get(itineraryController.findAll)
   .post(itineraryController.create);
 
-// Matches with "/api/itinerary/:id"
+// Matches with "/api/itinerary/:uid" (where uid is the user's ID)
 router
-  .route("/:id")
+  .route("/:uid")
   .get(itineraryController.findById)
   .put(itineraryController.update)
   .delete(itineraryController.remove);
 
   router
-  .route("/api/history/:Uid")
+  .route("/api/history/:uid")
   .post();
 module.exports = router;

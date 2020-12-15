@@ -16,12 +16,17 @@ function SearchResults(props) {
     const [save, setState] = useState([]);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+    const [dates, setDates] = useState({
+        start: "",
+        end: ""
+    });
+    
 
-  
+
     // Save campsite info to DB
     function handleFormSubmit(campsite) {
         // event.preventDefault();
-        console.log(campsite);
+        // console.log(campsite);
 
         // const { name, value } = event.target;
         // setState({...save, campsite: campsite})
@@ -41,35 +46,42 @@ function SearchResults(props) {
 
     };
 
-    // function parseStartDates(start) {
-    //     // setStartDate(start);
+    function handleStartDate(start) {
+        setStartDate(start);
+        let month = start.getMonth() + 1; //months from 1-12
+        let day = start.getDate();
+        let year = start.getFullYear(start);
+        let newStart =  month + "/" + day + "/" + year;
+        setDates({start: newStart});
+        // console.log(dates.start);
+    }
 
-    //     let month = start.getMonth() + 1; //months from 1-12
-    //     let day = start.getDate();
-    //     let year = start.getFullYear();
-    //     let newStart = year + "/" + month + "/" + day;
-    //     setStartDate(newStart);
-
-    //     console.log(startDate);
-
-    // }
+    function handleEndDate(end) {
+        setEndDate(end);
+        let month = end.getMonth() + 1; //months from 1-12
+        let day = end.getDate();
+        let year = end.getFullYear(end);
+        let newEnd =  month + "/" + day + "/" + year;
+        setDates({end: newEnd});
+        // console.log(dates.end);
+    }
 
     return (
         <div className="container">
             <div className="row">
                 <section className="col-6">
                     <span> Start Date: </span>
-                    <DatePicker selected={startDate} onChange={date => setStartDate(date)} className="startDate"/>
+                    <DatePicker selected={startDate} onChange={date => handleStartDate(date) } className="startDate"/>
                 </section>
 
                 <section className="col-6">
                     <span> End Date: </span>
-                    <DatePicker selected={endDate} onChange={date => setEndDate(date)} className="endDate"/>
+                    <DatePicker selected={endDate} onChange={date => handleEndDate(date) } className="endDate"/>
                 </section>
             </div>
 
             <div className="row">
-                {/* <h3> Dates Selected: {startDate} </h3> */}
+                <h3> Dates Selected: {dates.start} - {dates.end} </h3>
             </div>
             
             <div className="row">
@@ -108,7 +120,7 @@ function SearchResults(props) {
                             <Col size="md-6">
                                 
                             <Aside>
-                            <Map/>
+                            <Map key={id} />
                             </Aside>
                             </Col>
                             </Row>
