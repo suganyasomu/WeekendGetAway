@@ -31,15 +31,10 @@ function Navigation() {
                     </Nav>
                     <Nav>
                         <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link eventKey={2} href="/login">
-                            Login
-                        </Nav.Link>
-                        <Nav.Link href="/signup"> Signup </Nav.Link>
-                        {currentUser ? (
-                            <Nav.Link href="/itinerary"> Itinerary </Nav.Link>
-                            ) : (
-                            <span>  </span> 
-                        )}
+                        {!currentUser && <Nav.Link eventKey={2} href="/login"> Login </Nav.Link> }
+                        {!currentUser && <Nav.Link href="/signup"> Signup </Nav.Link> }
+                        {currentUser && <Nav.Link href="/itinerary"> Itinerary </Nav.Link> }
+                        
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

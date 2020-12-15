@@ -2,8 +2,6 @@ import React from 'react'
 import { GoogleMap, LoadScript} from '@react-google-maps/api';
 import Marker from "../Marker"
 
-
-
 const containerStyle = {
   width: '400px',
   height: '400px'
@@ -20,7 +18,7 @@ function Map() {
   const onLoad = React.useCallback(function callback(map) {
     // const bounds = new window.google.maps.LatLngBounds();
     // map.fitBounds(bounds);
-    console.log(map);
+    // console.log(map);
     setMap(map)
   }, [])
 
