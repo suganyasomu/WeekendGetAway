@@ -6,9 +6,9 @@ router.route("/")
   .get(itineraryController.findAll)
   .post(itineraryController.create);
 
-// Matches with "/api/itinerary/:uid" (where uid is the user's ID)
+// Matches with "/api/itinerary/:id" 
 router
-  .route("/:uid")
+  .route("/:id")
   .get(itineraryController.findById)
   .put(itineraryController.update)
   .delete(itineraryController.remove);
@@ -16,4 +16,5 @@ router
   router
   .route("/api/history/:uid")
   .post();
+  
 module.exports = router;
