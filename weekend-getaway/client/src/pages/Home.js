@@ -26,13 +26,10 @@ function Home() {
 
     API.getCampsites(query)
       // .then((res) => console.log(res.data))
-      .then(function(res){
-        setCampsites(res.data)
-   
+      .then(function (res) {
+        setCampsites(res.data);
       })
-.catch((err) => console.log(err));
-     
-
+      .catch((err) => console.log(err));
   }
 
   const handleInputChange = (event) => {
@@ -48,7 +45,6 @@ function Home() {
       alert("Please enter a city");
     } else {
       searchCampsites(search);
-    
     }
     console.log(campsites);
   };
@@ -72,24 +68,24 @@ function Home() {
       <div className="container">
         <div className="row">
           <span className="col-8"> </span>
-          
-            {currentUser ? (
-              <span className="col-2">
-                <p> You are logged in! </p>
-              </span>
-            ) : (
-              <span className="col-4">
-                <p> Guest - Login to Save to your Itinerary </p>
-              </span>
-            )}
-          
-          {currentUser && 
+
+          {currentUser ? (
+            <span className="col-2">
+              <p> You are logged in! </p>
+            </span>
+          ) : (
+            <span className="col-4">
+              <p> Guest - Login to Save to your Itinerary </p>
+            </span>
+          )}
+
+          {currentUser && (
             <div className="col-2">
               <button className="btn btn-outline-secondary" onClick={signout}>
                 Sign out
               </button>
             </div>
-          }
+          )}
         </div>
 
         <div className="row">
