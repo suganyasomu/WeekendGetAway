@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useContext} from"react";
 import API from "../utils/API";
 import { AuthContext } from "../Auth.js";
+import { Card } from "react-bootstrap";
+import Row from "../components/Row";
 
 function UserItinerary() {
     const [trips, setTrips] = useState([]);
@@ -24,20 +26,29 @@ function UserItinerary() {
 
     return (
         <div className="container">
-            <div className="row">
-                <h3> Saved Trips </h3>
-            </div>
+            <h3> Saved Trips </h3>
+            
+            {trips.map((res, index) => {
+                let id = index+1;
 
-            <div className="row">
-                {trips.map((res, index) => {
-                    let id = index+1;
-
-                    return (
-                        <h1 key={id}>{res.campsite}</h1>
-                    )
-                })}
-            </div>
-
+                return (
+                    <div className="container">
+                        <Row >
+                            <div className="col-3"> </div>
+                            <Card key={id} className="savedCampsites col-6" style={{ width: '30rem' }}>
+                                <Card.Body>
+                                    <Card.Title> Campsite: {res.campsite} </Card.Title>
+                                    <Card.Subtitle className="mb-2 text-muted">Trip Dates: </Card.Subtitle>
+                                    <Card.Text>
+                                        Activities: 
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card> 
+                            <div className="col-3"> </div>
+                        </Row>
+                    </div>
+                )
+            })}
         </div>
 
     );

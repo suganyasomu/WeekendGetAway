@@ -43,10 +43,7 @@ This app allows the user to find campsites and activites based on the city they 
 This application is covered under MIT.
     
 ## Contributing
-Mia de Haan
-Suganya Somu
-Kalen Pegeder
-Megan Sleezer
+Mia de Haan, Kalen Pegeder, Megan Sleezer, & Suganya Somu
     
 ## Questions
 If you have any questions, please contact...
