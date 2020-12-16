@@ -34,6 +34,7 @@ export default {
     return axios.post("/api/itinerary/", campData);
   },
   getItinerary: function (uid) {
-    return axios.get("/api/itinerary/" + uid);
-  },
+    // console.log(uid);
+    return axios.get("/api/itinerary/", { params: { user: uid } });
+  }
 };
