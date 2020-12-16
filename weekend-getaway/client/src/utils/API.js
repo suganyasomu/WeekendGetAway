@@ -20,6 +20,9 @@ export default {
   getHotspring: function (city) {
     return axios.get("/api/hotspring", { params: { search: city } });
   },
+  getClimb: function (city) {
+    return axios.get("/api/climbing", { params: { search: city } });
+  },
   getNatParks: function (city) {
     return axios.get("/api/natParks", { params: { search: city } });
   },
@@ -32,6 +35,5 @@ export default {
   },
   getItinerary: function (uid) {
     return axios.get("/api/itinerary/" + uid);
-  }
-
+  },
 };
