@@ -88,6 +88,15 @@ function SearchResults(props) {
                 <div className="resultsContainer">
 
                     <h3>Campites for: {props.searched}</h3>
+                    <Row>
+                    <Col size="md-6">
+                                
+                                <Aside>
+                                    {props.results.length>0 ?<Map results={props.results} lat={props.results[0].lat} lng={props.results[0].lng} />:<div/>}
+                                
+                                </Aside>
+                                </Col>
+                                </Row>
                     
                     {props.results.map((res, index) => {
                         let id = index+1;
@@ -117,12 +126,7 @@ function SearchResults(props) {
                             </Card> 
                             </Col>
                         
-                            <Col size="md-6">
-                                
-                            <Aside>
-                            <Map key={id} />
-                            </Aside>
-                            </Col>
+                           
                             </Row>
                             </div>
                         )

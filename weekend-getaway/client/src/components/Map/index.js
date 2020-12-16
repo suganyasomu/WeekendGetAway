@@ -12,9 +12,10 @@ const center = {
   lng: 150.644
 };
 
-function Map() {
+function Map(props) {
   const [map, setMap] = React.useState(null)
-
+  center.lat=props.lat;
+  center.lng=props.lng;
   const onLoad = React.useCallback(function callback(map) {
     // const bounds = new window.google.maps.LatLngBounds();
     // map.fitBounds(bounds);
@@ -37,12 +38,20 @@ function Map() {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        <Marker
+         { props.results.map((position,index) =>( <Marker
+       key={index}
+            lat={position.lat}
+            lng={position.lng}
+           
+            pname="My Marker"
+            color="blue"
+          />  ))}
+        {/* <Marker
             lat={center.lat}
             lng={center.lng}
             name="My Marker"
             color="blue"
-          />  
+          />   */}
         <></>
       </GoogleMap>
     </LoadScript>
