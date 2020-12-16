@@ -92,7 +92,7 @@ function SearchResults(props) {
                     <Col size="md-6">
                                 
                                 <Aside>
-                                    {props.results.length>0 ?<Map results={props.results} lat={props.results[0].lat} lng={props.results[0].lng} />:<div/>}
+                                    {props.results.length>0 ?<Map results={props.results} />:<div/>}
                                 
                                 </Aside>
                                 </Col>
