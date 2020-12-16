@@ -17,10 +17,10 @@ import UserItinerary from "./pages/UserItinerary";
 import {AuthProvider} from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {  faHeart } from '@fortawesome/free-solid-svg-icons';
+import {  faHeart, faDirections} from '@fortawesome/free-solid-svg-icons';
 
 
-library.add( faHeart ); // initialize font-awesome library w/ selected icons
+library.add( faHeart, faDirections ); // initialize font-awesome library w/ selected icons
 
 function App() {
 

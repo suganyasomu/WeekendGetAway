@@ -91,6 +91,7 @@ function SearchResults(props) {
               </div>
             );
           })}
+
         </div>
       </div>
     </div>

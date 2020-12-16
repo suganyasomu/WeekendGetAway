@@ -1,6 +1,6 @@
 import React from 'react'
-import { GoogleMap, LoadScript} from '@react-google-maps/api';
-import Marker from "../Marker"
+import { GoogleMap, LoadScript,Marker} from '@react-google-maps/api';
+
 
 const containerStyle = {
   width: '400px',
@@ -8,17 +8,24 @@ const containerStyle = {
 };
 
 const center = {
-  lat: -34.397,
-  lng: 150.644
+  lat: 43.7122222,
+  lng: -121.2433333
 };
 
-function Map() {
+function Map(props) {
   const [map, setMap] = React.useState(null)
-
+ 
   const onLoad = React.useCallback(function callback(map) {
     // const bounds = new window.google.maps.LatLngBounds();
     // map.fitBounds(bounds);
     // console.log(map);
+    center.lat=props.lat;
+    center.lng=props.lng;
+    console.log(props.lat);
+    // console.log(props.lng)
+    console.log(props.results)
+   
+    
     setMap(map)
   }, [])
 
@@ -37,13 +44,11 @@ function Map() {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        <Marker
-            lat={center.lat}
-            lng={center.lng}
-            name="My Marker"
-            color="blue"
-          />  
-        <></>
+
+{props.results.map((position,index) =>
+ 
+ <Marker position={position} key={index} />
+ )} <></>
       </GoogleMap>
     </LoadScript>
   )
