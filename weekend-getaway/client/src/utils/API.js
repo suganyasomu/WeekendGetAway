@@ -33,6 +33,9 @@ export default {
   getItinerary: function (uid) {
     // console.log(uid);
     return axios.get("/api/itinerary/", { params: { user: uid } });
+  },
+  sendGeolocation: function(lat, lon) {
+    return axios.post("/api/geolocation/", { params: { latitude: lat, longitude: lon} })
   }
 
 };
