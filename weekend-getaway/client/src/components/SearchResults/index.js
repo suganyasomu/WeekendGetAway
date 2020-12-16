@@ -116,7 +116,7 @@ function SearchResults(props) {
                                 </Card.Body>
                             </Card> 
                             </Col>
-                           
+                        
                             <Col size="md-6">
                                 
                             <Aside>
