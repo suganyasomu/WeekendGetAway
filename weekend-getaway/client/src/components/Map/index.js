@@ -18,7 +18,7 @@ function Map(props) {
   const onLoad = React.useCallback(function callback(map) {
     // const bounds = new window.google.maps.LatLngBounds();
     // map.fitBounds(bounds);
-    // console.log(map);
+    console.log(map);
     center.lat=props.lat;
     center.lng=props.lng;
     console.log(props.lat);
@@ -48,7 +48,7 @@ function Map(props) {
 {props.results.map((position,index) =>
  
  <Marker position={position} key={index} />
- )} <></>
+)} <></>
       </GoogleMap>
     </LoadScript>
   )
