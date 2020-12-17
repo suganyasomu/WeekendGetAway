@@ -10,6 +10,7 @@ import Col from "../Col";
 import Row from "../Row";
 import Dates from "../Dates";
 import Checkbox from "../Checkbox";
+import { Last } from "react-bootstrap/esm/PageItem";
 
 
 function SearchResults(props) {
@@ -45,24 +46,23 @@ function SearchResults(props) {
     // }
   }
   // Save campsite info to DB
-  function handleFormSubmit(campsite) {
+  function handleFormSubmit(campsite, lat, lon) {
     // event.preventDefault();
     // console.log(campsite);
+    // console.log(lat);
 
-    // const { name, value } = event.target;
-    // setState({...save, campsite: campsite})
-
-    // console.log(save.campsite);
-    console.log("save button was clicked!");
-    console.log(props.userStatus.uid);
+    // console.log("save button was clicked!");
+    // console.log(props.userStatus.uid);
     // setState();
 
     // Save selected campsite to DB
     API.saveToItinerary({
       user: props.userStatus.uid,
       campsite: campsite,
+      campLat: lat,
+      campLon: lon
     })
-      .then((res) => console.log("Save campsite to database!"))
+      .then((res) => alert("Campsite has now been saved to your itinerary!"))
       .catch((err) => console.log(err));
   }
 
@@ -108,7 +108,7 @@ function SearchResults(props) {
                           <Card.Body>
                             {props.userStatus ? (
                               <div
-                                onClick={() => handleFormSubmit(res.name)}
+                                onClick={() => handleFormSubmit(res.name, res.lat, res.lng)}
                                 data-campsite={res.name}
                                 className="btn saveBtn"
                                 title="Save to Itinerary"
