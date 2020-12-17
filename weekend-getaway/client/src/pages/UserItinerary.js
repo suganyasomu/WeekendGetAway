@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from"react";
 import API from "../utils/API";
 import { AuthContext } from "../Auth.js";
+import {Link} from "react-router-dom";
 import { Card } from "react-bootstrap";
 import Row from "../components/Row";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +27,7 @@ function UserItinerary() {
         .catch(err => console.log(err));
     }
 
-      // Deletes an itinerary from the database with a given id, then reloads the user's itineraries from the db
+     // Deletes an itinerary from the database with a given id, then reloads the user's itineraries from the db
     function deleteItinerary(id) {
         console.log(id);
         API.deleteItinerary(id)
@@ -85,14 +86,14 @@ function UserItinerary() {
                 let id = index+1;
 
                 return (
-                    <div className="container">
+                    <div className="container" key={id}>
                         <Row >
                             <div className="col-3"> </div>
-                            <Card key={id} className="savedCampsites col-6" style={{ width: '30rem' }}>
+                            <Card className="savedCampsites col-6" style={{ width: '30rem' }}>
                                 <Card.Body>
-                                    <div onClick={() => handleFormSubmit()} className="btn directionsBtn" title="Get Directions"> 
-                                        <FontAwesomeIcon icon="directions" />                                        
-                                    </div> 
+                                    <Link to="/directions" className="btn directionsBtn" title="Get Directions">
+                                        <FontAwesomeIcon icon="directions" />                                     
+                                    </Link>
                                     <DeleteBtn onClick={() => deleteItinerary(res._id)} />
                                     <Card.Title> Campsite: {res.campsite} </Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">Trip Dates: </Card.Subtitle>

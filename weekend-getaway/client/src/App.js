@@ -14,6 +14,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import UserItinerary from "./pages/UserItinerary";
+import Directions from "./pages/Directions";
 import {AuthProvider} from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -43,6 +44,9 @@ function App() {
               </Route>
               <Route path="/itinerary">
                   <UserItinerary />
+              </Route>  
+              <Route path="/directions">
+                  <Directions />
               </Route>              
             </Switch>
             <Footer />

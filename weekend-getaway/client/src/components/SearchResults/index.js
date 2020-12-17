@@ -11,6 +11,7 @@ import Row from "../Row";
 import Dates from "../Dates";
 import Checkbox from "../Checkbox";
 
+
 function SearchResults(props) {
   // console.log(props);
 
