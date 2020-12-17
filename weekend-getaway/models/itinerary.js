@@ -5,6 +5,8 @@ const Schema = mongoose.Schema;
 const ItinerarySchema = new Schema({
     user: {type: String, required: true},
     campsite: {type: String, required: true},
+    campLat: {type: Number, required: true},
+    campLon: {type: Number, required: true},
     begin_date: {type: Date, required: false},
     end_date: {type: Date, required: false},
     activities: [

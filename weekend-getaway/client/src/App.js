@@ -33,21 +33,15 @@ function App() {
             <Navigation />
             
             <Switch>
-              <Route path="/" exact>
-                <Home />
-              </Route>
+              <Route path="/" exact component={Home} />
               <Route path="/login">
                 <Login />
               </Route>
               <Route path="/signup">
                 <SignUp />
               </Route>
-              <Route path="/itinerary">
-                  <UserItinerary />
-              </Route>  
-              <Route path="/directions">
-                  <Directions />
-              </Route>              
+              <Route path="/itinerary" component={UserItinerary} />
+              <Route path="/directions" component={Directions} />
             </Switch>
             <Footer />
           </div>

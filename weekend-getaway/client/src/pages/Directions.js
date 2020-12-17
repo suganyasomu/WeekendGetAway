@@ -2,13 +2,31 @@ import React, {useState, useEffect, useContext} from"react";
 import API from "../utils/API";
 import Row from "../components/Row";
 
-function Directions(props) {
-    console.log(props);
+function Directions({location}) {
+    // console.log(location.coordinates);
+    const [directions, setDirections] = useState({});
 
-    // Get lat/lon from the selected campsite
-    function campsiteLocation() {
-        console.log("Campsite - Lat: " + " Lon: ");
+    // object to send to 
+    let coordinates = {
+        campLat: location.coordinates.lat,
+        campLon: location.coordinates.lon,
+        userLat: parseFloat(getCookie("lat")),
+        userLon: parseFloat(getCookie("lon"))
+    };
+    // console.log(coordinates);
 
+    useEffect(() =>{
+        getDirections()
+    }, []);
+
+    // Get pass coordinates to backend & get directions
+    function getDirections() {
+        console.log(coordinates);
+
+        API.getDirections(coordinates)
+        .then(res => console.log(res.data))
+        // .then(res => setDirections(res.data) )
+        .catch(err => console.log(err));
     }
 
     //Get user's geolocation
@@ -40,20 +58,6 @@ function Directions(props) {
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    function userLocation() {
-        geoFindMe(); // get user's geolocation 
-        let lat = getCookie("lat");
-        let lon = getCookie("lon");
-        console.log("User - Lat: " + lat + " Lon: " + lon);
-
-        API.sendGeolocation(lat, lon)
-        .then(res => console.log("successfully sent geolocation to backend!") )
-        .catch(err => console.log(err));
-        
-    }
-        
-    userLocation();
-    campsiteLocation();
 
     return (
         <div className="container">

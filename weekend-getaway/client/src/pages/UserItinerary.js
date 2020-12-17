@@ -33,49 +33,6 @@ function UserItinerary() {
         API.deleteItinerary(id)
         .then(res => loadItinerary(uid))
         .catch(err => console.log(err));
-  }
-
-    //Get user's geolocation
-    function geoFindMe() {
-
-        function success(position) {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            document.cookie = `lat=${latitude}`;
-            document.cookie = `lon=${longitude}`;
-        }
-
-        function error() {
-            alert('Unable to retrieve your location');
-        }
-
-        if (!navigator.geolocation) {
-            alert('Geolocation is not supported by your browser');
-        } else {
-            // console.log('Locating…');
-
-            navigator.geolocation.getCurrentPosition(success, error);
-        }
-    }
-
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-
-
-    function handleFormSubmit() {
-        // Go to the directions page
-
-        geoFindMe(); // get user's geolocation 
-        let lat = getCookie("lat");
-        let lon = getCookie("lon");
-        console.log("Lat: " + lat + " Lon: " + lon);
-
-        API.sendGeolocation(lat, lon)
-        .then(res => console.log("successfully sent geolocation to backend!") )
-        .catch(err => console.log(err));
     }
 
     return (
@@ -84,6 +41,8 @@ function UserItinerary() {
             
             {trips.map((res, index) => {
                 let id = index+1;
+                let latitude = res.campLat;
+                let longitude = res.campLon;
 
                 return (
                     <div className="container" key={id}>
@@ -91,7 +50,16 @@ function UserItinerary() {
                             <div className="col-3"> </div>
                             <Card className="savedCampsites col-6" style={{ width: '30rem' }}>
                                 <Card.Body>
-                                    <Link to="/directions" className="btn directionsBtn" title="Get Directions">
+                                    <Link to={{
+                                            pathname: "/directions",
+                                            coordinates: {
+                                                lat: latitude,
+                                                lon: longitude
+                                            }
+                                        }}
+                                        className="btn directionsBtn" 
+                                        title="Get Directions"
+                                    >
                                         <FontAwesomeIcon icon="directions" />                                     
                                     </Link>
                                     <DeleteBtn onClick={() => deleteItinerary(res._id)} />
