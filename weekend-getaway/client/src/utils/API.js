@@ -42,6 +42,6 @@ export default {
   },
   getDirections: function(coordinates) {
     // coordinates sent as an object
-    return axios.post("/api/directions/", coordinates);
+    return axios.get("/api/directions/", coordinates);
   }
 };

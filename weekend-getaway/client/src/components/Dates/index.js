@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { propTypes } from "react-bootstrap/esm/Image";
 // import "./style.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const Dates = () => {
+function Dates(props) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
