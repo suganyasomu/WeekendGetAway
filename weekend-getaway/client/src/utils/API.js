@@ -43,5 +43,5 @@ export default {
   getDirections: function (coordinates) {
     // coordinates sent as an object
     return axios.get("/api/directions/", { params: { location: coordinates } });
-  },
+  }
 };

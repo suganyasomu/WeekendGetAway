@@ -1,10 +1,9 @@
-import React, {useContext} from"react";
+import React from"react";
 import './App.css';
 
 import {
   BrowserRouter as Router,
   Switch,
-  Link,
   Route
 } from 'react-router-dom';
 import Header from "./components/Header";
@@ -16,7 +15,7 @@ import SignUp from "./pages/SignUp";
 import UserItinerary from "./pages/UserItinerary";
 import Directions from "./pages/Directions";
 import {AuthProvider} from "./Auth";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {  faHeart, faDirections} from '@fortawesome/free-solid-svg-icons';
 

@@ -15,7 +15,8 @@ function SearchContainer(props) {
                 aria-label="search by location" 
             />
             <div className="input-group-append">
-                <button className="btn btn-outline-secondary" type="submit" onClick={props.handleFormSubmit} > Submit </button>
+                <button className="btn btn-outline-secondary" type="submit" onClick={props.handleFormSubmit} > Submit </button> 
+                
             </div>
         </form>
     );

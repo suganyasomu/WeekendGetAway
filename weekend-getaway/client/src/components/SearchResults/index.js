@@ -22,6 +22,10 @@ function SearchResults(props) {
     campsites: false,
     weather: false,
   });
+  const [dates, setDates] = useState({
+    startDate: "",
+    endDate: "",
+  });
 
   function handleCheckboxChange(event) {
     const { name, checked } = event.target;

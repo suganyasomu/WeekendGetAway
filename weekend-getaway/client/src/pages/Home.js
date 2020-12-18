@@ -30,6 +30,7 @@ function Home() {
         setCampsites(res.data);
       })
       .catch((err) => console.log(err));
+      
   }
 
   const handleInputChange = (event) => {
