@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import UserItinerary from "./pages/UserItinerary";
 import Directions from "./pages/Directions";
+import PasswordReset from "./pages/PasswordReset";
 import {AuthProvider} from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -42,6 +43,7 @@ function App() {
               </Route>
               <Route path="/itinerary" component={UserItinerary} />
               <Route path="/directions" component={Directions} />
+              <Route path="/passwordReset" component={PasswordReset} />
             </Switch>
             <Footer />
           </div>
