@@ -16,7 +16,8 @@ function Directions({location}) {
     // console.log(coordinates);
 
     useEffect(() =>{
-        getDirections()
+        geoFindMe();
+        getDirections();
     }, []);
 
     // Get pass coordinates to backend & get directions
@@ -24,8 +25,8 @@ function Directions({location}) {
         console.log(coordinates);
 
         API.getDirections(coordinates)
-        .then(res => console.log(res.data))
-        // .then(res => setDirections(res.data) )
+        // .then(res => console.log(res.data))
+        .then(res => setDirections(res.data) )
         .catch(err => console.log(err));
     }
 
@@ -53,6 +54,7 @@ function Directions({location}) {
     }
 
     function getCookie(name) {
+        
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
         if (parts.length === 2) return parts.pop().split(';').shift();
