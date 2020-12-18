@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import API from "../utils/API";
 import Row from "../components/Row";
+import {Card} from 'react-bootstrap';
 
 function Directions({ location }) {
   // console.log(location.coordinates);
-  const [directions, setDirections] = useState({});
+  const [directions, setDirections] = useState([]);
 
   // object to send to
   let coordinates = {
@@ -22,12 +23,13 @@ function Directions({ location }) {
 
   // Get pass coordinates to backend & get directions
   function getDirections() {
-    console.log(coordinates);
+    // console.log(coordinates);
 
     API.getDirections(coordinates)
-      .then((res) => console.log(res.data))
-      // .then(res => setDirections(res.data) )
+      // .then((res) => console.log(res.data.directions))
+      .then(res => setDirections(res.data.directions) )
       .catch((err) => console.log(err));
+
   }
 
   //Get user's geolocation
@@ -63,6 +65,23 @@ function Directions({ location }) {
       <Row>
         <h3> Directions </h3>
       </Row>
+        
+      {directions.map((res, index) => {
+        let id=index+1;
+        return(
+          <Row>
+            <Card key={id} style={{ width: '30rem' }}> 
+              <Card.Title> 
+                <img src={res.turnIcon} />
+                {res.narrative} 
+              </Card.Title>
+              <Card.Subtitle> {res.streets} </Card.Subtitle>
+
+            </Card>
+          </Row>
+        )
+      })}
+        
     </div>
   );
 }
