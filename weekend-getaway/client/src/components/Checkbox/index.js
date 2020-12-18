@@ -9,7 +9,7 @@ function Checkbox(props) {
       <input
         type="checkbox"
         id={props.name}
-        onChange={props.handleCheckboxChange}
+        onChange={props.handleCheckbox}
         name={props.name}
         checked={props.checked}
       /><span></span>

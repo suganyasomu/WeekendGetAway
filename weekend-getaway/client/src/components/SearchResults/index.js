@@ -82,22 +82,23 @@ function SearchResults(props) {
           <h3>Campites for: {props.searched}</h3>
           <Row>
             <Col size="md-3">
-              <Checkbox
+               <Checkbox
                 name="hotsprings"
-                checked={filter.hotsprings}
-                handleCheckboxChange={handleCheckboxChange}
+                checked={props.filter.hotsprings}
+                handleCheckbox={(e)=>{props.handleCheckboxChange(e)}}
               />
 
               <Checkbox
                 name="campsites"
-                value={filter.campsites}
-                handleCheckboxChange={handleCheckboxChange}
+                
+                checked={props.filter.campsites}
+                 handleCheckbox={(e)=>{props.handleCheckboxChange(e)}}
               />
 
               <Checkbox
                 name="weather"
-                value={filter.weather}
-                handleCheckboxChange={handleCheckboxChange}
+                checked={props.filter.weather}
+                 handleCheckbox={(e)=>{props.handleCheckboxChange(e)}}
               />
             </Col>
             <Col size="md-6">

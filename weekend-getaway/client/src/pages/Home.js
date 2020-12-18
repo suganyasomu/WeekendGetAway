@@ -11,6 +11,54 @@ function Home() {
   // initialize state variables
   const [search, setSearch] = useState("");
   const [campsites, setCampsites] = useState([]);
+    const [hotspring, setHotsprings] = useState([]);
+   const [filter, setFilter] = useState({
+    hotsprings: false,
+    campsites: false,
+    weather: false,
+  });
+
+
+  function handleCheckbox(event) {
+    const {name, checked } = event.target;
+    console.log(name);
+  console.log(checked);
+    setFilter({
+      ...filter,
+      [name]: checked,
+    });
+     console.log("from home page");
+    console.log(filter);
+    
+   
+  }
+
+  function getFilter(){
+     if(filter.campsites===true){
+       
+           searchCampsites(search);
+           console.log("campsites in called")
+
+    }
+    if(filter.hotsprings===true){
+      searchHotsprings(search);
+      console.log("Hotspring is called")
+
+    }
+    if(filter.weather===true){
+    console.log("Nothing is called");
+    }
+  }
+   function searchHotsprings(query) {
+    // console.log(query);
+
+    API.getHotspring(query)
+      // .then((res) => console.log(res.data))
+      .then(function (res) {
+        setHotsprings(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
 
   // Mount initial info
   // useEffect( () => {
@@ -45,7 +93,7 @@ function Home() {
     if (search === "") {
       alert("Please enter a city");
     } else {
-      searchCampsites(search);
+      getFilter(search)
     }
     console.log(campsites);
   };
@@ -107,6 +155,9 @@ function Home() {
               searched={search}
               results={campsites}
               userStatus={currentUser}
+              filter={filter}
+              handleCheckboxChange={handleCheckbox}
+              value={search}
             />
           </section>
         </div>
