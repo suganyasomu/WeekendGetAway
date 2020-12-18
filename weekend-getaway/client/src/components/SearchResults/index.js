@@ -46,7 +46,7 @@ function SearchResults(props) {
     // }
   }
   // Save campsite info to DB
-  function handleFormSubmit(campsite, lat, lon) {
+  function handleFormSubmit(campsite, lat, lon, reservable, fee, phone) {
     // event.preventDefault();
     // console.log(campsite);
     // console.log(lat);
@@ -59,6 +59,9 @@ function SearchResults(props) {
     API.saveToItinerary({
       user: props.userStatus.uid,
       campsite: campsite,
+      campRes: reservable,
+      campFee: fee,
+      campPhone: phone,
       campLat: lat,
       campLon: lon
     })
@@ -108,8 +111,7 @@ function SearchResults(props) {
                           <Card.Body>
                             {props.userStatus ? (
                               <div
-                                onClick={() => handleFormSubmit(res.name, res.lat, res.lng)}
-                                data-campsite={res.name}
+                                onClick={() => handleFormSubmit(res.name, res.lat, res.lng, res.reservable, res.fee, res.phone)}
                                 className="btn saveBtn"
                                 title="Save to Itinerary"
                               >
