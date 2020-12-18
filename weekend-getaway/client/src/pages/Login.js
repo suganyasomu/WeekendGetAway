@@ -1,5 +1,6 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
+import { Link } from 'react-router-dom';
 import app from "../base.js";
 import  {AuthContext} from "../Auth.js";
 import API from "../utils/API";
@@ -62,6 +63,16 @@ const Login = ({ history }) => {
         </Form>
         <span className="col-2"></span>
       </div>
+
+      <div className="row mt-2">
+        <span className="col-2"></span>
+        <div className="col-8">
+        <Link to="/passwordReset">
+          <p>Forgot Password?</p>
+        </Link>
+        </div>
+        <span className="col-2"></span>
+        </div>
     
     </div>
   );
