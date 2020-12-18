@@ -8,6 +8,7 @@ const locationRoutes = require("./location");
 const weatherRoutes = require("./weather");
 const natParksRoutes = require("./natParks");
 const climbingRoutes = require("./climbing");
+const directionRoutes = require("./directions");
 
 //routes
 router.use("/itinerary", itineraryRoutes);
@@ -19,5 +20,6 @@ router.use("/location", locationRoutes);
 router.use("/weather", weatherRoutes);
 router.use("/natParks", natParksRoutes);
 router.use("/climbing", climbingRoutes);
+router.use("/directions", directionRoutes);
 
 module.exports = router;
