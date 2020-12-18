@@ -40,8 +40,8 @@ export default {
   deleteItinerary: function (id) {
     return axios.delete("/api/itinerary/" + id);
   },
-  getDirections: function(coordinates) {
+  getDirections: function (coordinates) {
     // coordinates sent as an object
-    return axios.post("/api/directions/", coordinates);
-  }
+    return axios.get("/api/directions/", { params: { location: coordinates } });
+  },
 };
