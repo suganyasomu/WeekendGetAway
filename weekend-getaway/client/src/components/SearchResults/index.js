@@ -14,7 +14,6 @@ import Dates from "../Dates";
 import Checkbox from "../Checkbox";
 // import Section from "../Section"
 import { Last } from "react-bootstrap/esm/PageItem";
-import LoginModal from "../LoginModal";
 
 function SearchResults(props) {
   // console.log(props);
@@ -83,7 +82,7 @@ function SearchResults(props) {
                 }}
               />
             </Col>
-            <Col size="md-3">
+            <Col size="md-4">
               {props.results.map((res, index) => {
                 let id = index + 1;
                 return (
@@ -114,7 +113,7 @@ function SearchResults(props) {
                                 <FontAwesomeIcon icon="heart" size="lg" />
                               </div>
                             ) : (
-                              <LoginModal/>
+                              <span> </span>
                             )}
                             <Card.Title> Campsite: {res.name} </Card.Title>
                             {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
@@ -136,7 +135,7 @@ function SearchResults(props) {
                 );
               })}
             </Col>
-            <Col size="md-6">
+            <Col size="md-4">
               <Aside>
                 {props.results.length > 0 ? (
                   <Map results={props.results} />
