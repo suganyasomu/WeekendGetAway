@@ -11,6 +11,7 @@ import Row from "../Row";
 import Dates from "../Dates";
 import Checkbox from "../Checkbox";
 import { Last } from "react-bootstrap/esm/PageItem";
+import LoginModal from "../LoginModal";
 
 
 function SearchResults(props) {
@@ -123,7 +124,7 @@ function SearchResults(props) {
                                 <FontAwesomeIcon icon="heart" size="lg" />
                               </div>
                             ) : (
-                              <span> </span>
+                              <LoginModal/>
                             )}
                             <Card.Title> Campsite: {res.name} </Card.Title>
                             {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
