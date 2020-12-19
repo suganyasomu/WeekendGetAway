@@ -17,38 +17,13 @@ function SearchResults(props) {
   // console.log(props);
 
   const [save, setState] = useState([]);
-  const [filter, setFilter] = useState({
-    hotsprings: false,
-    campsites: false,
-    weather: false,
-  });
+
   const [dates, setDates] = useState({
     startDate: "",
     endDate: "",
   });
 
-  function handleCheckboxChange(event) {
-    const { name, checked } = event.target;
-    console.log(checked);
-    setFilter({
-      ...filter,
-      [name]: checked,
-    });
-    // run api call if checked is true for that filter state property
-    // if(checked && name ==="campsites"){
-    //   API.getCampsites(query)
-    //   // .then((res) => console.log(res.data))
-    //   .then(function (res) {
-    //     setCampsites(res.data);
-    //   })
-    //   .catch((err) => console.log(err));
-    // }
-    // else if(checked && name ==="hotsprings"){
 
-    // }else if{
-
-    // }
-  }
   // Save campsite info to DB
   function handleFormSubmit(campsite, lat, lon, reservable, fee, phone) {
     // event.preventDefault();
