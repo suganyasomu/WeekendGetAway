@@ -168,6 +168,7 @@ function Home() {
               filter={filter}
               handleCheckboxChange={handleCheckbox}
               value={search}
+              weatherCondition={weather}
             />
           </section>
         </div>

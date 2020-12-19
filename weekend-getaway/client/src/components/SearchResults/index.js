@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./style.css";
 import Card from "react-bootstrap/Card";
+import CardDeck from "react-bootstrap/CardDeck";
+import CardGroup from "react-bootstrap/CardGroup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import API from "../../utils/API";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,8 +12,8 @@ import Col from "../Col";
 import Row from "../Row";
 import Dates from "../Dates";
 import Checkbox from "../Checkbox";
+// import Section from "../Section"
 import { Last } from "react-bootstrap/esm/PageItem";
-
 
 function SearchResults(props) {
   // console.log(props);
@@ -22,7 +24,6 @@ function SearchResults(props) {
     startDate: "",
     endDate: "",
   });
-
 
   // Save campsite info to DB
   function handleFormSubmit(campsite, lat, lon, reservable, fee, phone) {
@@ -42,7 +43,7 @@ function SearchResults(props) {
       campFee: fee,
       campPhone: phone,
       campLat: lat,
-      campLon: lon
+      campLon: lon,
     })
       .then((res) => alert("Campsite has now been saved to your itinerary!"))
       .catch((err) => console.log(err));
@@ -53,36 +54,41 @@ function SearchResults(props) {
       <Dates />
 
       <div className="row">
-        <div className="resultsContainer">
+        <div className="resultsContainer" >
           <h3>Campites for: {props.searched}</h3>
           <Row>
             <Col size="md-3">
-               <Checkbox
+              <Checkbox
                 name="hotsprings"
                 checked={props.filter.hotsprings}
-                handleCheckbox={(e)=>{props.handleCheckboxChange(e)}}
+                handleCheckbox={(e) => {
+                  props.handleCheckboxChange(e);
+                }}
               />
 
               <Checkbox
                 name="campsites"
-                
                 checked={props.filter.campsites}
-                 handleCheckbox={(e)=>{props.handleCheckboxChange(e)}}
+                handleCheckbox={(e) => {
+                  props.handleCheckboxChange(e);
+                }}
               />
 
               <Checkbox
                 name="weather"
                 checked={props.filter.weather}
-                 handleCheckbox={(e)=>{props.handleCheckboxChange(e)}}
+                handleCheckbox={(e) => {
+                  props.handleCheckboxChange(e);
+                }}
               />
             </Col>
-            <Col size="md-6">
+            <Col size="md-3">
               {props.results.map((res, index) => {
                 let id = index + 1;
                 return (
                   <div>
                     <Row>
-                      <Col size="md-6">
+                      <Col size="md-3">
                         <Card
                           key={id}
                           className="campsiteCard"
@@ -91,7 +97,16 @@ function SearchResults(props) {
                           <Card.Body>
                             {props.userStatus ? (
                               <div
-                                onClick={() => handleFormSubmit(res.name, res.lat, res.lng, res.reservable, res.fee, res.phone)}
+                                onClick={() =>
+                                  handleFormSubmit(
+                                    res.name,
+                                    res.lat,
+                                    res.lng,
+                                    res.reservable,
+                                    res.fee,
+                                    res.phone
+                                  )
+                                }
                                 className="btn saveBtn"
                                 title="Save to Itinerary"
                               >
@@ -120,7 +135,7 @@ function SearchResults(props) {
                 );
               })}
             </Col>
-            <Col size="md-3">
+            <Col size="md-6">
               <Aside>
                 {props.results.length > 0 ? (
                   <Map results={props.results} />
@@ -130,6 +145,40 @@ function SearchResults(props) {
               </Aside>
             </Col>
           </Row>
+{/* <Row> */}
+          {props.filter.weather ? (
+            <section style={{width:"100%"}}>
+              <h3>Weather Forecast For: {props.searched}</h3>
+              {props.weatherCondition.map((res, index) => {
+                
+                let id = index + 1;
+                return (
+                 
+                     <CardDeck style={{display :"inline-block",marginTop: 20, marginBottom: 20, marginRight:10,width: "10rem"}}> 
+                        <Card
+                          key={id}
+                          className="weatherCard"
+                          // style={{marginTop: 20, marginBottom: 20, width: "10rem"}}
+                        >
+                          <Card.Body>
+                           
+                           
+                            <Card.Text> Temp :{res.temp} </Card.Text>
+                            <Card.Text> Date :{res.date} </Card.Text>
+                            <Card.Text> Wind :{res.wind} </Card.Text>
+                            <Card.Text> Condition :{res.rain} </Card.Text>
+                          
+                          </Card.Body>
+                        </Card>
+                        </CardDeck>
+                   
+                );
+              })}
+            </section>
+          ) : (
+            <span> </span>
+          )}
+          {/* </Row> */}
         </div>
       </div>
     </div>
