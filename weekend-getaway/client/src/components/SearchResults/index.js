@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./style.css";
 import Card from "react-bootstrap/Card";
+import CardDeck from "react-bootstrap/CardDeck";
+import CardGroup from "react-bootstrap/CardGroup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import API from "../../utils/API";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,6 +12,7 @@ import Col from "../Col";
 import Row from "../Row";
 import Dates from "../Dates";
 import Checkbox from "../Checkbox";
+// import Section from "../Section"
 import { Last } from "react-bootstrap/esm/PageItem";
 import { useIndexedDB } from "react-indexed-db";
 
@@ -77,7 +80,7 @@ function SearchResults(props) {
       <Dates />
 
       <div className="row">
-        <div className="resultsContainer">
+        <div className="resultsContainer" >
           <h3>Campites for: {props.searched}</h3>
           <Row>
             <Col size="md-3">
@@ -105,13 +108,13 @@ function SearchResults(props) {
                 }}
               />
             </Col>
-            <Col size="md-6">
+            <Col size="md-4">
               {props.results.map((res, index) => {
                 let id = index + 1;
                 return (
                   <div>
                     <Row>
-                      <Col size="md-6">
+                      <Col size="md-3">
                         <Card
                           key={id}
                           className="campsiteCard"
@@ -159,7 +162,7 @@ function SearchResults(props) {
                 );
               })}
             </Col>
-            <Col size="md-3">
+            <Col size="md-4">
               <Aside>
                 {props.results.length > 0 ? (
                   <Map results={props.results} />
@@ -169,6 +172,40 @@ function SearchResults(props) {
               </Aside>
             </Col>
           </Row>
+{/* <Row> */}
+          {props.filter.weather ? (
+            <section style={{width:"100%"}}>
+              <h3>Weather Forecast For: {props.searched}</h3>
+              {props.weatherCondition.map((res, index) => {
+                
+                let id = index + 1;
+                return (
+                 
+                     <CardDeck style={{display :"inline-block",marginTop: 20, marginBottom: 20, marginRight:10,width: "10rem"}}> 
+                        <Card
+                          key={id}
+                          className="weatherCard"
+                          // style={{marginTop: 20, marginBottom: 20, width: "10rem"}}
+                        >
+                          <Card.Body>
+                           
+                           
+                            <Card.Text> Temp :{res.temp} </Card.Text>
+                            <Card.Text> Date :{res.date} </Card.Text>
+                            <Card.Text> Wind :{res.wind} </Card.Text>
+                            <Card.Text> Condition :{res.rain} </Card.Text>
+                          
+                          </Card.Body>
+                        </Card>
+                        </CardDeck>
+                   
+                );
+              })}
+            </section>
+          ) : (
+            <span> </span>
+          )}
+          {/* </Row> */}
         </div>
       </div>
     </div>
