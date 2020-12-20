@@ -15,6 +15,7 @@ import Checkbox from "../Checkbox";
 // import Section from "../Section"
 import { Last } from "react-bootstrap/esm/PageItem";
 import { useIndexedDB } from "react-indexed-db";
+import LoginModal from "../LoginModal";
 
 function SearchResults(props) {
   // console.log(props);
@@ -51,7 +52,7 @@ function SearchResults(props) {
       user: props.userStatus.uid,
       name: campsite,
       lat: lat,
-      lon: lon,
+      lon: lon
     }).then(
       (event) => {
         console.log("ID Generated: ", event);
@@ -99,7 +100,7 @@ function SearchResults(props) {
         <div className="resultsContainer">
           <h3>Campites for: {props.searched}</h3>
           <Row>
-            <Col size="md-3">
+            <Col size="md-2">
               <Checkbox
                 name="hotsprings"
                 checked={props.filter.hotsprings}
@@ -124,13 +125,13 @@ function SearchResults(props) {
                 }}
               />
             </Col>
-            <Col size="md-4">
+            <Col size="md-6">
               {props.results.map((res, index) => {
                 let id = index + 1;
                 return (
                   <div>
                     <Row>
-                      <Col size="md-3">
+                      <Col size="md-6">
                         <Card
                           key={id}
                           className="campsiteCard"
@@ -138,7 +139,7 @@ function SearchResults(props) {
                         >
                           <Card.Body>
                             {props.userStatus ? (
-                              <div
+                              <span
                                 onClick={() =>
                                   handleFormSubmit(
                                     res.name,
@@ -150,13 +151,13 @@ function SearchResults(props) {
                                     res.activity
                                   )
                                 }
-                                className="btn saveBtn"
+                                className="saveBtn"
                                 title="Save to Itinerary"
                               >
                                 <FontAwesomeIcon icon="heart" size="lg" />
-                              </div>
+                              </span>
                             ) : (
-                              <span> </span>
+                              <LoginModal/>
                             )}
                             <Card.Title> Campsite: {res.name} </Card.Title>
                             {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
