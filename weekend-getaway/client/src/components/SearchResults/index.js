@@ -14,39 +14,65 @@ import Dates from "../Dates";
 import Checkbox from "../Checkbox";
 // import Section from "../Section"
 import { Last } from "react-bootstrap/esm/PageItem";
+import { useIndexedDB } from "react-indexed-db";
 
 function SearchResults(props) {
   // console.log(props);
 
   const [save, setState] = useState([]);
-
+  const { add } = useIndexedDB("activity");
   const [dates, setDates] = useState({
     startDate: "",
     endDate: "",
   });
 
-  // Save campsite info to DB
-  function handleFormSubmit(campsite, lat, lon, reservable, fee, phone) {
+  // Add campsite info to indexedDB
+  function handleFormSubmit(
+    campsite,
+    lat,
+    lon,
+    reservable,
+    fee,
+    phone,
+    activity
+  ) {
     // event.preventDefault();
-    // console.log(campsite);
-    // console.log(lat);
+    // lat: lat,
+    //       lon: lon,
+    //       reservable: reservable,
+    //       fee: fee,
+    //       phone: phone,
 
+    add({
+      activity: activity,
+      user: props.userStatus.uid,
+      name: campsite,
+      lat: lat,
+      lon: lon,
+    }).then(
+      (event) => {
+        console.log("ID Generated: ", event);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
     // console.log("save button was clicked!");
     // console.log(props.userStatus.uid);
     // setState();
 
     // Save selected campsite to DB
-    API.saveToItinerary({
-      user: props.userStatus.uid,
-      campsite: campsite,
-      campRes: reservable,
-      campFee: fee,
-      campPhone: phone,
-      campLat: lat,
-      campLon: lon,
-    })
-      .then((res) => alert("Campsite has now been saved to your itinerary!"))
-      .catch((err) => console.log(err));
+    // API.saveToItinerary({
+    //   user: props.userStatus.uid,
+    //   campsite: campsite,
+    //   campRes: reservable,
+    //   campFee: fee,
+    //   campPhone: phone,
+    //   campLat: lat,
+    //   campLon: lon,
+    // })
+    //   .then((res) => alert("Campsite has now been saved to your itinerary!"))
+    //   .catch((err) => console.log(err));
   }
 
   return (
@@ -104,7 +130,8 @@ function SearchResults(props) {
                                     res.lng,
                                     res.reservable,
                                     res.fee,
-                                    res.phone
+                                    res.phone,
+                                    res.activity
                                   )
                                 }
                                 className="btn saveBtn"

@@ -6,6 +6,7 @@ import app from "../base";
 import firebase from "firebase";
 import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
+import Save from "../components/SavedBtn";
 
 function Home() {
   // initialize state variables
@@ -13,9 +14,10 @@ function Home() {
   const [campsites, setCampsites] = useState([]);
   const [hotspring, setHotsprings] = useState([]);
   const [weather, setWeather] = useState([]);
+
   const [filter, setFilter] = useState({
     hotsprings: false,
-    campsites: false,
+    campsites: true,
     weather: false,
   });
 
@@ -172,6 +174,7 @@ function Home() {
             />
           </section>
         </div>
+        <Save />
       </div>
     </div>
   );

@@ -1,11 +1,7 @@
-import React from"react";
-import './App.css';
+import React from "react";
+import "./App.css";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
@@ -15,40 +11,40 @@ import SignUp from "./pages/SignUp";
 import UserItinerary from "./pages/UserItinerary";
 import Directions from "./pages/Directions";
 import PasswordReset from "./pages/PasswordReset";
-import {AuthProvider} from "./Auth";
+import { AuthProvider } from "./Auth";
 // import PrivateRoute from "./PrivateRoute";
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {  faHeart, faDirections} from '@fortawesome/free-solid-svg-icons';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faHeart, faDirections } from "@fortawesome/free-solid-svg-icons";
+import { DBConfig } from "./utils/DBConfig";
+import { initDB } from "react-indexed-db";
 
-
-library.add( faHeart, faDirections ); // initialize font-awesome library w/ selected icons
+library.add(faHeart, faDirections); // initialize font-awesome library w/ selected icons
+initDB(DBConfig);
 
 function App() {
-
   return (
     <AuthProvider>
-        <Router>
-          <div>
-            <Header />
-            <Navigation />
-            
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/signup">
-                <SignUp />
-              </Route>
-              <Route path="/itinerary" component={UserItinerary} />
-              <Route path="/directions" component={Directions} />
-              <Route path="/passwordReset" component={PasswordReset} />
-            </Switch>
-            <Footer />
-          </div>
-        </Router>
+      <Router>
+        <div>
+          <Header />
+          <Navigation />
+
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/signup">
+              <SignUp />
+            </Route>
+            <Route path="/itinerary" component={UserItinerary} />
+            <Route path="/directions" component={Directions} />
+            <Route path="/passwordReset" component={PasswordReset} />
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
     </AuthProvider>
-    
   );
 }
 
