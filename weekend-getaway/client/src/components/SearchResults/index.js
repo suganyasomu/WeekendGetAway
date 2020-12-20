@@ -40,19 +40,23 @@ function SearchResults(props) {
     phone,
     activity
   ) {
-    // event.preventDefault();
-    // lat: lat,
-    //       lon: lon,
-    //       reservable: reservable,
-    //       fee: fee,
-    //       phone: phone,
+    // Validate user date
+    // if (startDate === "") {
+    //   return alert("Please Enter Start Date");
+    // } else if (endDate === "") {
+    //   return alert("Please Enter End Date");
+    // } else if (startDate > endDate) {
+    //   return alert("Please Enter A End Date After Start Date");
+    // }
 
     add({
       activity: activity,
       user: props.userStatus.uid,
       name: campsite,
       lat: lat,
-      lon: lon
+      lon: lon,
+      start: startDate,
+      end: endDate,
     }).then(
       (event) => {
         console.log("ID Generated: ", event);
@@ -82,19 +86,19 @@ function SearchResults(props) {
     //   .catch((err) => console.log(err));
   }
 
-  const handleStartDate = event => {
+  const handleStartDate = (event) => {
     // console.log(event);
     setStartDate(event);
-  }
+  };
 
-  const handleEndDate = event => {
+  const handleEndDate = (event) => {
     // console.log(event);
     setEndDate(event);
-  }
+  };
 
   return (
-      <div className="container">
-        <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
+    <div className="container">
+      <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
 
       <div className="row">
         <div className="resultsContainer">
@@ -157,7 +161,7 @@ function SearchResults(props) {
                                 <FontAwesomeIcon icon="heart" size="lg" />
                               </span>
                             ) : (
-                              <LoginModal/>
+                              <LoginModal />
                             )}
                             <Card.Title> Campsite: {res.name} </Card.Title>
                             {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
