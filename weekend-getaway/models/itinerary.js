@@ -10,8 +10,8 @@ const ItinerarySchema = new Schema({
     campPhone: {type: String, required: true},
     campLat: {type: Number, required: true},
     campLon: {type: Number, required: true},
-    begin_date: {type: Date, required: false},
-    end_date: {type: Date, required: false},
+    begin_date: {type: Date, required: true},
+    end_date: {type: Date, required: true},
     activities: [
         {
             activity: {type: String, required: false},

@@ -20,6 +20,7 @@ function Dates(props) {
     let year = start.getFullYear(start);
     let newStart = month + "/" + day + "/" + year;
     setDates({ start: newStart });
+    return newStart;
   }
 
   function handleEndDate(end) {
@@ -29,38 +30,47 @@ function Dates(props) {
     let year = end.getFullYear(end);
     let newEnd = month + "/" + day + "/" + year;
     setDates({ start: dates.start, end: newEnd });
+    return newEnd;
   }
+  
 
   return (
-    <div className="row">
-      <section className="col-6">
-        <span> Start Date: </span>
-        <DatePicker
-          selected={startDate}
-          onChange={(date) => handleStartDate(date)}
-          className="startDate"
-        />
-      </section>
-
-      <section className="col-6">
-        <span> End Date: </span>
-
-        <DatePicker
-          selected={endDate}
-          onChange={(date) => handleEndDate(date)}
-          className="startDate"
-        />
-      </section>
       <div className="row">
-        {dates.start != "" ? (
-          <h3>
-            Dates Selected: {dates.start} - {dates.end}
-          </h3>
-        ) : (
-          ""
-        )}
+        <section className="col-6">
+          <span> Start Date: </span>
+          <DatePicker
+            // required
+            selected={startDate}
+            onChange={ (date) => {
+              handleStartDate(date);
+              {props.handleStartDate( handleStartDate(date) )}
+            }}
+            className="startDate"
+          />
+        </section>
+
+        <section className="col-6">
+          <span> End Date: </span>
+
+          <DatePicker
+            selected={endDate}
+            onChange={ (date) => {
+              handleEndDate(date);
+              {props.handleEndDate( handleEndDate(date) )}
+            }}
+            className="startDate"
+          />
+        </section>
+        <div className="row">
+          {dates.start != "" ? (
+            <h3>
+              Dates Selected: {dates.start} - {dates.end}
+            </h3>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
-    </div>
   );
 };
 

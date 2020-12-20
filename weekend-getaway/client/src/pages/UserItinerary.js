@@ -35,6 +35,16 @@ function UserItinerary() {
         .catch(err => console.log(err));
     }
 
+    function convertDate(date) {
+        let dt = new Date(date);
+        let month = dt.getMonth() + 1; //months from 1-12
+        let day = dt.getDate();
+        let year = dt.getFullYear(dt);
+        let newDate = month + "/" + day + "/" + year;
+        return newDate;
+        
+    }
+
     return (
         <div className="container">
             <h3> Saved Trips </h3>
@@ -64,7 +74,9 @@ function UserItinerary() {
                                     </Link>
                                     <DeleteBtn onClick={() => deleteItinerary(res._id)} />
                                     <Card.Title> Campsite: {res.campsite} </Card.Title>
-                                    <Card.Subtitle className="mb-2 text-muted">Trip Dates: </Card.Subtitle>
+                                    <Card.Subtitle className="mb-2 text-muted">
+                                        Trip Dates: { convertDate(res.begin_date) } - { convertDate(res.end_date) } 
+                                    </Card.Subtitle>
                                     <Card.Text>
                                         Activities: 
                                     </Card.Text>
