@@ -20,11 +20,14 @@ function SearchResults(props) {
   // console.log(props);
 
   const [save, setState] = useState([]);
-  const { add } = useIndexedDB("activity");
-  const [dates, setDates] = useState({
-    startDate: "",
-    endDate: "",
+  const [filter, setFilter] = useState({
+    hotsprings: false,
+    campsites: false,
+    weather: false,
   });
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const { add } = useIndexedDB("activity");
 
   // Add campsite info to indexedDB
   function handleFormSubmit(
@@ -62,6 +65,7 @@ function SearchResults(props) {
     // setState();
 
     // Save selected campsite to DB
+
     // API.saveToItinerary({
     //   user: props.userStatus.uid,
     //   campsite: campsite,
@@ -70,14 +74,26 @@ function SearchResults(props) {
     //   campPhone: phone,
     //   campLat: lat,
     //   campLon: lon,
+    //   begin_date: startDate,
+    //   end_date: endDate
     // })
     //   .then((res) => alert("Campsite has now been saved to your itinerary!"))
     //   .catch((err) => console.log(err));
   }
 
+  const handleStartDate = event => {
+    // console.log(event);
+    setStartDate(event);
+  }
+
+  const handleEndDate = event => {
+    // console.log(event);
+    setEndDate(event);
+  }
+
   return (
-    <div className="container">
-      <Dates />
+      <div className="container">
+        <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
 
       <div className="row">
         <div className="resultsContainer">
@@ -210,7 +226,6 @@ function SearchResults(props) {
           {/* </Row> */}
         </div>
       </div>
-    </div>
   );
 }
 
