@@ -19,7 +19,7 @@ module.exports = {
     console.log(itinerary);
 
     let plan = {};
-    let activities = [];
+    // let activities = [];
 
     itinerary.forEach((thisPlan) => {
       console.log(thisPlan.activity);
