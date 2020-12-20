@@ -13,6 +13,7 @@ function Home() {
   const [search, setSearch] = useState("");
   const [campsites, setCampsites] = useState([]);
   const [hotspring, setHotsprings] = useState([]);
+  const [weather, setWeather] = useState([]);
   const [filter, setFilter] = useState({
     hotsprings: false,
     campsites: true,
@@ -41,24 +42,36 @@ function Home() {
       console.log("Hotspring is called");
     }
     if (filter.weather === true) {
-      console.log("Nothing is called");
+      searchWeather(search);
+      console.log("Weather is called");
     }
   }
+
+  //getHotsprings
   function searchHotsprings(query) {
     // console.log(query);
 
     API.getHotspring(query)
       // .then((res) => console.log(res.data))
       .then(function (res) {
+        console.log(res);
         setHotsprings(res.data);
       })
       .catch((err) => console.log(err));
   }
 
-  // Mount initial info
-  // useEffect( () => {
+  //getWeather
+  function searchWeather(query) {
+    // console.log(query);
 
-  // });
+    API.getWeather(query)
+      // .then((res) => console.log(res.data))
+      .then(function (res) {
+        console.log(res.data);
+        setWeather(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
 
   // Check if user is logged in or not:
   const { currentUser } = useContext(AuthContext);
@@ -152,6 +165,7 @@ function Home() {
               filter={filter}
               handleCheckboxChange={handleCheckbox}
               value={search}
+              weatherCondition={weather}
             />
           </section>
         </div>
