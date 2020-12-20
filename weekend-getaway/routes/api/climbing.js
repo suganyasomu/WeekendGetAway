@@ -29,6 +29,7 @@ router.route("/").get(async (req, res) => {
           pitches: thisRoute.pitches !== "" ? thisRoute.pitches : 0,
           url: thisRoute.url,
           image: thisRoute.imgSmall,
+          activity: "climbing",
         };
         routes.push(info);
       });
