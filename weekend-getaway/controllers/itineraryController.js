@@ -28,6 +28,8 @@ module.exports = {
         plan.user = thisPlan.user;
         plan.campLat = thisPlan.lat;
         plan.campLon = thisPlan.lon;
+        plan.startDate = thisPlan.start;
+        plan.endDate = thisPlan.end;
       }
     });
 

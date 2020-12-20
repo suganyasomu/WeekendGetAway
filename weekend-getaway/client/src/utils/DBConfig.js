@@ -18,6 +18,8 @@ export const DBConfig = {
         },
         { name: "fee", keypath: "fee", options: { unique: false } },
         { name: "phone", keypath: "phone", options: { unique: false } },
+        { name: "start", keypath: "start", options: { unique: false } },
+        { name: "end", keypath: "end", options: { unique: false } },
       ],
     },
   ],
