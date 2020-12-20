@@ -16,6 +16,10 @@ function Save() {
   async function handleSaveBtn() {
     let activities = await getAll();
 
+    if (activities == "") {
+      return alert("Please Save A Campsite");
+    }
+
     API.saveToItinerary(activities)
       // .then((res) => {
       //   console.log(res);
