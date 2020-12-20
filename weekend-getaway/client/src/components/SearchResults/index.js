@@ -226,6 +226,7 @@ function SearchResults(props) {
           {/* </Row> */}
         </div>
       </div>
+    </div>
   );
 }
 
