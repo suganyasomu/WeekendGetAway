@@ -44,6 +44,7 @@ router.route("/").get(async (req, res) => {
           description: thisPark.description,
           lat: thisPark.latitude,
           lng: thisPark.longitude,
+          activity: "park",
         };
         if (radius < 100) {
           // possible change radius

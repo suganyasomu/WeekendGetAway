@@ -32,6 +32,7 @@ router.route("/").get(async (req, res) => {
           phone: thisCampsite.FacilityPhone,
           fee: thisCampsite.FacilityUseFeeDescription,
           description: thisCampsite.FacilityDescription,
+          activity: "camping",
         };
         campsites.push(info);
       });

@@ -18,7 +18,6 @@ const ItinerarySchema = new Schema({
             date_planned: {type: Date, required: false}
         }
     ]
-
 });
 
 const Itinerary = mongoose.model("Itinerary", ItinerarySchema);
