@@ -14,6 +14,7 @@ function Home() {
   const [campsites, setCampsites] = useState([]);
   const [hotspring, setHotsprings] = useState([]);
   const [weather, setWeather] = useState([]);
+
   const [filter, setFilter] = useState({
     hotsprings: false,
     campsites: true,
