@@ -47,7 +47,7 @@ function Home() {
       console.log("Weather is called");
     }
   }
-  
+
   //getHotsprings
   function searchHotsprings(query) {
     // console.log(query);
@@ -55,28 +55,24 @@ function Home() {
     API.getHotspring(query)
       // .then((res) => console.log(res.data))
       .then(function (res) {
-        console.log(res)
+        console.log(res);
         setHotsprings(res.data);
       })
       .catch((err) => console.log(err));
   }
 
-    //getWeather
-    function searchWeather(query) {
-      // console.log(query);
-  
-      API.getWeather(query)
-        // .then((res) => console.log(res.data))
-        .then(function (res) {
-          console.log(res.data)
-          setWeather(res.data);
-        })
-        .catch((err) => console.log(err));
-    }
-  
+  //getWeather
+  function searchWeather(query) {
+    // console.log(query);
 
-
-
+    API.getWeather(query)
+      // .then((res) => console.log(res.data))
+      .then(function (res) {
+        console.log(res.data);
+        setWeather(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
 
   // Check if user is logged in or not:
   const { currentUser } = useContext(AuthContext);
