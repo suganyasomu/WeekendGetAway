@@ -31,6 +31,7 @@ router.route("/").get(async (req, res) => {
           length: thisHike.length,
           image: thisHike.imgSmall,
           condition: thisHike.conditionStatus,
+          activity: "hiking",
         };
         hikes.push(info);
       });
