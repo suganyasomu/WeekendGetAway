@@ -31,6 +31,7 @@ export default {
     return axios.post("/api/history/" + uid);
   },
   saveToItinerary: function (campData) {
+    // console.log(campData);
     return axios.post("/api/itinerary/", campData);
   },
   getItinerary: function (uid) {
@@ -43,5 +44,5 @@ export default {
   getDirections: function (coordinates) {
     // coordinates sent as an object
     return axios.get("/api/directions/", { params: { location: coordinates } });
-  }
+  },
 };
