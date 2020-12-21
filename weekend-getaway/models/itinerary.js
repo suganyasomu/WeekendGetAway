@@ -15,6 +15,7 @@ const ItinerarySchema = new Schema({
   activities: [
     {
       activity: { type: String, required: false },
+      name: { type: String, required: false },
       date_planned: { type: Date, required: false },
     },
   ],

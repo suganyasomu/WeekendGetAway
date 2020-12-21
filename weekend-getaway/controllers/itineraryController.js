@@ -16,13 +16,10 @@ module.exports = {
   create: function (req, res) {
     const itinerary = req.body;
 
-    console.log(itinerary);
-
     let plan = {};
-    // let activities = [];
+    let activities = [];
 
     itinerary.forEach((thisPlan) => {
-      console.log(thisPlan.activity);
       if (thisPlan.activity === "camping") {
         plan.campsite = thisPlan.name;
         plan.user = thisPlan.user;
@@ -30,9 +27,18 @@ module.exports = {
         plan.campLon = thisPlan.lon;
         plan.startDate = thisPlan.start;
         plan.endDate = thisPlan.end;
+      } else {
+        let activity = {
+          activity: thisPlan.activity,
+          name: thisPlan.name,
+        };
+        activities.push(activity);
       }
     });
 
+    if (activities.length > 0) {
+      plan.activities = activities;
+    }
     console.log(plan);
 
     db.Itinerary.create(plan)
