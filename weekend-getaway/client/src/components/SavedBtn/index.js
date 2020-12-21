@@ -36,7 +36,7 @@ function Save() {
   }
 
   return (
-    <span className="btn" role="button" tabIndex="0" onClick={handleSaveBtn}>
+    <span className="btn btn-outline-secondary" role="button" tabIndex="0" onClick={handleSaveBtn}>
       Save Me
     </span>
   );

@@ -57,7 +57,7 @@ const Login = ({ history }) => {
             <Form.Control name="password" type="password" placeholder="Password" />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" className="btn-outline-secondary" type="submit">
             Submit
           </Button>
         </Form>

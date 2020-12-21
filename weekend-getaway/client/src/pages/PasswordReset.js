@@ -52,7 +52,7 @@ const PasswordReset = () => {
               className="mb-3 w-full px-1 py-2"
             />
           </Form.Group>
-          <Button variant="primary" type="submit">Send me a reset link</Button>
+          <Button variant="primary" className="btn-outline-secondary" type="submit">Send me a reset link</Button>
         </Form>
       </div>
       <div className="row">
