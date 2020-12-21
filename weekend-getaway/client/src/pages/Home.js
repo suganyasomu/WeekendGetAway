@@ -17,6 +17,7 @@ function Home() {
   const [hotspring, setHotsprings] = useState([]);
   const [weather, setWeather] = useState([]);
   const [hiking, setHiking] = useState([]);
+  const [cityCoords, setCityCoords] = useState({});
 
   const [filter, setFilter] = useState({
     hotsprings: false,
@@ -63,8 +64,12 @@ function Home() {
     API.getLocation(query)
       .then((res) => {
         let cityState = res.data.location.city + ", " + res.data.location.state;
+        let cityCoords = res.data.latLng;
+
+        console.log("location:" + cityCoords);
 
         setSearch(cityState);
+        setCityCoords(cityCoords);
       })
       .catch((err) => console.log(err));
   }
@@ -206,6 +211,7 @@ function Home() {
               handleCheckboxChange={handleCheckbox}
               value={search}
               weatherCondition={weather}
+              location={cityCoords}
             />
           </section>
         </div>
