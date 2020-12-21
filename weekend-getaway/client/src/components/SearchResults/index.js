@@ -186,7 +186,7 @@ function SearchResults(props) {
             <Col size="md-4">
               <Aside>
                 {props.results.length > 0 ? (
-                  <Map results={props.results} />
+                  <Map results={props.results} location={props.location} />
                 ) : (
                   <div />
                 )}
