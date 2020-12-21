@@ -10,15 +10,19 @@ import Save from "../components/SavedBtn";
 
 function Home() {
   // initialize state variables
+  let results = {};
   const [search, setSearch] = useState("");
+  const [city, setCity] = useState("");
   const [campsites, setCampsites] = useState([]);
   const [hotspring, setHotsprings] = useState([]);
   const [weather, setWeather] = useState([]);
+  const [hiking, setHiking] = useState([]);
 
   const [filter, setFilter] = useState({
     hotsprings: false,
     campsites: true,
     weather: false,
+    hiking: false,
   });
 
   function handleCheckbox(event) {
@@ -34,6 +38,8 @@ function Home() {
   }
 
   function getFilter() {
+    searchLocation(search);
+
     if (filter.campsites === true) {
       searchCampsites(search);
       console.log("campsites in called");
@@ -46,6 +52,21 @@ function Home() {
       searchWeather(search);
       console.log("Weather is called");
     }
+    if (filter.hiking === true) {
+      searchHiking(search);
+      console.log("Hiking is called");
+    }
+  }
+
+  // Get location City and State
+  function searchLocation(query) {
+    API.getLocation(query)
+      .then((res) => {
+        let cityState = res.data.location.city + ", " + res.data.location.state;
+
+        setSearch(cityState);
+      })
+      .catch((err) => console.log(err));
   }
 
   //getHotsprings
@@ -74,6 +95,18 @@ function Home() {
       .catch((err) => console.log(err));
   }
 
+  // Search for hiking trails
+  function searchHiking(query) {
+    console.log(query);
+
+    API.getHike(query)
+      .then((res) => {
+        console.log(res.data);
+        setHiking(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
   // Check if user is logged in or not:
   const { currentUser } = useContext(AuthContext);
 
@@ -92,11 +125,12 @@ function Home() {
   const handleInputChange = (event) => {
     event.preventDefault();
     setSearch(event.target.value);
+    setCity(event.target.value);
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    // console.log(search);
+
     // send the searched term to the function
     if (search === "") {
       alert("Please enter a city");
@@ -104,6 +138,7 @@ function Home() {
       getFilter(search);
     }
     console.log(campsites);
+    setCity("");
   };
 
   function signout() {
@@ -119,6 +154,10 @@ function Home() {
         // An error happened.
       });
   }
+
+  // Set results object
+  results.campsites = campsites;
+  results.hiking = hiking;
 
   return (
     <div>
@@ -151,7 +190,7 @@ function Home() {
             <SearchContainer
               handleFormSubmit={handleFormSubmit}
               handleInputChange={handleInputChange}
-              results={search}
+              results={city}
             />
             <hr />
           </section>
