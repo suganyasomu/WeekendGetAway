@@ -11,6 +11,8 @@ export const DBConfig = {
         { name: "name", keypath: "name", options: { unique: false } },
         { name: "lat", keypath: "lat", options: { unique: false } },
         { name: "lon", keypath: "lon", options: { unique: false } },
+        { name: "description", keypath: "description", options: { unique: false } },
+
         {
           name: "reservable",
           keypath: "reservable",
@@ -18,6 +20,7 @@ export const DBConfig = {
         },
         { name: "fee", keypath: "fee", options: { unique: false } },
         { name: "phone", keypath: "phone", options: { unique: false } },
+        { name: "city", keypath: "city", options: { unique: false } },
         { name: "start", keypath: "start", options: { unique: false } },
         { name: "end", keypath: "end", options: { unique: false } },
         { name: "summary", keypath: "summary", options: { unique: false } },
