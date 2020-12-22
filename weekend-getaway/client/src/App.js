@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.css";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from "./components/Header";
+import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
+import {useTransition, animated} from 'react-spring';
+// import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -14,38 +15,49 @@ import PasswordReset from "./pages/PasswordReset";
 import { AuthProvider } from "./Auth";
 // import PrivateRoute from "./PrivateRoute";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faHeart, faDirections } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faDirections, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { DBConfig } from "./utils/DBConfig";
 import { initDB } from "react-indexed-db";
 
-library.add(faHeart, faDirections); // initialize font-awesome library w/ selected icons
+library.add(faHeart, faDirections, faSearch); // initialize font-awesome library w/ selected icons
 initDB(DBConfig);
 
 function App() {
-  return (
-    <AuthProvider>
-      <Router>
-        <div>
-          <Header />
-          <Navigation />
+  const location = useLocation();
+  const transitions = useTransition(location, location => location.pathname, {
+    from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
+    enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
+    leave: { opacity: 0, transform: 'translate3d(-50%,0,0)' }
+  });
 
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/signup">
-              <SignUp />
-            </Route>
-            <Route path="/itinerary" component={UserItinerary} />
-            <Route path="/directions" component={Directions} />
-            <Route path="/passwordReset" component={PasswordReset} />
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
-    </AuthProvider>
-  );
+  return transitions.map(({ item, props, key }) => (
+    <animated.div key={key} style={props} >
+  
+      {/* <AuthProvider>
+        <Router> */}
+          <div>
+            <Navigation />
+            {/* <Header /> */}
+
+            <Switch location={item} >
+              <Route path="/" exact component={Home} />
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/signup">
+                <SignUp />
+              </Route>
+              <Route path="/itinerary" component={UserItinerary} />
+              <Route path="/directions" component={Directions} />
+              <Route path="/passwordReset" component={PasswordReset} />
+            </Switch>
+            <Footer />
+          </div>
+        {/* </Router>
+      </AuthProvider> */}
+
+    </animated.div>
+  ));
 }
 
 export default App;

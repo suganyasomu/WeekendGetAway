@@ -34,7 +34,6 @@ function Dates(props) {
     return newEnd;
   }
   
-
   return (
       <div className="row">
         <section className="col-6">

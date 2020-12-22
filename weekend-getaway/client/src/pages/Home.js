@@ -8,6 +8,7 @@ import API from "../utils/API";
 import Save from "../components/SavedBtn";
 import Dates from "../components/Dates";
 import SignoutBtn from "../components/SignoutBtn";
+import Row from "../components/Row";
 
 function Home() {
   // initialize state variables
@@ -165,12 +166,26 @@ function Home() {
 
   return (
     <div>
+      <SearchContainer
+        handleFormSubmit={handleFormSubmit}
+        handleInputChange={handleInputChange}
+        results={city}
+      />
+      
       <div className="container">
+        <Row>
+          <div className="col-2" />
+          <section className="col-8" >
+            <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
+          </section>
+          <div className="col-2" />
+        </Row>
+      
         <div className="row">
           <span className="col-8"> </span>
 
           {currentUser ? (
-            <span className="col-2">
+            <span className="col-2" style={{ padding: '30px' }}>
               <p> You are logged in! </p>
             </span>
           ) : (
@@ -186,18 +201,6 @@ function Home() {
           )}
         </div>
 
-        <div className="row">
-          <section className="col-12">
-            <h3>Search: </h3>
-            <SearchContainer
-              handleFormSubmit={handleFormSubmit}
-              handleInputChange={handleInputChange}
-              results={city}
-            />
-            <hr />
-          </section>
-        </div>
-        <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
         <Save />
 
         <div className="row">
