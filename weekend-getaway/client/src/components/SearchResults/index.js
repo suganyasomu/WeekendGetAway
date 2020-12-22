@@ -10,7 +10,6 @@ import Map from "../Map";
 import Aside from "../Aside";
 import Col from "../Col";
 import Row from "../Row";
-import Dates from "../Dates";
 import Checkbox from "../Checkbox";
 // import Section from "../Section"
 import { Last } from "react-bootstrap/esm/PageItem";
@@ -26,8 +25,6 @@ function SearchResults(props) {
     campsites: false,
     weather: false,
   });
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
   const { add } = useIndexedDB("activity");
 
   // Add campsite info to indexedDB
@@ -60,8 +57,8 @@ function SearchResults(props) {
       fee: fee,
       phone: phone,
       city: props.searched,
-      start: startDate,
-      end: endDate,
+      start: props.startDate,
+      end: props.endDate,
     }).then(
       (event) => {
         console.log("ID Generated: ", event);
@@ -91,20 +88,9 @@ function SearchResults(props) {
     //   .catch((err) => console.log(err));
   }
 
-  const handleStartDate = (event) => {
-    // console.log(event);
-    setStartDate(event);
-  };
-
-  const handleEndDate = (event) => {
-    // console.log(event);
-    setEndDate(event);
-  };
 
   return (
     <div className="container">
-      <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
-
       <div className="row">
         <div className="resultsContainer">
           <h3>Campites for: {props.searched}</h3>
