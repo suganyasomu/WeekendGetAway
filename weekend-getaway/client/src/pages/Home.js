@@ -14,6 +14,8 @@ function Home() {
   let results = {};
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [campsites, setCampsites] = useState([]);
   const [hotspring, setHotsprings] = useState([]);
   const [weather, setWeather] = useState([]);
@@ -146,6 +148,16 @@ function Home() {
     console.log(campsites);
     setCity("");
   };
+  
+  const handleStartDate = (event) => {
+    // console.log(event);
+    setStartDate(event);
+  };
+
+  const handleEndDate = (event) => {
+    // console.log(event);
+    setEndDate(event);
+  };
 
   // Set results object
   results.campsites = campsites;
@@ -185,7 +197,7 @@ function Home() {
             <hr />
           </section>
         </div>
-        <Dates />
+        <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
         <Save />
 
         <div className="row">
@@ -199,6 +211,8 @@ function Home() {
               value={search}
               weatherCondition={weather}
               location={cityCoords}
+              startDate={startDate}
+              endDate={endDate}
             />
           </section>
         </div>
