@@ -6,16 +6,14 @@ import app from "../base";
 import firebase from "firebase";
 import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
-import Dates from "../components/Dates";
 import Save from "../components/SavedBtn";
+import Dates from "../components/Dates";
 
 function Home() {
   // initialize state variables
   let results = {};
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
   const [campsites, setCampsites] = useState([]);
   const [hotspring, setHotsprings] = useState([]);
   const [weather, setWeather] = useState([]);
@@ -149,17 +147,6 @@ function Home() {
     setCity("");
   };
 
-  // Handle the input dates
-  const handleStartDate = (event) => {
-    // console.log(event);
-    setStartDate(event);
-  };
-
-  const handleEndDate = (event) => {
-    // console.log(event);
-    setEndDate(event);
-  };
-
   function signout() {
     app
       .auth()
@@ -214,8 +201,7 @@ function Home() {
             <hr />
           </section>
         </div>
-        <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
-
+        <Dates />
         <Save />
 
         <div className="row">
@@ -229,12 +215,9 @@ function Home() {
               value={search}
               weatherCondition={weather}
               location={cityCoords}
-              startDate={startDate}
-              endDate={endDate}
             />
           </section>
         </div>
-        
       </div>
     </div>
   );
