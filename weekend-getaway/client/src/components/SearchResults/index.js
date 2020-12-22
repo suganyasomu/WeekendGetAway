@@ -68,27 +68,7 @@ function SearchResults(props) {
         console.log(error);
       }
     );
-    // console.log("save button was clicked!");
-    // console.log(props.userStatus.uid);
-    // setState();
-
-    // Save selected campsite to DB
-
-    // API.saveToItinerary({
-    //   user: props.userStatus.uid,
-    //   campsite: campsite,
-    //   campRes: reservable,
-    //   campFee: fee,
-    //   campPhone: phone,
-    //   campLat: lat,
-    //   campLon: lon,
-    //   begin_date: startDate,
-    //   end_date: endDate
-    // })
-    //   .then((res) => alert("Campsite has now been saved to your itinerary!"))
-    //   .catch((err) => console.log(err));
   }
-
 
   return (
     <div className="container">
@@ -122,7 +102,10 @@ function SearchResults(props) {
               />
             </Col>
             <Col size="md-6">
-              <CampingData data={props.results} handleFormSubmit={handleFormSubmit} />
+              <CampingData
+                data={props.results}
+                handleFormSubmit={handleFormSubmit}
+              />
             </Col>
             <Col size="md-4">
               <Aside>
@@ -134,9 +117,9 @@ function SearchResults(props) {
               </Aside>
             </Col>
           </Row>
-          <WeatherData 
-            filter={props.filter.weather} 
-            searched={props.searched} 
+          <WeatherData
+            filter={props.filter.weather}
+            searched={props.searched}
             weatherCondition={props.weatherCondition}
           />
         </div>
