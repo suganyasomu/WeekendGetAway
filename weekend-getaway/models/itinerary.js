@@ -5,9 +5,11 @@ const Schema = mongoose.Schema;
 const ItinerarySchema = new Schema({
   user: { type: String, required: true },
   campsite: { type: String, required: true },
-  campRes: { type: String },
-  campFee: { type: String },
+  campDescription: {type: String, required: false},
+  campRes: { type: String, required: false },
+  campFee: { type: String, required: false },
   campPhone: { type: String, required: false },
+  campCity: { type: String, required: false},
   campLat: { type: Number, required: true },
   campLon: { type: Number, required: true },
   startDate: { type: Date, required: false },
