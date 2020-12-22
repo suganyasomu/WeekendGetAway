@@ -2,12 +2,12 @@ import React, { useState, useEffect, useCallback, useContext } from "react";
 // import { withRouter, Redirect } from "react-router";
 import SearchResults from "../components/SearchResults";
 import SearchContainer from "../components/SearchContainer";
-import app from "../base";
-import firebase from "firebase";
+// import firebase from "firebase";
 import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
-import Dates from "../components/Dates";
 import Save from "../components/SavedBtn";
+import Dates from "../components/Dates";
+import SignoutBtn from "../components/SignoutBtn";
 
 function Home() {
   // initialize state variables
@@ -148,8 +148,7 @@ function Home() {
     console.log(campsites);
     setCity("");
   };
-
-  // Handle the input dates
+  
   const handleStartDate = (event) => {
     // console.log(event);
     setStartDate(event);
@@ -159,20 +158,6 @@ function Home() {
     // console.log(event);
     setEndDate(event);
   };
-
-  function signout() {
-    app
-      .auth()
-      .signOut()
-      .then(function () {
-        window.location = "/login";
-        alert("You have logged out");
-      })
-      .catch(function (error) {
-        console.log(error);
-        // An error happened.
-      });
-  }
 
   // Set results object
   results.campsites = campsites;
@@ -196,9 +181,7 @@ function Home() {
 
           {currentUser && (
             <div className="col-2">
-              <button className="btn btn-outline-secondary" onClick={signout}>
-                Sign out
-              </button>
+              <SignoutBtn />
             </div>
           )}
         </div>
@@ -215,7 +198,6 @@ function Home() {
           </section>
         </div>
         <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
-
         <Save />
 
         <div className="row">
@@ -234,7 +216,6 @@ function Home() {
             />
           </section>
         </div>
-        
       </div>
     </div>
   );

@@ -17,6 +17,9 @@ import { useIndexedDB } from "react-indexed-db";
 import LoginModal from "../LoginModal";
 import Description from "../Description";
 import Fee from "../Fee";
+import CampingData from "../CampingData";
+import WeatherData from "../WeatherData";
+
 
 function SearchResults(props) {
   // console.log(props);
@@ -103,63 +106,7 @@ function SearchResults(props) {
               />
             </Col>
             <Col size="md-6">
-              {props.results.map((res, index) => {
-                let id = index + 1;
-                return (
-                  <div>
-                    <Row>
-                      <Col size="md-6">
-                        <Card
-                          key={id}
-                          className="campsiteCard"
-                          style={{ width: "30rem" }}
-                        >
-                          <Card.Body>
-                            {props.userStatus ? (
-                              <span
-                                onClick={() =>
-                                  handleFormSubmit(
-                                    res.name,
-                                    res.lat,
-                                    res.lng,
-                                    res.reservable,
-                                    res.fee,
-                                    res.phone,
-                                    res.activity,
-                                    res.description
-                                  )
-                                }
-                                className="saveBtn"
-                                title="Save to Itinerary"
-                              >
-                                <FontAwesomeIcon icon="heart" size="lg" />
-                              </span>
-                            ) : (
-                              <LoginModal />
-                            )}
-                            <Card.Title> Campsite: {res.name} </Card.Title>
-                            {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
-                            <Card.Text>
-                              Description:
-                              <Description description={res.description} />
-                            </Card.Text>
-                            <Card.Text>
-                              {" "}
-                              Reservable: {res.reservable}{" "}
-                            </Card.Text>
-                            <Card.Text>
-                              {" "}
-                              Fee: <Fee fee={res.fee} />
-                            </Card.Text>
-                            <Card.Text> Phone Number: {res.phone} </Card.Text>
-                            <Card.Link href="#">Campsite Link</Card.Link>
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    </Row>
-                  </div>
-                );
-              })}
+             <CampingData data={props.results} handleFormSubmit={handleFormSubmit} />
             </Col>
             <Col size="md-4">
               <Aside>
@@ -171,42 +118,11 @@ function SearchResults(props) {
               </Aside>
             </Col>
           </Row>
-          {/* <Row> */}
-          {props.filter.weather ? (
-            <section style={{ width: "100%" }}>
-              <h3>Weather Forecast For: {props.searched}</h3>
-              {props.weatherCondition.map((res, index) => {
-                let id = index + 1;
-                return (
-                  <CardDeck
-                    style={{
-                      display: "inline-block",
-                      marginTop: 20,
-                      marginBottom: 20,
-                      marginRight: 10,
-                      width: "10rem",
-                    }}
-                  >
-                    <Card
-                      key={id}
-                      className="weatherCard"
-                      // style={{marginTop: 20, marginBottom: 20, width: "10rem"}}
-                    >
-                      <Card.Body>
-                        <Card.Text> Temp :{res.temp} </Card.Text>
-                        <Card.Text> Date :{res.date} </Card.Text>
-                        <Card.Text> Wind :{res.wind} </Card.Text>
-                        <Card.Text> Condition :{res.rain} </Card.Text>
-                      </Card.Body>
-                    </Card>
-                  </CardDeck>
-                );
-              })}
-            </section>
-          ) : (
-            <span> </span>
-          )}
-          {/* </Row> */}
+          <WeatherData 
+            filter={props.filter.weather} 
+            searched={props.searched} 
+            weatherCondition={props.weatherCondition}
+          />
         </div>
       </div>
     </div>
