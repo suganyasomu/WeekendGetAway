@@ -2,6 +2,10 @@ const router = require("express").Router();
 const axios = require("axios");
 const mapKey = "hVo9dYzXvu21iSyKZbnJiYJOdbtvRCDN";
 
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 router.route("/").get(async (req, res) => {
   let city = req.query.search.split(" ").join("");
   let location = await axios.get(
@@ -24,8 +28,14 @@ router.route("/").get(async (req, res) => {
       let campsites = [];
 
       list.forEach(function (thisCampsite) {
+        let name = thisCampsite.FacilityName.toLowerCase()
+          .split(/[() -/]/)
+          .map(capitalize)
+          .join(" ")
+          .replace("Nf", "NF");
+
         let info = {
-          name: thisCampsite.FacilityName,
+          name: name,
           lat: thisCampsite.FacilityLatitude,
           lng: thisCampsite.FacilityLongitude,
           reservable: thisCampsite.Reservable,
