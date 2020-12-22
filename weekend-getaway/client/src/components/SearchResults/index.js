@@ -35,7 +35,8 @@ function SearchResults(props) {
     reservable,
     fee,
     phone,
-    activity
+    activity,
+    description
   ) {
     // Validate user date
     // if (startDate === "") {
@@ -52,6 +53,10 @@ function SearchResults(props) {
       name: campsite,
       lat: lat,
       lon: lon,
+      description: description,
+      fee: fee,
+      phone: phone,
+      city: props.searched,
       start: props.startDate,
       end: props.endDate,
     }).then(
@@ -138,7 +143,8 @@ function SearchResults(props) {
                                     res.reservable,
                                     res.fee,
                                     res.phone,
-                                    res.activity
+                                    res.activity,
+                                    res.description
                                   )
                                 }
                                 className="saveBtn"

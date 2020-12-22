@@ -23,6 +23,11 @@ module.exports = {
       if (thisPlan.activity === "camping") {
         plan.campsite = thisPlan.name;
         plan.user = thisPlan.user;
+        plan.campCity = thisPlan.city;
+        plan.campDescription = thisPlan.description;
+        plan.campPhone = thisPlan.phone;
+        plan.campFee = thisPlan.fee;
+        plan.campRes - thisPlan.reservable;
         plan.campLat = thisPlan.lat;
         plan.campLon = thisPlan.lon;
         plan.startDate = thisPlan.start;
