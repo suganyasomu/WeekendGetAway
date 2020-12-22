@@ -19,7 +19,7 @@ function WeatherData(props) {
                         marginTop: 20,
                         marginBottom: 20,
                         marginRight: 10,
-                        width: "12rem",
+                        width: "13rem",
                         }}
                     >
                         <Card
@@ -28,11 +28,11 @@ function WeatherData(props) {
                             // style={{marginTop: 20, marginBottom: 20, width: "10rem"}}
                         >
                         <Card.Body>
-                            <Card.Text> Date :{res.date} </Card.Text>
-                            <Card.Text> Temp :{res.temp} </Card.Text>
-                            <Card.Text> Humidity :{res.humidity} </Card.Text>
-                            <Card.Text> Wind :{res.wind} </Card.Text>
-                            <Card.Text> Condition :{res.weather} </Card.Text>
+                            <Card.Text> Date: {res.date} </Card.Text>
+                            <Card.Text> Temp: {res.temp} </Card.Text>
+                            <Card.Text> Humidity: {res.humidity} </Card.Text>
+                            <Card.Text> Wind: {res.wind} </Card.Text>
+                            <Card.Text> Condition: {res.weather} </Card.Text>
                         </Card.Body>
                         </Card>
                     </CardDeck>
