@@ -2,12 +2,12 @@ import React, { useState, useEffect, useCallback, useContext } from "react";
 // import { withRouter, Redirect } from "react-router";
 import SearchResults from "../components/SearchResults";
 import SearchContainer from "../components/SearchContainer";
-import app from "../base";
-import firebase from "firebase";
+// import firebase from "firebase";
 import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 import Save from "../components/SavedBtn";
 import Dates from "../components/Dates";
+import SignoutBtn from "../components/SignoutBtn";
 
 function Home() {
   // initialize state variables
@@ -147,20 +147,6 @@ function Home() {
     setCity("");
   };
 
-  function signout() {
-    app
-      .auth()
-      .signOut()
-      .then(function () {
-        window.location = "/login";
-        alert("You have logged out");
-      })
-      .catch(function (error) {
-        console.log(error);
-        // An error happened.
-      });
-  }
-
   // Set results object
   results.campsites = campsites;
   results.hiking = hiking;
@@ -183,9 +169,7 @@ function Home() {
 
           {currentUser && (
             <div className="col-2">
-              <button className="btn btn-outline-secondary" onClick={signout}>
-                Sign out
-              </button>
+              <SignoutBtn />
             </div>
           )}
         </div>
