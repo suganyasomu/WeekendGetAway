@@ -14,7 +14,6 @@ import Checkbox from "../Checkbox";
 // import Section from "../Section"
 import { Last } from "react-bootstrap/esm/PageItem";
 import { useIndexedDB } from "react-indexed-db";
-import LoginModal from "../LoginModal";
 import CampingData from "../CampingData";
 import WeatherData from "../WeatherData";
 
