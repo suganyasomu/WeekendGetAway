@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useRef, useEffect, useCallback, useContext } from "react";
 // import { withRouter, Redirect } from "react-router";
 import SearchResults from "../components/SearchResults";
 import SearchContainer from "../components/SearchContainer";
@@ -29,6 +29,8 @@ function Home() {
     weather: false,
     hiking: false,
   });
+
+  const resultsRef = useRef(); 
 
   function handleCheckbox(event) {
     const { name, checked } = event.target;
@@ -148,6 +150,9 @@ function Home() {
     }
     console.log(campsites);
     setCity("");
+
+    // Scroll down to results:
+    resultsRef.current.scrollIntoView({ behavior: 'smooth' })
   };
   
   const handleStartDate = (event) => {
@@ -203,7 +208,7 @@ function Home() {
 
         <Save />
 
-        <div className="row">
+        <div ref={resultsRef} className="row">
           <section className="col-12">
             <SearchResults
               searched={search}
