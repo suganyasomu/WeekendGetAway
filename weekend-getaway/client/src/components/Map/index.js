@@ -23,12 +23,12 @@ function Map(props) {
 
   return (
     <LoadScript
-      googleMapsApiKey="AIzaSyCFTAYkWgyMfLtIB15x2XcdAoTC10QAfno"
+      googleMapsApiKey={process.env.REACT_APP_MAPS_KEY}
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
+        zoom={8}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
