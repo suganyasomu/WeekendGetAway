@@ -16,6 +16,7 @@ import { Last } from "react-bootstrap/esm/PageItem";
 import { useIndexedDB } from "react-indexed-db";
 import LoginModal from "../LoginModal";
 import CampingData from "../CampingData";
+import WeatherData from "../WeatherData";
 
 function SearchResults(props) {
   // console.log(props);
@@ -134,42 +135,11 @@ function SearchResults(props) {
               </Aside>
             </Col>
           </Row>
-          {/* <Row> */}
-          {props.filter.weather ? (
-            <section style={{ width: "100%" }}>
-              <h3>Weather Forecast For: {props.searched}</h3>
-              {props.weatherCondition.map((res, index) => {
-                let id = index + 1;
-                return (
-                  <CardDeck
-                    style={{
-                      display: "inline-block",
-                      marginTop: 20,
-                      marginBottom: 20,
-                      marginRight: 10,
-                      width: "10rem",
-                    }}
-                  >
-                    <Card
-                      key={id}
-                      className="weatherCard"
-                      // style={{marginTop: 20, marginBottom: 20, width: "10rem"}}
-                    >
-                      <Card.Body>
-                        <Card.Text> Temp :{res.temp} </Card.Text>
-                        <Card.Text> Date :{res.date} </Card.Text>
-                        <Card.Text> Wind :{res.wind} </Card.Text>
-                        <Card.Text> Condition :{res.rain} </Card.Text>
-                      </Card.Body>
-                    </Card>
-                  </CardDeck>
-                );
-              })}
-            </section>
-          ) : (
-            <span> </span>
-          )}
-          {/* </Row> */}
+          <WeatherData 
+            filter={props.filter.weather} 
+            searched={props.searched} 
+            weatherCondition={props.weatherCondition}
+          />
         </div>
       </div>
     </div>

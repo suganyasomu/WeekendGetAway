@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
 function AlertModal(props) {
-    console.log("MODAL");
+    console.log("TEST MODAL");
     console.log(props);
     let { modalState } = props;
 
