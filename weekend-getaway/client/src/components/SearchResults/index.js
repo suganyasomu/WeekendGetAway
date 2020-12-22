@@ -15,11 +15,8 @@ import Checkbox from "../Checkbox";
 import { Last } from "react-bootstrap/esm/PageItem";
 import { useIndexedDB } from "react-indexed-db";
 import LoginModal from "../LoginModal";
-import Description from "../Description";
-import Fee from "../Fee";
 import CampingData from "../CampingData";
 import WeatherData from "../WeatherData";
-
 
 function SearchResults(props) {
   // console.log(props);
@@ -106,7 +103,10 @@ function SearchResults(props) {
               />
             </Col>
             <Col size="md-6">
-             <CampingData data={props.results} handleFormSubmit={handleFormSubmit} />
+              <CampingData
+                data={props.results}
+                handleFormSubmit={handleFormSubmit}
+              />
             </Col>
             <Col size="md-4">
               <Aside>
@@ -118,9 +118,9 @@ function SearchResults(props) {
               </Aside>
             </Col>
           </Row>
-          <WeatherData 
-            filter={props.filter.weather} 
-            searched={props.searched} 
+          <WeatherData
+            filter={props.filter.weather}
+            searched={props.searched}
             weatherCondition={props.weatherCondition}
           />
         </div>
