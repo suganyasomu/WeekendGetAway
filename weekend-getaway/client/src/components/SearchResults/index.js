@@ -15,6 +15,8 @@ import Checkbox from "../Checkbox";
 import { Last } from "react-bootstrap/esm/PageItem";
 import { useIndexedDB } from "react-indexed-db";
 import LoginModal from "../LoginModal";
+import Description from "../Description";
+import Fee from "../Fee";
 
 function SearchResults(props) {
   // console.log(props);
@@ -67,27 +69,7 @@ function SearchResults(props) {
         console.log(error);
       }
     );
-    // console.log("save button was clicked!");
-    // console.log(props.userStatus.uid);
-    // setState();
-
-    // Save selected campsite to DB
-
-    // API.saveToItinerary({
-    //   user: props.userStatus.uid,
-    //   campsite: campsite,
-    //   campRes: reservable,
-    //   campFee: fee,
-    //   campPhone: phone,
-    //   campLat: lat,
-    //   campLon: lon,
-    //   begin_date: startDate,
-    //   end_date: endDate
-    // })
-    //   .then((res) => alert("Campsite has now been saved to your itinerary!"))
-    //   .catch((err) => console.log(err));
   }
-
 
   return (
     <div className="container">
@@ -158,13 +140,17 @@ function SearchResults(props) {
                             <Card.Title> Campsite: {res.name} </Card.Title>
                             {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
                             <Card.Text>
-                              {/* Description: {res.description} */}
+                              Description:
+                              <Description description={res.description} />
                             </Card.Text>
                             <Card.Text>
                               {" "}
                               Reservable: {res.reservable}{" "}
                             </Card.Text>
-                            <Card.Text> Fee: {res.fee} </Card.Text>
+                            <Card.Text>
+                              {" "}
+                              Fee: <Fee fee={res.fee} />
+                            </Card.Text>
                             <Card.Text> Phone Number: {res.phone} </Card.Text>
                             <Card.Link href="#">Campsite Link</Card.Link>
                           </Card.Body>
