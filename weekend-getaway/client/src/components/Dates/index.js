@@ -3,6 +3,7 @@ import { propTypes } from "react-bootstrap/esm/Image";
 // import "./style.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import AlertModal from "../AlertModal";
 
 function Dates(props) {
   const [startDate, setStartDate] = useState(new Date());
@@ -42,8 +43,15 @@ function Dates(props) {
             // required
             selected={startDate}
             onChange={ (date) => {
-              handleStartDate(date);
-              {props.handleStartDate( handleStartDate(date) )}
+              if( date >= new Date() ) {
+                handleStartDate(date);
+                {props.handleStartDate( handleStartDate(date) )}
+              }
+              else {
+                alert("Please pick a date greater than day's date");
+                // return <AlertModal modalState="true" />
+              }
+
             }}
             className="startDate"
           />
@@ -55,8 +63,15 @@ function Dates(props) {
           <DatePicker
             selected={endDate}
             onChange={ (date) => {
-              handleEndDate(date);
-              {props.handleEndDate( handleEndDate(date) )}
+              if( date >= new Date() ) {
+                handleEndDate(date);
+                {props.handleEndDate( handleEndDate(date) )}
+              }
+              else {
+                alert("Please pick a date greater than day's date");
+                // return <AlertModal modalState="true" />
+              }
+
             }}
             className="startDate"
           />

@@ -15,6 +15,7 @@ import Checkbox from "../Checkbox";
 import { Last } from "react-bootstrap/esm/PageItem";
 import { useIndexedDB } from "react-indexed-db";
 import LoginModal from "../LoginModal";
+import CampingData from "../CampingData";
 
 function SearchResults(props) {
   // console.log(props);
@@ -121,59 +122,7 @@ function SearchResults(props) {
               />
             </Col>
             <Col size="md-6">
-              {props.results.map((res, index) => {
-                let id = index + 1;
-                return (
-                  <div>
-                    <Row>
-                      <Col size="md-6">
-                        <Card
-                          key={id}
-                          className="campsiteCard"
-                          style={{ width: "30rem" }}
-                        >
-                          <Card.Body>
-                            {props.userStatus ? (
-                              <span
-                                onClick={() =>
-                                  handleFormSubmit(
-                                    res.name,
-                                    res.lat,
-                                    res.lng,
-                                    res.reservable,
-                                    res.fee,
-                                    res.phone,
-                                    res.activity,
-                                    res.description
-                                  )
-                                }
-                                className="saveBtn"
-                                title="Save to Itinerary"
-                              >
-                                <FontAwesomeIcon icon="heart" size="lg" />
-                              </span>
-                            ) : (
-                              <LoginModal />
-                            )}
-                            <Card.Title> Campsite: {res.name} </Card.Title>
-                            {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
-                            <Card.Text>
-                              {/* Description: {res.description} */}
-                            </Card.Text>
-                            <Card.Text>
-                              {" "}
-                              Reservable: {res.reservable}{" "}
-                            </Card.Text>
-                            <Card.Text> Fee: {res.fee} </Card.Text>
-                            <Card.Text> Phone Number: {res.phone} </Card.Text>
-                            <Card.Link href="#">Campsite Link</Card.Link>
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    </Row>
-                  </div>
-                );
-              })}
+              <CampingData data={props.results} handleFormSubmit={handleFormSubmit} />
             </Col>
             <Col size="md-4">
               <Aside>
