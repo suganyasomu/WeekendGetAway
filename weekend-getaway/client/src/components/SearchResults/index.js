@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import "./style.css";
-import Card from "react-bootstrap/Card";
-import CardDeck from "react-bootstrap/CardDeck";
-import CardGroup from "react-bootstrap/CardGroup";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import API from "../../utils/API";
+import React, { useState, useContext } from "react";
+// import "./style.css";
+// import Card from "react-bootstrap/Card";
+// import CardDeck from "react-bootstrap/CardDeck";
+// import CardGroup from "react-bootstrap/CardGroup";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import API from "../../utils/API";
+import SearchContext from "../../utils/SearchContext";
 import "react-datepicker/dist/react-datepicker.css";
 import Map from "../Map";
 import Aside from "../Aside";
@@ -12,14 +13,16 @@ import Col from "../Col";
 import Row from "../Row";
 import Checkbox from "../Checkbox";
 // import Section from "../Section"
-import { Last } from "react-bootstrap/esm/PageItem";
+// import { Last } from "react-bootstrap/esm/PageItem";
 import { useIndexedDB } from "react-indexed-db";
 import CampingData from "../CampingData";
 import WeatherData from "../WeatherData";
+import HotspringsData from "../HotspringsData";
 
 function SearchResults(props) {
-  // console.log(props);
+  console.log(props);
 
+  const {search} = useContext(SearchContext);
   const [save, setState] = useState([]);
   const [filter, setFilter] = useState({
     hotsprings: false,
@@ -57,7 +60,7 @@ function SearchResults(props) {
       description: description,
       fee: fee,
       phone: phone,
-      city: props.searched,
+      city: search,
       start: props.startDate,
       end: props.endDate,
     }).then(
@@ -74,7 +77,7 @@ function SearchResults(props) {
     <div className="container">
       <div className="row">
         <div className="resultsContainer">
-          <h3>Campites for: {props.searched}</h3>
+          <h3>Campites for: {search}</h3>
           <Row>
             <Col size="md-2">
               <Checkbox
@@ -106,6 +109,11 @@ function SearchResults(props) {
                 data={props.results}
                 handleFormSubmit={handleFormSubmit}
               />
+              <HotspringsData 
+                filter={props.filter.hotsprings}
+                searched={props.searched}
+                data={props.hotspringData}
+              />
             </Col>
             <Col size="md-4">
               <Aside>
@@ -119,7 +127,7 @@ function SearchResults(props) {
           </Row>
           <WeatherData
             filter={props.filter.weather}
-            searched={props.searched}
+            searched={search}
             weatherCondition={props.weatherCondition}
           />
         </div>

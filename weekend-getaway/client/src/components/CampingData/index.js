@@ -19,11 +19,10 @@ function CampingData(props) {
       {props.data.map((res, index) => {
         let id = index + 1;
         return (
-          <div>
+          <div key={id} >
             <Row>
               <Col size="md-6">
                 <Card
-                  key={id}
                   className="campsiteCard"
                   style={{ width: "30rem" }}
                 >
@@ -57,8 +56,9 @@ function CampingData(props) {
                     </Card.Text>
                     <Card.Text> Reservable: {res.reservable} </Card.Text>
                     <Card.Text>
-                      {" "}
-                      Fee: <Fee description={res.fee} />{" "}
+                      {/* {" "} */}
+                      Fee: <Fee description={res.fee} />
+                      {/* {" "} */}
                     </Card.Text>
                     <Card.Text> Phone Number: {res.phone} </Card.Text>
                     <Card.Link href="#">Campsite Link</Card.Link>
