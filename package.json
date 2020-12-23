@@ -10,6 +10,10 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.5.0",
     "axios": "^0.21.0",
+<<<<<<< HEAD:package.json
+=======
+    "babel-jest": "^26.6.3",
+>>>>>>> e7e0fec76f4f3ea2dab36d596b2ba77aae3da0d5:weekend-getaway/package.json
     "express": "^4.17.1",
     "if-env": "^1.0.4",
     "mongoose": "^5.11.3",
