@@ -14,6 +14,7 @@ function WeatherData(props) {
                     let id = index + 1;
                     return (
                     <CardDeck
+                        key={id}
                         style={{
                         display: "inline-block",
                         marginTop: 20,
@@ -23,7 +24,6 @@ function WeatherData(props) {
                         }}
                     >
                         <Card
-                            key={id}
                             className="weatherCard"
                             // style={{marginTop: 20, marginBottom: 20, width: "10rem"}}
                         >
