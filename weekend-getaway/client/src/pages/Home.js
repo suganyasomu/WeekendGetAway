@@ -76,14 +76,17 @@ function Home() {
 
   // Get location City and State
   function searchLocation(query) {
+    console.log(query);
     API.getLocation(query)
       .then((res) => {
         let cityState = res.data.location.city + ", " + res.data.location.state;
         let cityCoords = res.data.latLng;
+        console.log(res.data);
         setSearchState({
           ...searchState,
-          cityState,
+          search: cityState,
         });
+        console.log(searchState);
 
         setCityCoords(cityCoords);
       })
@@ -181,16 +184,10 @@ function Home() {
   };
 
   const handleSelectedState = (event) => {
-    console.log(event.value);
-    // let temp = searchState.search + ", " + event.value;
-    // console.log(temp);
-
-    // setSearchState({
-    //   ...searchState,
-    //   search: temp,
-    // });
-    // console.log(searchState);
-    // setSearchState((search: temp));
+    setSearchState({
+      ...searchState,
+      search: searchState.search + "," + event.value,
+    });
   };
 
   // Set results object
