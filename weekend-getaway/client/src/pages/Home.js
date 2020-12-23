@@ -71,9 +71,6 @@ function Home() {
       .then((res) => {
         let cityState = res.data.location.city + ", " + res.data.location.state;
         let cityCoords = res.data.latLng;
-
-        console.log("location:" + cityCoords);
-
         setSearch(cityState);
         setCityCoords(cityCoords);
       })
@@ -218,6 +215,7 @@ function Home() {
               handleCheckboxChange={handleCheckbox}
               value={search}
               weatherCondition={weather}
+              hotspringData={hotspring}
               location={cityCoords}
               startDate={startDate}
               endDate={endDate}
