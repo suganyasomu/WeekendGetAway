@@ -20,9 +20,9 @@ import WeatherData from "../WeatherData";
 import HotspringsData from "../HotspringsData";
 
 function SearchResults(props) {
-  console.log(props);
+  // console.log(props);
 
-  const {search} = useContext(SearchContext);
+  const { search } = useContext(SearchContext);
   const [save, setState] = useState([]);
   const [filter, setFilter] = useState({
     hotsprings: false,
@@ -111,7 +111,7 @@ function SearchResults(props) {
               />
               <HotspringsData 
                 filter={props.filter.hotsprings}
-                searched={props.searched}
+                searched={search}
                 data={props.hotspringData}
               />
             </Col>

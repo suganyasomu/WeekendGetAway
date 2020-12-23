@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../Auth.js";
 import Card from "react-bootstrap/Card";
 import Col from "../Col";
 import Row from "../Row";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import heartEmpty from "../../Assets/heart-empty.svg";
+import heartSolid from "../../Assets/heart-solid.svg";
 import LoginModal from "../LoginModal";
 import Description from "../Description";
 import Fee from "../Fee";
@@ -13,6 +15,18 @@ function CampingData(props) {
 
   // Check if user is logged in or not:
   const { currentUser } = useContext(AuthContext);
+
+  const [heart, setHeart] = useState(false);
+
+  function handleHeartBtn() {
+    if(heart === true ) {
+      setHeart(false);
+    }
+    else {
+      setHeart(true);
+    }
+    
+  }
 
   return (
     <div>
@@ -29,8 +43,9 @@ function CampingData(props) {
                   <Card.Body>
                     {currentUser ? (
                       <span
-                        onClick={() =>
-                          props.handleFormSubmit(
+                        onClick={() => {
+                          handleHeartBtn();
+                          {props.handleFormSubmit(
                             res.name,
                             res.lat,
                             res.lng,
@@ -39,12 +54,16 @@ function CampingData(props) {
                             res.phone,
                             res.activity,
                             res.description
-                          )
-                        }
+                          )}
+                        }}
+                      
                         className="saveBtn"
                         title="Save to Itinerary"
                       >
-                        <FontAwesomeIcon icon="heart" size="lg" />
+                        <img src={ heart ? heartSolid : heartEmpty }
+                          style={{ width: '30px' }}  
+                        />
+                      
                       </span>
                     ) : (
                       <LoginModal />

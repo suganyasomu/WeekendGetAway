@@ -32,9 +32,6 @@ function App() {
 
   return transitions.map(({ item, props, key }) => (
     <animated.div key={key} style={props} >
-  
-      {/* <AuthProvider>
-        <Router> */}
           <div>
             <Navigation />
             {/* <Header /> */}
@@ -53,9 +50,6 @@ function App() {
             </Switch>
             <Footer />
           </div>
-        {/* </Router>
-      </AuthProvider> */}
-
     </animated.div>
   ));
 }
