@@ -74,13 +74,11 @@ function Home() {
       .then((res) => {
         let cityState = res.data.location.city + ", " + res.data.location.state;
         let cityCoords = res.data.latLng;
-
-        console.log("location:" + cityCoords);
-
         setSearchState({ 
           ... searchState, 
           cityState
         });
+
         setCityCoords(cityCoords);
       })
       .catch((err) => console.log(err));
@@ -236,6 +234,7 @@ function Home() {
               />
             </section>
           </div>
+
         </div>
       </div>
     </SearchContext.Provider>
