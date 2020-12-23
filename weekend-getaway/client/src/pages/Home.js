@@ -244,8 +244,6 @@ function Home() {
           <div ref={resultsRef} className="row">
             <section className="col-12">
               <SearchResults
-                // searched={search}
-                // value={search}
                 results={campsites}
                 userStatus={currentUser}
                 filter={filter}

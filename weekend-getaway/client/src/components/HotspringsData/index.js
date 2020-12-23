@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Auth.js";
+import SearchContext from "../../utils/SearchContext";
 import Card from "react-bootstrap/Card";
 import Col from "../Col";
 import Row from "../Row";
@@ -8,12 +9,13 @@ import LoginModal from "../LoginModal";
 
 function HotspringsData(props) {
     const { currentUser } = useContext(AuthContext);
+    const { search } = useContext(SearchContext);
 
     return (
         <div>
             {props.filter ? (
                 <section style={{ width: "100%" }}>
-                    <h3>Hotsprings for: {props.searched}</h3>
+                    <h3>Hotsprings for: { search }</h3>
                     {props.data.map((res, index) => {
                         return (
                             <div>
