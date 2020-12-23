@@ -16,6 +16,7 @@ import { Last } from "react-bootstrap/esm/PageItem";
 import { useIndexedDB } from "react-indexed-db";
 import CampingData from "../CampingData";
 import WeatherData from "../WeatherData";
+import HotspringsData from "../HotspringsData";
 
 function SearchResults(props) {
   // console.log(props);
@@ -105,6 +106,11 @@ function SearchResults(props) {
               <CampingData
                 data={props.results}
                 handleFormSubmit={handleFormSubmit}
+              />
+              <HotspringsData 
+                filter={props.filter.hotsprings}
+                searched={props.searched}
+                data={props.hotspringData}
               />
             </Col>
             <Col size="md-4">
