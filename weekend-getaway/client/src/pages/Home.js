@@ -21,7 +21,7 @@ function Home() {
   // initialize state variables
   let results = {};
   const [searchState, setSearchState] = useState({
-    search: ""
+    search: "",
   });
   const [city, setCity] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -80,9 +80,9 @@ function Home() {
       .then((res) => {
         let cityState = res.data.location.city + ", " + res.data.location.state;
         let cityCoords = res.data.latLng;
-        setSearchState({ 
-          ... searchState, 
-          cityState
+        setSearchState({
+          ...searchState,
+          cityState,
         });
 
         setCityCoords(cityCoords);
@@ -147,9 +147,9 @@ function Home() {
     event.preventDefault();
     const { name, value } = event.target;
     // setSearchState(event.target.value);
-    setSearchState({ 
-      ... searchState, 
-      [name]: value
+    setSearchState({
+      ...searchState,
+      [name]: value,
     });
     setCity(event.target.value);
   };
@@ -181,7 +181,16 @@ function Home() {
   };
 
   const handleSelectedState = (event) => {
-    setSearch(city + ", " + event.value);
+    console.log(event.value);
+    // let temp = searchState.search + ", " + event.value;
+    // console.log(temp);
+
+    // setSearchState({
+    //   ...searchState,
+    //   search: temp,
+    // });
+    // console.log(searchState);
+    // setSearchState((search: temp));
   };
 
   // Set results object
@@ -189,7 +198,6 @@ function Home() {
   results.hiking = hiking;
 
   return (
-
     <SearchContext.Provider value={searchState}>
       <div>
         <SearchContainer
@@ -198,21 +206,24 @@ function Home() {
           results={city}
           handleSelectedState={handleSelectedState}
         />
-        
+
         <div className="container">
           <Row>
             <div className="col-2" />
-            <section className="col-8" >
-              <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
+            <section className="col-8">
+              <Dates
+                handleStartDate={handleStartDate}
+                handleEndDate={handleEndDate}
+              />
             </section>
             <div className="col-2" />
           </Row>
-        
+
           <div className="row">
             <span className="col-8"> </span>
 
             {currentUser ? (
-              <span className="col-2" style={{ padding: '30px' }}>
+              <span className="col-2" style={{ padding: "30px" }}>
                 <p> You are logged in! </p>
               </span>
             ) : (
