@@ -11,7 +11,6 @@ const hotspringSchema = new Schema({
   degrees_f: { type: String, required: false },
   degrees_c: { type: String, required: false },
   usgs_quadrangle: { type: String, required: false },
-  activity: { type: String, default: "hotsprings" },
 });
 
 const Hotspring = mongoose.model("Hotspring", hotspringSchema);
