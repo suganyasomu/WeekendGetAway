@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, useCallback, useContext } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useContext,
+} from "react";
 // import { withRouter, Redirect } from "react-router";
 import SearchResults from "../components/SearchResults";
 import SearchContainer from "../components/SearchContainer";
@@ -33,7 +39,7 @@ function Home() {
     hiking: false,
   });
 
-  const resultsRef = useRef(); 
+  const resultsRef = useRef();
 
   function handleCheckbox(event) {
     const { name, checked } = event.target;
@@ -161,9 +167,9 @@ function Home() {
     setCity("");
 
     // Scroll down to results:
-    resultsRef.current.scrollIntoView({ behavior: 'smooth' })
+    resultsRef.current.scrollIntoView({ behavior: "smooth" });
   };
-  
+
   const handleStartDate = (event) => {
     // console.log(event);
     setStartDate(event);
@@ -174,17 +180,23 @@ function Home() {
     setEndDate(event);
   };
 
+  const handleSelectedState = (event) => {
+    setSearch(city + ", " + event.value);
+  };
+
   // Set results object
   results.campsites = campsites;
   results.hiking = hiking;
 
   return (
+
     <SearchContext.Provider value={searchState}>
       <div>
         <SearchContainer
           handleFormSubmit={handleFormSubmit}
           handleInputChange={handleInputChange}
           results={city}
+          handleSelectedState={handleSelectedState}
         />
         
         <div className="container">
@@ -234,7 +246,6 @@ function Home() {
               />
             </section>
           </div>
-
         </div>
       </div>
     </SearchContext.Provider>
