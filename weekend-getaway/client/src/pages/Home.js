@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, useCallback, useContext } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useContext,
+} from "react";
 // import { withRouter, Redirect } from "react-router";
 import SearchResults from "../components/SearchResults";
 import SearchContainer from "../components/SearchContainer";
@@ -30,7 +36,7 @@ function Home() {
     hiking: false,
   });
 
-  const resultsRef = useRef(); 
+  const resultsRef = useRef();
 
   function handleCheckbox(event) {
     const { name, checked } = event.target;
@@ -152,9 +158,9 @@ function Home() {
     setCity("");
 
     // Scroll down to results:
-    resultsRef.current.scrollIntoView({ behavior: 'smooth' })
+    resultsRef.current.scrollIntoView({ behavior: "smooth" });
   };
-  
+
   const handleStartDate = (event) => {
     // console.log(event);
     setStartDate(event);
@@ -163,6 +169,10 @@ function Home() {
   const handleEndDate = (event) => {
     // console.log(event);
     setEndDate(event);
+  };
+
+  const handleSelectedState = (event) => {
+    setSearch(city + ", " + event.value);
   };
 
   // Set results object
@@ -175,22 +185,26 @@ function Home() {
         handleFormSubmit={handleFormSubmit}
         handleInputChange={handleInputChange}
         results={city}
+        handleSelectedState={handleSelectedState}
       />
-      
+
       <div className="container">
         <Row>
           <div className="col-2" />
-          <section className="col-8" >
-            <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
+          <section className="col-8">
+            <Dates
+              handleStartDate={handleStartDate}
+              handleEndDate={handleEndDate}
+            />
           </section>
           <div className="col-2" />
         </Row>
-      
+
         <div className="row">
           <span className="col-8"> </span>
 
           {currentUser ? (
-            <span className="col-2" style={{ padding: '30px' }}>
+            <span className="col-2" style={{ padding: "30px" }}>
               <p> You are logged in! </p>
             </span>
           ) : (
