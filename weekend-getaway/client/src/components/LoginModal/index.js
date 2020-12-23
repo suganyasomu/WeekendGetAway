@@ -18,9 +18,9 @@ function LoginModal() {
         <div className="row">
             <div className="col-11"></div>
             <div className="col-1">
-            <span className="saveHeart" onClick={handleShow}>
-                <FontAwesomeIcon icon="heart" size="lg" />
-            </span>
+                <span className="saveHeart" onClick={handleShow}>
+                    <FontAwesomeIcon icon="heart" size="lg" />
+                </span>
             </div>
         </div>
 

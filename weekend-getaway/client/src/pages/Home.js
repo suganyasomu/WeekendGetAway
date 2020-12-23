@@ -5,6 +5,7 @@ import SearchContainer from "../components/SearchContainer";
 // import firebase from "firebase";
 import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
+import SearchContext from "../utils/SearchContext";
 import Save from "../components/SavedBtn";
 import Dates from "../components/Dates";
 import SignoutBtn from "../components/SignoutBtn";
@@ -13,7 +14,9 @@ import Row from "../components/Row";
 function Home() {
   // initialize state variables
   let results = {};
-  const [search, setSearch] = useState("");
+  const [searchState, setSearchState] = useState({
+    search: ""
+  });
   const [city, setCity] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -45,22 +48,22 @@ function Home() {
   }
 
   function getFilter() {
-    searchLocation(search);
+    searchLocation(searchState.search);
 
     if (filter.campsites === true) {
-      searchCampsites(search);
+      searchCampsites(searchState.search);
       console.log("campsites in called");
     }
     if (filter.hotsprings === true) {
-      searchHotsprings(search);
+      searchHotsprings(searchState.search);
       console.log("Hotspring is called");
     }
     if (filter.weather === true) {
-      searchWeather(search);
+      searchWeather(searchState.search);
       console.log("Weather is called");
     }
     if (filter.hiking === true) {
-      searchHiking(search);
+      searchHiking(searchState.search);
       console.log("Hiking is called");
     }
   }
@@ -71,7 +74,11 @@ function Home() {
       .then((res) => {
         let cityState = res.data.location.city + ", " + res.data.location.state;
         let cityCoords = res.data.latLng;
-        setSearch(cityState);
+        setSearchState({ 
+          ... searchState, 
+          cityState
+        });
+
         setCityCoords(cityCoords);
       })
       .catch((err) => console.log(err));
@@ -132,7 +139,12 @@ function Home() {
 
   const handleInputChange = (event) => {
     event.preventDefault();
-    setSearch(event.target.value);
+    const { name, value } = event.target;
+    // setSearchState(event.target.value);
+    setSearchState({ 
+      ... searchState, 
+      [name]: value
+    });
     setCity(event.target.value);
   };
 
@@ -140,10 +152,10 @@ function Home() {
     event.preventDefault();
 
     // send the searched term to the function
-    if (search === "") {
+    if (searchState.search === "") {
       alert("Please enter a city");
     } else {
-      getFilter(search);
+      getFilter(searchState.search);
     }
     console.log(campsites);
     setCity("");
@@ -167,63 +179,65 @@ function Home() {
   results.hiking = hiking;
 
   return (
-    <div>
-      <SearchContainer
-        handleFormSubmit={handleFormSubmit}
-        handleInputChange={handleInputChange}
-        results={city}
-      />
-      
-      <div className="container">
-        <Row>
-          <div className="col-2" />
-          <section className="col-8" >
-            <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
-          </section>
-          <div className="col-2" />
-        </Row>
-      
-        <div className="row">
-          <span className="col-8"> </span>
+    <SearchContext.Provider value={searchState}>
+      <div>
+        <SearchContainer
+          handleFormSubmit={handleFormSubmit}
+          handleInputChange={handleInputChange}
+          results={city}
+        />
+        
+        <div className="container">
+          <Row>
+            <div className="col-2" />
+            <section className="col-8" >
+              <Dates handleStartDate={handleStartDate} handleEndDate={handleEndDate} />
+            </section>
+            <div className="col-2" />
+          </Row>
+        
+          <div className="row">
+            <span className="col-8"> </span>
 
-          {currentUser ? (
-            <span className="col-2" style={{ padding: '30px' }}>
-              <p> You are logged in! </p>
-            </span>
-          ) : (
-            <span className="col-4">
-              <p> Guest - Login to Save to your Itinerary </p>
-            </span>
-          )}
+            {currentUser ? (
+              <span className="col-2" style={{ padding: '30px' }}>
+                <p> You are logged in! </p>
+              </span>
+            ) : (
+              <span className="col-4">
+                <p> Guest - Login to Save to your Itinerary </p>
+              </span>
+            )}
 
-          {currentUser && (
-            <div className="col-2">
-              <SignoutBtn />
-            </div>
-          )}
-        </div>
+            {currentUser && (
+              <div className="col-2">
+                <SignoutBtn />
+              </div>
+            )}
+          </div>
 
-        <Save />
+          <Save />
 
-        <div ref={resultsRef} className="row">
-          <section className="col-12">
-            <SearchResults
-              searched={search}
-              results={campsites}
-              userStatus={currentUser}
-              filter={filter}
-              handleCheckboxChange={handleCheckbox}
-              value={search}
-              weatherCondition={weather}
-              hotspringData={hotspring}
-              location={cityCoords}
-              startDate={startDate}
-              endDate={endDate}
-            />
-          </section>
+          <div ref={resultsRef} className="row">
+            <section className="col-12">
+              <SearchResults
+                // searched={search}
+                // value={search}
+                results={campsites}
+                userStatus={currentUser}
+                filter={filter}
+                handleCheckboxChange={handleCheckbox}
+                weatherCondition={weather}
+                location={cityCoords}
+                startDate={startDate}
+                endDate={endDate}
+              />
+            </section>
+          </div>
+
         </div>
       </div>
-    </div>
+    </SearchContext.Provider>
   );
 }
 
