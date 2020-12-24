@@ -82,7 +82,7 @@ function Home() {
         let cityCoords = res.data.latLng;
         setSearchState({
           ...searchState,
-          cityState,
+          search: cityState,
         });
 
         setCityCoords(cityCoords);
@@ -181,16 +181,10 @@ function Home() {
   };
 
   const handleSelectedState = (event) => {
-    console.log(event.value);
-    // let temp = searchState.search + ", " + event.value;
-    // console.log(temp);
-
-    // setSearchState({
-    //   ...searchState,
-    //   search: temp,
-    // });
-    // console.log(searchState);
-    // setSearchState((search: temp));
+    setSearchState({
+      ...searchState,
+      search: searchState.search + "," + event.value,
+    });
   };
 
   // Set results object
