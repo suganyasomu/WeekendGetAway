@@ -11,7 +11,11 @@ export const DBConfig = {
         { name: "name", keypath: "name", options: { unique: false } },
         { name: "lat", keypath: "lat", options: { unique: false } },
         { name: "lon", keypath: "lon", options: { unique: false } },
-        { name: "description", keypath: "description", options: { unique: false } },
+        {
+          name: "description",
+          keypath: "description",
+          options: { unique: false },
+        },
 
         {
           name: "reservable",
@@ -35,6 +39,16 @@ export const DBConfig = {
         {
           name: "elevationChange",
           keypath: "elevationChange",
+          options: { unique: false },
+        },
+        {
+          name: "temperature",
+          keypath: "temperature",
+          options: { unique: false },
+        },
+        {
+          name: "usgs_quadrangle",
+          keypath: "usgs_quadrangle",
           options: { unique: false },
         },
       ],
