@@ -19,13 +19,11 @@ function CampingData(props) {
   const [heart, setHeart] = useState(false);
 
   function handleHeartBtn() {
-    if(heart === true ) {
+    if (heart === true) {
       setHeart(false);
-    }
-    else {
+    } else {
       setHeart(true);
     }
-    
   }
 
   return (
@@ -33,37 +31,35 @@ function CampingData(props) {
       {props.data.map((res, index) => {
         let id = index + 1;
         return (
-          <div key={id} >
+          <div key={id}>
             <Row>
               <Col size="md-6">
-                <Card
-                  className="campsiteCard"
-                  style={{ width: "30rem" }}
-                >
+                <Card className="campsiteCard" style={{ width: "30rem" }}>
                   <Card.Body>
                     {currentUser ? (
                       <span
                         onClick={() => {
                           handleHeartBtn();
-                          {props.handleFormSubmit(
-                            res.name,
-                            res.lat,
-                            res.lng,
-                            res.reservable,
-                            res.fee,
-                            res.phone,
-                            res.activity,
-                            res.description
-                          )}
+                          {
+                            props.handleFormSubmit(
+                              res.name,
+                              res.lat,
+                              res.lng,
+                              res.reservable,
+                              res.fee,
+                              res.phone,
+                              res.activity,
+                              res.description
+                            );
+                          }
                         }}
-                      
                         className="saveBtn"
                         title="Save to Itinerary"
                       >
-                        <img src={ heart ? heartSolid : heartEmpty }
-                          style={{ width: '30px' }}  
+                        <img
+                          src={heart ? heartSolid : heartEmpty}
+                          style={{ width: "30px" }}
                         />
-                      
                       </span>
                     ) : (
                       <LoginModal />

@@ -81,12 +81,11 @@ function Home() {
       .then((res) => {
         let cityState = res.data.location.city + ", " + res.data.location.state;
         let cityCoords = res.data.latLng;
-        console.log(res.data);
+
         setSearchState({
           ...searchState,
           search: cityState,
         });
-        console.log(searchState);
 
         setCityCoords(cityCoords);
       })
@@ -193,6 +192,7 @@ function Home() {
   // Set results object
   results.campsites = campsites;
   results.hiking = hiking;
+  results.hotsprings = hotspring;
 
   return (
     <SearchContext.Provider value={searchState}>
@@ -241,9 +241,9 @@ function Home() {
           <div ref={resultsRef} className="row">
             <section className="col-12">
               <SearchResults
-                results={campsites}
-                userStatus={currentUser}
+                results={results}
                 filter={filter}
+                userStatus={currentUser}
                 handleCheckboxChange={handleCheckbox}
                 weatherCondition={weather}
                 location={cityCoords}

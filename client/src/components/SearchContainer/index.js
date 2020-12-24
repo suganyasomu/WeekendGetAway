@@ -85,7 +85,7 @@ function SearchContainer(props) {
           <Select
             defaultInputValue="Select a State"
             onChange={props.handleSelectedState}
-            className="all-states"
+            className="all-states basic-single"
             classNamePrefix="select"
             name="States"
             options={States}
