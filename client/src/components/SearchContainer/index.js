@@ -4,6 +4,7 @@ import { InputGroup, FormControl, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSpring, animated } from "react-spring";
 import Select from "react-select";
+import Background from "../../Assets/searchHeader.jpg";
 
 const States = [
   { value: "Alabama", label: "Alabama" },
@@ -66,7 +67,7 @@ function SearchContainer(props) {
   });
 
   return (
-    <header className="header">
+    <header className="header" style={{ backgroundImage: `url(${Background})`  }}>
       <animated.section style={animation}>
         <h1 id="homeHeader"> Your next adventure is just a few clicks away </h1>
       </animated.section>
