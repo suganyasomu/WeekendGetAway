@@ -82,7 +82,11 @@ function Home() {
         let cityCoords = res.data.latLng;
         setSearchState({
           ...searchState,
+<<<<<<< HEAD:client/src/pages/Home.js
           cityState,
+=======
+          search: cityState,
+>>>>>>> 7a8fd3fbce18cf46efd4e153b17eb9cbf75a110e:weekend-getaway/client/src/pages/Home.js
         });
 
         setCityCoords(cityCoords);
@@ -181,6 +185,7 @@ function Home() {
   };
 
   const handleSelectedState = (event) => {
+<<<<<<< HEAD:client/src/pages/Home.js
     console.log(event.value);
     // let temp = searchState.search + ", " + event.value;
     // console.log(temp);
@@ -191,6 +196,12 @@ function Home() {
     // });
     // console.log(searchState);
     // setSearchState((search: temp));
+=======
+    setSearchState({
+      ...searchState,
+      search: searchState.search + "," + event.value,
+    });
+>>>>>>> 7a8fd3fbce18cf46efd4e153b17eb9cbf75a110e:weekend-getaway/client/src/pages/Home.js
   };
 
   // Set results object
