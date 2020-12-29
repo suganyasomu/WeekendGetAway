@@ -24,11 +24,6 @@ function SearchResults(props) {
 
   const { search } = useContext(SearchContext);
   const [save, setState] = useState([]);
-  const [filter, setFilter] = useState({
-    hotsprings: false,
-    campsites: false,
-    weather: false,
-  });
   const { add } = useIndexedDB("activity");
 
   // Add campsite info to indexedDB
@@ -68,33 +63,12 @@ function SearchResults(props) {
     <div className="container">
       <div className="row">
         <div className="resultsContainer">
-          <h3>Campites for: {search}</h3>
           <Row>
-            <Col size="md-2">
-              <Checkbox
-                name="hotsprings"
-                checked={props.filter.hotsprings}
-                handleCheckbox={(e) => {
-                  props.handleCheckboxChange(e);
-                }}
-              />
-
-              <Checkbox
-                name="campsites"
-                checked={props.filter.campsites}
-                handleCheckbox={(e) => {
-                  props.handleCheckboxChange(e);
-                }}
-              />
-
-              <Checkbox
-                name="weather"
-                checked={props.filter.weather}
-                handleCheckbox={(e) => {
-                  props.handleCheckboxChange(e);
-                }}
-              />
-            </Col>
+            <WeatherData
+              filter={props.filter.weather}
+              searched={search}
+              weatherCondition={props.weatherCondition}
+            />
             <Col size="md-6">
               <CampingData
                 data={props.results.campsites}
@@ -115,11 +89,7 @@ function SearchResults(props) {
               </Aside>
             </Col>
           </Row>
-          <WeatherData
-            filter={props.filter.weather}
-            searched={search}
-            weatherCondition={props.weatherCondition}
-          />
+
         </div>
       </div>
     </div>

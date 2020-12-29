@@ -37,7 +37,7 @@ function Save() {
 
   return (
     <span className="saveButton btn btn-outline-secondary" role="button" tabIndex="0" onClick={handleSaveBtn}>
-      Save Me
+      Save All to Itinerary
     </span>
   );
 }
