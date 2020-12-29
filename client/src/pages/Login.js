@@ -36,7 +36,7 @@ const Login = ({ history }) => {
 
   return (
 
-    <div className="container">
+    <div className="container" style={{ marginTop: '80px' }}>
       <div className="row">
         <h1 className="col-12 text-center"> Log in to Your Account </h1>
       </div>

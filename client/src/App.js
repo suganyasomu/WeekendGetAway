@@ -31,26 +31,27 @@ function App() {
   });
 
   return transitions.map(({ item, props, key }) => (
-    <animated.div key={key} style={props} >
-          <div>
-            <Navigation />
-            {/* <Header /> */}
+    <>
+      <div className="Content">
+        <animated.div key={key} style={props} >
+          <Navigation />
 
-            <Switch location={item} >
-              <Route path="/" exact component={Home} />
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/signup">
-                <SignUp />
-              </Route>
-              <Route path="/itinerary" component={UserItinerary} />
-              <Route path="/directions" component={Directions} />
-              <Route path="/passwordReset" component={PasswordReset} />
-            </Switch>
-            <Footer />
-          </div>
-    </animated.div>
+          <Switch location={item} >
+            <Route path="/" exact component={Home} />
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/signup">
+              <SignUp />
+            </Route>
+            <Route path="/itinerary" component={UserItinerary} />
+            <Route path="/directions" component={Directions} />
+            <Route path="/passwordReset" component={PasswordReset} />
+          </Switch>
+        </animated.div>
+      </div>
+      <Footer className="footer" />
+    </>
   ));
 }
 

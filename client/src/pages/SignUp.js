@@ -33,7 +33,7 @@ const SignUp = ({ history }) => {
     //   </form>
     // </div>
 
-    <div className="container">
+    <div className="container" style={{ marginTop: '80px' }}>
       <div className="row">
         <h1 className="col-12 text-center"> Create an Account </h1>
       </div>

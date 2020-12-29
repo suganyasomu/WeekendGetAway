@@ -69,7 +69,7 @@ function SearchContainer(props) {
   return (
     <header className="header" style={{ backgroundImage: `url(${Background})`  }}>
       <animated.section style={animation}>
-        <h1 id="homeHeader"> Your next adventure is just a few clicks away </h1>
+        <h1 id="homeHeader"> Your next adventure is just a few clicks away... </h1>
       </animated.section>
 
       <InputGroup className="searchField">
