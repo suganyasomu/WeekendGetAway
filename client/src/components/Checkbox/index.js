@@ -1,11 +1,8 @@
 import React from "react";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-// import "./style.css";
 
 function Checkbox(props) {
   return (
-    <div>
+    <div className="col-sm-2 col-12 checkbox">
       <input
         type="checkbox"
         id={props.name}

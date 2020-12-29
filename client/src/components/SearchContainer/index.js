@@ -1,10 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import "./style.css";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSpring, animated } from "react-spring";
 import Select from "react-select";
+import Checkbox from "../Checkbox";
 import Background from "../../Assets/searchHeader.jpg";
+import Row from "../Row";
 
 const States = [
   { value: "Alabama", label: "Alabama" },
@@ -60,6 +62,8 @@ const States = [
 ];
 
 function SearchContainer(props) {
+  // console.log(props);
+
   const animation = useSpring({
     opacity: 1,
     from: { opacity: 0 },
@@ -68,41 +72,83 @@ function SearchContainer(props) {
 
   return (
     <header className="header" style={{ backgroundImage: `url(${Background})`  }}>
-      <animated.section style={animation}>
-        <h1 id="homeHeader"> Your next adventure is just a few clicks away... </h1>
-      </animated.section>
+      <div className="container">
+        <Row>
+      
+          <animated.section style={animation} className="col-12">
+            <h1  id="homeHeader"> Your next adventure is just a few clicks away... </h1>
+          </animated.section>
 
-      <InputGroup className="searchField">
-        <FormControl
-          type="text"
-          className="searchBar form-control"
-          name="search"
-          value={props.results}
-          onChange={props.handleInputChange}
-          placeholder="Location"
-          aria-label="search by location"
-        />
-        <InputGroup.Append>
-          <Select
-            defaultInputValue="Select a State"
-            onChange={props.handleSelectedState}
-            className="all-states basic-single"
-            classNamePrefix="select"
-            name="States"
-            options={States}
-          />
-        </InputGroup.Append>
-        <InputGroup.Append>
-          <Button id="searchIcon">
-            <FontAwesomeIcon
-              icon="search"
-              size="lg"
-              type="submit"
-              onClick={props.handleFormSubmit}
+          <InputGroup className="searchField">
+            <FormControl
+              type="text"
+              className="searchBar form-control"
+              name="search"
+              value={props.results}
+              onChange={props.handleInputChange}
+              placeholder="Location"
+              aria-label="search by location"
             />
-          </Button>
-        </InputGroup.Append>
-      </InputGroup>
+            <InputGroup.Append>
+              <Select
+                defaultInputValue="Select a State"
+                onChange={props.handleSelectedState}
+                className="all-states basic-single"
+                classNamePrefix="select"
+                name="States"
+                options={States}
+              />
+            </InputGroup.Append>
+            <InputGroup.Append>
+              <Button id="searchIcon">
+                <FontAwesomeIcon
+                  icon="search"
+                  size="lg"
+                  type="submit"
+                  onClick={props.handleFormSubmit}
+                />
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+
+        </Row>
+
+        <Row > 
+          <div className="col-sm-2 col-12"></div>
+          <Checkbox
+            name="campsites"
+            checked={props.filter.campsites}
+            handleCheckbox={(e) => {
+              props.handleCheckboxChange(e);
+            }}
+          />
+
+          <Checkbox
+            name="hiking"
+            checked={props.filter.hiking}
+            handleCheckbox={(e) => {
+              props.handleCheckboxChange(e);
+            }}
+          />
+
+          <Checkbox
+            name="hotsprings"
+            checked={props.filter.hotsprings}
+            handleCheckbox={(e) => {
+              props.handleCheckboxChange(e);
+            }}
+          />
+
+          <Checkbox
+            name="weather"
+            checked={props.filter.weather}
+            handleCheckbox={(e) => {
+              props.handleCheckboxChange(e);
+            }}
+          />
+        </Row>
+
+      </div>
     </header>
   );
 }

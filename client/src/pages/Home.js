@@ -12,7 +12,7 @@ import SearchContainer from "../components/SearchContainer";
 import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 import SearchContext from "../utils/SearchContext";
-import Save from "../components/SavedBtn";
+import SavedBtn from "../components/SavedBtn";
 import Dates from "../components/Dates";
 import SignoutBtn from "../components/SignoutBtn";
 import Row from "../components/Row";
@@ -202,6 +202,8 @@ function Home() {
           handleInputChange={handleInputChange}
           results={city}
           handleSelectedState={handleSelectedState}
+          filter={filter}
+          handleCheckboxChange={handleCheckbox}
         />
 
         <div className="container">
@@ -236,7 +238,8 @@ function Home() {
             )}
           </div>
 
-          <Save />
+          {/* Save all selected items to Itinerary */}
+          <SavedBtn />
 
           <div ref={resultsRef} className="row">
             <section className="col-12">
@@ -244,7 +247,6 @@ function Home() {
                 results={results}
                 filter={filter}
                 userStatus={currentUser}
-                handleCheckboxChange={handleCheckbox}
                 weatherCondition={weather}
                 location={cityCoords}
                 startDate={startDate}
