@@ -61,8 +61,9 @@ function SearchResults(props) {
 
   return (
     <div className="container">
-      <div className="row">
+      {/* <div className="row"> */}
         <div className="resultsContainer">
+          {console.log(props.results.campsites.length)}
           <Row>
             <WeatherData
               filter={props.filter.weather}
@@ -81,8 +82,8 @@ function SearchResults(props) {
             </Col>
             <Col size="md-4">
               <Aside>
-                {props.results.length > 0 ? (
-                  <Map results={props.results} location={props.location} />
+                {props.results.campsites.length > 0 ? (
+                  <Map results={props.results.campsites} location={props.location} />
                 ) : (
                   <div />
                 )}
@@ -92,7 +93,7 @@ function SearchResults(props) {
 
         </div>
       </div>
-    </div>
+    // </div>
   );
 }
 

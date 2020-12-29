@@ -8,6 +8,8 @@ const containerStyle = {
 };
 
 function Map(props) {
+  console.log(props);
+  console.log(props);
   const [map, setMap] = React.useState(null)
   const center = { lat: props.location.lat, lng: props.location.lng }
 
