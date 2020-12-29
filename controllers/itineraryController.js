@@ -36,6 +36,8 @@ module.exports = {
         let activity = {
           activity: thisPlan.activity,
           name: thisPlan.name,
+          lat: thisPlan.lat,
+          lng: thisPlan.lng,
         };
         activities.push(activity);
       }

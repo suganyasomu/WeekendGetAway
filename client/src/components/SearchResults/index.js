@@ -42,15 +42,6 @@ function SearchResults(props) {
     activity,
     description
   ) {
-    // Validate user date
-    // if (startDate === "") {
-    //   return alert("Please Enter Start Date");
-    // } else if (endDate === "") {
-    //   return alert("Please Enter End Date");
-    // } else if (startDate > endDate) {
-    //   return alert("Please Enter A End Date After Start Date");
-    // }
-
     add({
       activity: activity,
       user: props.userStatus.uid,
@@ -106,13 +97,19 @@ function SearchResults(props) {
             </Col>
             <Col size="md-6">
               <CampingData
-                data={props.results}
+                data={props.results.campsites}
                 handleFormSubmit={handleFormSubmit}
               />
+<<<<<<< HEAD:client/src/components/SearchResults/index.js
               <HotspringsData 
                 filter={props.filter.hotsprings}
                 searched={search}
                 data={props.hotspringData}
+=======
+              <HotspringsData
+                filter={props.filter.hotsprings}
+                data={props.results.hotsprings}
+>>>>>>> 4695b5eabc19389bdc5125c69f24f55cdcece6e9:weekend-getaway/client/src/components/SearchResults/index.js
               />
             </Col>
             <Col size="md-4">

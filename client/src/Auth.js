@@ -9,20 +9,20 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     app.auth().onAuthStateChanged((user) => {
-      console.log(user)
-      setCurrentUser(user)
-      setPending(false)
+      // console.log(user)
+      setCurrentUser(user);
+      setPending(false);
     });
   }, []);
 
-  if(pending){
-    return <>Loading...</>
+  if (pending) {
+    return <>Loading...</>;
   }
 
   return (
     <AuthContext.Provider
       value={{
-        currentUser
+        currentUser,
       }}
     >
       {children}

@@ -1,6 +1,10 @@
 .header {
   margin-bottom: 50px;
+<<<<<<< HEAD
   background-image: url("../../Assets/searchHeader.jpg");
+=======
+  /* background-image: url("../../Assets/searchHeader.jpg"); */
+>>>>>>> 4695b5eabc19389bdc5125c69f24f55cdcece6e9
   height: 500px;
   width: 100%;
   background-size: cover;

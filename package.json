@@ -15,11 +15,14 @@
     "babel-jest": "^26.6.3",
 <<<<<<< HEAD:package.json
 <<<<<<< HEAD:package.json
+<<<<<<< HEAD:package.json
 >>>>>>> e7e0fec76f4f3ea2dab36d596b2ba77aae3da0d5:weekend-getaway/package.json
 =======
 >>>>>>> e7e0fec76f4f3ea2dab36d596b2ba77aae3da0d5:weekend-getaway/package.json
 =======
 >>>>>>> 7a8fd3fbce18cf46efd4e153b17eb9cbf75a110e:weekend-getaway/package.json
+=======
+>>>>>>> 4695b5eabc19389bdc5125c69f24f55cdcece6e9:weekend-getaway/package.json
     "express": "^4.17.1",
     "if-env": "^1.0.4",
     "mongoose": "^5.11.3",

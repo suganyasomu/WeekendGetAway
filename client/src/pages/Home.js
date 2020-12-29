@@ -76,6 +76,7 @@ function Home() {
 
   // Get location City and State
   function searchLocation(query) {
+    console.log(query);
     API.getLocation(query)
       .then((res) => {
         let cityState = res.data.location.city + ", " + res.data.location.state;
@@ -89,6 +90,14 @@ function Home() {
 >>>>>>> 7a8fd3fbce18cf46efd4e153b17eb9cbf75a110e:weekend-getaway/client/src/pages/Home.js
         });
 
+<<<<<<< HEAD:client/src/pages/Home.js
+=======
+        setSearchState({
+          ...searchState,
+          search: cityState,
+        });
+
+>>>>>>> 4695b5eabc19389bdc5125c69f24f55cdcece6e9:weekend-getaway/client/src/pages/Home.js
         setCityCoords(cityCoords);
       })
       .catch((err) => console.log(err));
@@ -186,6 +195,7 @@ function Home() {
 
   const handleSelectedState = (event) => {
 <<<<<<< HEAD:client/src/pages/Home.js
+<<<<<<< HEAD:client/src/pages/Home.js
     console.log(event.value);
     // let temp = searchState.search + ", " + event.value;
     // console.log(temp);
@@ -197,16 +207,22 @@ function Home() {
     // console.log(searchState);
     // setSearchState((search: temp));
 =======
+=======
+>>>>>>> 4695b5eabc19389bdc5125c69f24f55cdcece6e9:weekend-getaway/client/src/pages/Home.js
     setSearchState({
       ...searchState,
       search: searchState.search + "," + event.value,
     });
+<<<<<<< HEAD:client/src/pages/Home.js
 >>>>>>> 7a8fd3fbce18cf46efd4e153b17eb9cbf75a110e:weekend-getaway/client/src/pages/Home.js
+=======
+>>>>>>> 4695b5eabc19389bdc5125c69f24f55cdcece6e9:weekend-getaway/client/src/pages/Home.js
   };
 
   // Set results object
   results.campsites = campsites;
   results.hiking = hiking;
+  results.hotsprings = hotspring;
 
   return (
     <SearchContext.Provider value={searchState}>
@@ -255,9 +271,15 @@ function Home() {
           <div ref={resultsRef} className="row">
             <section className="col-12">
               <SearchResults
+<<<<<<< HEAD:client/src/pages/Home.js
                 results={campsites}
                 userStatus={currentUser}
                 filter={filter}
+=======
+                results={results}
+                filter={filter}
+                userStatus={currentUser}
+>>>>>>> 4695b5eabc19389bdc5125c69f24f55cdcece6e9:weekend-getaway/client/src/pages/Home.js
                 handleCheckboxChange={handleCheckbox}
                 weatherCondition={weather}
                 location={cityCoords}

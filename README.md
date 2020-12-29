@@ -6,7 +6,7 @@
 ## Description 
 This application utilizes React JS. 
 
-Deployed Application: 
+Deployed Application: https://murmuring-citadel-70969.herokuapp.com/
 
 Github Repository: https://github.com/suganyasomu/WeekendGetAway
 

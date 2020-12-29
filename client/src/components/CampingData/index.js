@@ -19,6 +19,7 @@ function CampingData(props) {
   const [heart, setHeart] = useState(false);
 
   function handleHeartBtn() {
+<<<<<<< HEAD:client/src/components/CampingData/index.js
     if(heart === true ) {
       setHeart(false);
     }
@@ -26,6 +27,13 @@ function CampingData(props) {
       setHeart(true);
     }
     
+=======
+    if (heart === true) {
+      setHeart(false);
+    } else {
+      setHeart(true);
+    }
+>>>>>>> 4695b5eabc19389bdc5125c69f24f55cdcece6e9:weekend-getaway/client/src/components/CampingData/index.js
   }
 
   return (
@@ -33,6 +41,7 @@ function CampingData(props) {
       {props.data.map((res, index) => {
         let id = index + 1;
         return (
+<<<<<<< HEAD:client/src/components/CampingData/index.js
           <div key={id} >
             <Row>
               <Col size="md-6">
@@ -40,11 +49,18 @@ function CampingData(props) {
                   className="campsiteCard"
                   style={{ width: "30rem" }}
                 >
+=======
+          <div key={id}>
+            <Row>
+              <Col size="md-6">
+                <Card className="campsiteCard" style={{ width: "30rem" }}>
+>>>>>>> 4695b5eabc19389bdc5125c69f24f55cdcece6e9:weekend-getaway/client/src/components/CampingData/index.js
                   <Card.Body>
                     {currentUser ? (
                       <span
                         onClick={() => {
                           handleHeartBtn();
+<<<<<<< HEAD:client/src/components/CampingData/index.js
                           {props.handleFormSubmit(
                             res.name,
                             res.lat,
@@ -64,6 +80,28 @@ function CampingData(props) {
                           style={{ width: '30px' }}  
                         />
                       
+=======
+                          {
+                            props.handleFormSubmit(
+                              res.name,
+                              res.lat,
+                              res.lng,
+                              res.reservable,
+                              res.fee,
+                              res.phone,
+                              res.activity,
+                              res.description
+                            );
+                          }
+                        }}
+                        className="saveBtn"
+                        title="Save to Itinerary"
+                      >
+                        <img
+                          src={heart ? heartSolid : heartEmpty}
+                          style={{ width: "30px" }}
+                        />
+>>>>>>> 4695b5eabc19389bdc5125c69f24f55cdcece6e9:weekend-getaway/client/src/components/CampingData/index.js
                       </span>
                     ) : (
                       <LoginModal />
