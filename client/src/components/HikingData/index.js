@@ -26,6 +26,7 @@ function HikingData(props) {
     }
   }
 
+
   // Add hiking info to indexedDB
   function handleHikes(
     hikeName,
@@ -38,6 +39,25 @@ function HikingData(props) {
       // summary: summary,
       // dificulty: dificulty 
       
+
+  // Add campsite info to indexedDB
+//   function handleHikings(
+//     activity,
+//     name,
+//     summary,
+//     difficulty,
+//     lat,
+//     lng,
+//     length
+//   ) {
+//     add({
+//       activity: activity,
+//       name: name,
+//       lat: lat,
+//       lng: lng,
+//       length: length,
+//       difficulty: difficulty,
+//       summary: summary,
     }).then(
       (event) => {
         console.log("ID Generated: ", event);
@@ -54,7 +74,8 @@ function HikingData(props) {
         <section style={{ width: "100%" }}>
           <h3>Hikings data for: {search}</h3>
           {props.data.map((res, index) => {
-              let id = index + 1;
+            console.log(index);
+            let id = index + 1;
             return (
               <div key={id}>
                 <Row>
@@ -62,34 +83,43 @@ function HikingData(props) {
                     <Card className="hikingsCard" style={{ width: "30rem" }}>
                       <Card.Body>
                         {currentUser ? (
-                        <span
-                          onClick={() => {
-                            handleHeartBtn();
-                            {
-                              handleHikes(
-                                res.activity,
-                                res.name,
-                                res.difficulty,
-                                res.summary
-                              );
-                            }
-                          }}
-                          className="saveBtn"
-                          title="Save to Itinerary"
-                        >
-                          <img
-                            src={heart ? heartSolid : heartEmpty}
-                            style={{ width: "30px" }}
-                          />
-                        </span>
+                          <span
+                            onClick={() => {
+                              handleHeartBtn();
+                              {
+                                handleHikings(
+                                  res.activity,
+                                  res.name,
+                                  res.summary,
+                                  res.difficulty,
+                                  res.lat,
+                                  res.lng,
+                                  res.length
+                                );
+                              }
+                            }}
+                            className="saveBtn"
+                            title="Save to Itinerary"
+                          >
+                            <img
+                              src={heart ? heartSolid : heartEmpty}
+                              style={{ width: "30px" }}
+                            />
+                          </span>
                         ) : (
                           <LoginModal />
                         )}
-                        <Card.Title> Activity: {res.activity.charAt(0).toUpperCase() + res.activity.slice(1)} </Card.Title>
-                        <Card.Subtitle> Hike: {res.name} </Card.Subtitle>
+                        <Card.Text> Name: {res.name} </Card.Text>
                         <Card.Text> Difficulty: {res.difficulty} </Card.Text>
+
                         <Card.Text> Summary: {res.summary} </Card.Text>
-    
+                        <Card.Text> Length: {res.length} miles</Card.Text>
+                        <Card.Text> Trail Condition: {res.condition}</Card.Text>
+                        <Card.Text>
+                          {" "}
+                          Elevation Change: {res.elevationChange} ft
+                        </Card.Text>
+                        <img src={res.image} style={{ width: "50px" }} />
                       </Card.Body>
                     </Card>
                   </Col>
