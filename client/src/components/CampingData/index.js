@@ -10,6 +10,7 @@ import heartSolid from "../../Assets/heart-solid.svg";
 import LoginModal from "../LoginModal";
 import Description from "../Description";
 import Fee from "../Fee";
+import $ from "jquery";
 
 function CampingData(props) {
   // console.log(props);
@@ -18,14 +19,18 @@ function CampingData(props) {
   const { currentUser } = useContext(AuthContext);
   const { search } = useContext(SearchContext);
 
-  const [heart, setHeart] = useState(false);
+  // const [heart, setHeart] = useState(false);
 
-  function handleHeartBtn() {
-    if (heart === true) {
-      setHeart(false);
-    } else {
-      setHeart(true);
-    }
+  let handleHeartBtn = (e) => {
+    let heartId = e.target.id;
+    console.log(e.target);
+    console.log(heartId);
+    console.log(e.target.src);
+    
+    // Use jQuery to update the image src
+    $(heartId).attr("src", {heartSolid} );
+
+
   }
 
   return (
@@ -40,9 +45,12 @@ function CampingData(props) {
                 <Card className="campsiteCard" style={{ width: "30rem" }}>
                   <Card.Body>
                     {currentUser ? (
-                      <span
-                        onClick={() => {
-                          handleHeartBtn();
+                      <img
+                        src={ heartEmpty }
+                        style={{ width: "30px" }}
+                        id={id}
+                        onClick={(id) => {
+                          handleHeartBtn(id);
                           {
                             props.handleFormSubmit(
                               res.name,
@@ -59,25 +67,18 @@ function CampingData(props) {
                         className="saveBtn"
                         title="Save to Itinerary"
                       >
-                        <img
-                          src={heart ? heartSolid : heartEmpty}
+                        {/* <img
+                          src={true ? heartSolid : heartEmpty}
                           style={{ width: "30px" }}
-                        />
-                      </span>
+                        /> */}
+                      </img>
                     ) : (
                       <LoginModal />
                     )}
                     <Card.Title> Campsite: {res.name} </Card.Title>
-                    {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
-                    <Card.Text>
-                      Description: <Description description={res.description} />
-                    </Card.Text>
+                    <Card.Text> Description: <Description description={res.description} /> </Card.Text>
                     <Card.Text> Reservable: {res.reservable} </Card.Text>
-                    <Card.Text>
-                      {/* {" "} */}
-                      Fee: <Fee description={res.fee} />
-                      {/* {" "} */}
-                    </Card.Text>
+                    <Card.Text> Fee: <Fee description={res.fee} /> </Card.Text>
                     <Card.Text> Phone Number: {res.phone} </Card.Text>
                     <Card.Link href="#">Campsite Link</Card.Link>
                   </Card.Body>
