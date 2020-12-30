@@ -34,7 +34,7 @@ function Home() {
 
   const [filter, setFilter] = useState({
     hotsprings: false,
-    campsites: true,
+    campsites: false,
     weather: false,
     hiking: false,
   });
@@ -43,8 +43,6 @@ function Home() {
 
   function handleCheckbox(event) {
     const { name, checked } = event.target;
-    console.log(name);
-    console.log(checked);
     setFilter({
       ...filter,
       [name]: checked,
@@ -58,7 +56,7 @@ function Home() {
 
     if (filter.campsites === true) {
       searchCampsites(searchState.search);
-      console.log("campsites in called");
+      console.log("campsites is called");
     }
     if (filter.hotsprings === true) {
       searchHotsprings(searchState.search);
@@ -124,6 +122,7 @@ function Home() {
 
     API.getHike(query)
       .then((res) => {
+        console.log("from hike page")
         console.log(res.data);
         setHiking(res.data);
       })
@@ -193,6 +192,7 @@ function Home() {
   results.campsites = campsites;
   results.hiking = hiking;
   results.hotsprings = hotspring;
+  
 
   return (
     <SearchContext.Provider value={searchState}>

@@ -18,7 +18,7 @@ import { useIndexedDB } from "react-indexed-db";
 import CampingData from "../CampingData";
 import WeatherData from "../WeatherData";
 import HotspringsData from "../HotspringsData";
-
+import HikingData from "../HikingData"
 function SearchResults(props) {
   // console.log(props);
 
@@ -61,15 +61,16 @@ function SearchResults(props) {
 
   return (
     <div className="container">
-      {/* <div className="row"> */}
+      <div className="row">
         <div className="resultsContainer">
-          {console.log(props.results.campsites.length)}
+        
           <Row>
             <WeatherData
               filter={props.filter.weather}
               searched={search}
               weatherCondition={props.weatherCondition}
             />
+           
             <Col size="md-6">
               <CampingData
                 data={props.results.campsites}
@@ -78,6 +79,10 @@ function SearchResults(props) {
               <HotspringsData
                 filter={props.filter.hotsprings}
                 data={props.results.hotsprings}
+              />
+              <HikingData
+                filter={props.filter.hiking}
+                data={props.results.hiking}
               />
             </Col>
             <Col size="md-4">
@@ -93,7 +98,7 @@ function SearchResults(props) {
 
         </div>
       </div>
-    // </div>
+     </div>
   );
 }
 
