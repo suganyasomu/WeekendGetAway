@@ -70,7 +70,6 @@ function SearchResults(props) {
               searched={search}
               weatherCondition={props.weatherCondition}
             />
-           
             <Col size="md-6">
               <CampingData
                 data={props.results.campsites}
@@ -98,7 +97,7 @@ function SearchResults(props) {
 
         </div>
       </div>
-     </div>
+    </div>
   );
 }
 

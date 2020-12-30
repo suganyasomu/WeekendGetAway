@@ -251,6 +251,7 @@ function Home() {
                 location={cityCoords}
                 startDate={startDate}
                 endDate={endDate}
+                activities={[hiking]}
               />
             </section>
           </div>

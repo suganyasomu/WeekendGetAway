@@ -25,31 +25,28 @@ function HikingData(props) {
       setHeart(true);
     }
   }
-//   // Add campsite info to indexedDB
-//   function handleHikings(
-//     activity,
-//     name,
-//     summary,
-//     dificulty,
-//     lat,
-//     lng
-//   ) {
-//     add({
-//       activity: "hotspring",
-//       name: hotspring,
-//       lat: coordinate[1],
-//       lng: coordinate[0],
-//       temperature: temperature,
-//       usgs_quadrangle: usgs_quadrangle,
-//     }).then(
-//       (event) => {
-//         console.log("ID Generated: ", event);
-//       },
-//       (error) => {
-//         console.log(error);
-//       }
-//     );
-//   }
+
+  // Add hiking info to indexedDB
+  function handleHikes(
+    hikeName,
+    summary,
+    dificulty
+  ) {
+    add({
+      activity: "hiking",
+      name: hikeName
+      // summary: summary,
+      // dificulty: dificulty 
+      
+    }).then(
+      (event) => {
+        console.log("ID Generated: ", event);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
   return (
     <div>
@@ -63,14 +60,37 @@ function HikingData(props) {
                 <Row>
                   <Col size="md-6">
                     <Card className="hikingsCard" style={{ width: "30rem" }}>
-                     
                       <Card.Body>
-                      <Card.Text> Activity: {res.activity} </Card.Text>
-                    <Card.Text> Difficulty: {res.difficulty} </Card.Text>
-                    <Card.Text> Name: {res.name} </Card.Text>
-                    <Card.Text> Summary: {res.summary} </Card.Text>
+                        {currentUser ? (
+                        <span
+                          onClick={() => {
+                            handleHeartBtn();
+                            {
+                              handleHikes(
+                                res.activity,
+                                res.name,
+                                res.difficulty,
+                                res.summary
+                              );
+                            }
+                          }}
+                          className="saveBtn"
+                          title="Save to Itinerary"
+                        >
+                          <img
+                            src={heart ? heartSolid : heartEmpty}
+                            style={{ width: "30px" }}
+                          />
+                        </span>
+                        ) : (
+                          <LoginModal />
+                        )}
+                        <Card.Title> Activity: {res.activity.charAt(0).toUpperCase() + res.activity.slice(1)} </Card.Title>
+                        <Card.Subtitle> Hike: {res.name} </Card.Subtitle>
+                        <Card.Text> Difficulty: {res.difficulty} </Card.Text>
+                        <Card.Text> Summary: {res.summary} </Card.Text>
     
-                  </Card.Body>
+                      </Card.Body>
                     </Card>
                   </Col>
                 </Row>
