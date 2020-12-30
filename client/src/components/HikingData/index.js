@@ -26,38 +26,24 @@ function HikingData(props) {
     }
   }
 
-
   // Add hiking info to indexedDB
-  function handleHikes(
-    hikeName,
-    summary,
-    dificulty
-  ) {
-    add({
-      activity: "hiking",
-      name: hikeName
-      // summary: summary,
-      // dificulty: dificulty 
-      
-
-  // Add campsite info to indexedDB
-//   function handleHikings(
-//     activity,
-//     name,
-//     summary,
-//     difficulty,
-//     lat,
-//     lng,
-//     length
-//   ) {
-//     add({
-//       activity: activity,
-//       name: name,
-//       lat: lat,
-//       lng: lng,
-//       length: length,
-//       difficulty: difficulty,
-//       summary: summary,
+    function handleHikes(
+      activity,
+      name,
+      summary,
+      difficulty,
+      lat,
+      lng,
+      length
+    ) {
+      add({
+        activity: activity,
+        name: name,
+        lat: lat,
+        lng: lng,
+        length: length,
+        difficulty: difficulty,
+        summary: summary,
     }).then(
       (event) => {
         console.log("ID Generated: ", event);
@@ -87,7 +73,7 @@ function HikingData(props) {
                             onClick={() => {
                               handleHeartBtn();
                               {
-                                handleHikings(
+                                handleHikes(
                                   res.activity,
                                   res.name,
                                   res.summary,
