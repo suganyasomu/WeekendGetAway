@@ -253,26 +253,16 @@ function Home() {
             handleSelectedState={handleSelectedState}
             filter={filter}
             handleCheckboxChange={handleCheckbox}
+            handleStartDate={handleStartDate}
+            handleEndDate={handleEndDate}
           />
 
-          <div className="container">
-            <Row>
-              <div className="col-2" />
-              <section className="col-8">
-                <Dates
-                  handleStartDate={handleStartDate}
-                  handleEndDate={handleEndDate}
-                />
-              </section>
-              <div className="col-2" />
-            </Row>
-
-            <div className="row">
+        <div className="row">
               <span className="col-8"> </span>
 
               {currentUser ? (
-                <span className="col-2" style={{ padding: "30px" }}>
-                  <p> You are logged in! </p>
+                <span className="col-2">
+                  <p className="pt-2 float-right"> You are logged in! </p>
                 </span>
               ) : (
                 <span className="col-4">
@@ -285,7 +275,19 @@ function Home() {
                   <SignoutBtn />
                 </div>
               )}
-            </div>
+          </div>
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                {startDate != "" ? (
+            <h3 className="text-center mt-2">
+              Dates Selected: {startDate} - {endDate}
+            </h3>
+          ) : (
+            ""
+          )}
+          </div>
+        </div>
 
             {/* Modal to Save all selected items to Itinerary */}
             <SavedItems />
