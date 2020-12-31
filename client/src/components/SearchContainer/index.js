@@ -144,6 +144,14 @@ function SearchContainer(props) {
           />
 
           <Checkbox
+            name="climbing"
+            checked={props.filter.climbing}
+            handleCheckbox={(e) => {
+              props.handleCheckboxChange(e);
+            }}
+          />
+
+          <Checkbox
             name="hotsprings"
             checked={props.filter.hotsprings}
             handleCheckbox={(e) => {

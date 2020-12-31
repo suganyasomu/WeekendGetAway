@@ -12,7 +12,7 @@ import { propTypes } from "react-bootstrap/esm/Image";
 import { useIndexedDB } from "react-indexed-db";
 // import { handleInputChange } from "react-select/src/utils";
 
-function BikingData(props) {
+function ClimbinData(props) {
   const { currentUser } = useContext(AuthContext);
   const { search } = useContext(SearchContext);
   const { add } = useIndexedDB("activity");
@@ -27,15 +27,14 @@ function BikingData(props) {
   }
 
   // Add biking info to indexedDB
-  function handleBike(activity, name, summary, difficulty, lat, lng, length) {
+  function handleClimb(activity, name, rating, lat, lng, type) {
     add({
       activity: activity,
       name: name,
       lat: lat,
       lng: lng,
-      length: length,
-      difficulty: difficulty,
-      summary: summary,
+      type: type,
+      rating: rating,
     }).then(
       (event) => {
         console.log("ID Generated: ", event);
@@ -45,33 +44,33 @@ function BikingData(props) {
       }
     );
   }
+  console.log(props);
 
   return (
     <div>
       {props.filter ? (
         <section style={{ width: "100%" }}>
-          <h3>Bikings trails for: {search}</h3>
+          <h3>Rock Climbing for: {search}</h3>
           {props.data.map((res, index) => {
             let id = index + 1;
             return (
               <div key={id}>
                 <Row>
                   <Col size="md-6">
-                    <Card className="bikingCard" style={{ width: "30rem" }}>
+                    <Card className="climbingCard" style={{ width: "30rem" }}>
                       <Card.Body>
                         {currentUser ? (
                           <span
                             onClick={() => {
                               handleHeartBtn();
                               {
-                                handleBike(
+                                handleClimb(
                                   res.activity,
                                   res.name,
-                                  res.summary,
-                                  res.difficulty,
+                                  res.rating,
                                   res.lat,
                                   res.lng,
-                                  res.length
+                                  res.type
                                 );
                               }
                             }}
@@ -87,10 +86,8 @@ function BikingData(props) {
                           <LoginModal />
                         )}
                         <Card.Text> Name: {res.name} </Card.Text>
-                        <Card.Text> Difficulty: {res.difficulty} </Card.Text>
-
-                        <Card.Text> Summary: {res.summary} </Card.Text>
-                        <Card.Text> Length: {res.length} miles</Card.Text>
+                        <Card.Text> Type: {res.type} </Card.Text>
+                        <Card.Text> Rating: {res.rating} </Card.Text>
                         <Card.Text> Trail Condition: {res.condition}</Card.Text>
                         <Card.Text>
                           {" "}
@@ -112,4 +109,4 @@ function BikingData(props) {
   );
 }
 
-export default BikingData;
+export default ClimbinData;
