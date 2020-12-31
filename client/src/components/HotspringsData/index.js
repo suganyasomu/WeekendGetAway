@@ -55,7 +55,7 @@ function HotspringsData(props) {
     <div>
       {props.filter && submitted ? (
         <section style={{ width: "100%" }}>
-          <h3>Hotsprings for: {search}</h3>
+          <h3>Hotsprings</h3>
           {props.data.map((res, index) => {
             return (
               <div key={res._id}>

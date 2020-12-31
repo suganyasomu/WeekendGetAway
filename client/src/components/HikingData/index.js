@@ -60,7 +60,7 @@ function HikingData(props) {
     <div>
       {props.filter && submitted ? (
         <section style={{ width: "100%" }}>
-          <h3>Hikings data for: {search}</h3>
+          <h3>Hikes</h3>
           {props.data.map((res, index) => {
             console.log(index);
             let id = index + 1;

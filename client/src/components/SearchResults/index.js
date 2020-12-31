@@ -73,6 +73,7 @@ function SearchResults(props) {
             />
             <Col size="md-6">
               <CampingData
+                filter={props.filter.campsites}
                 data={props.results.campsites}
                 handleFormSubmit={handleFormSubmit}
               />

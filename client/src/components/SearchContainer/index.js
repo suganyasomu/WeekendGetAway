@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -125,6 +125,7 @@ function SearchContainer(props) {
             handleCheckbox={(e) => {
               props.handleCheckboxChange(e);
             }}
+            // disabled={ ? true : false}
           />
 
           <Checkbox
