@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../Auth.js";
 import SearchContext from "../../utils/SearchContext";
-import SubmitBtnContext from "../../utils/SubmitBtnContext";
 import Card from "react-bootstrap/Card";
 import Col from "../Col";
 import Row from "../Row";
@@ -13,10 +12,9 @@ import { propTypes } from "react-bootstrap/esm/Image";
 import { useIndexedDB } from "react-indexed-db";
 // import { handleInputChange } from "react-select/src/utils";
 
-function HotspringsData(props) {
+function ClimbinData(props) {
   const { currentUser } = useContext(AuthContext);
   const { search } = useContext(SearchContext);
-  const { submitted } = useContext(SubmitBtnContext);
   const { add } = useIndexedDB("activity");
   const [heart, setHeart] = useState(false);
 
@@ -27,20 +25,16 @@ function HotspringsData(props) {
       setHeart(true);
     }
   }
-  // Add campsite info to indexedDB
-  function handleHotsprings(
-    hotspring,
-    temperature,
-    coordinate,
-    usgs_quadrangle
-  ) {
+
+  // Add biking info to indexedDB
+  function handleClimb(activity, name, rating, lat, lng, type) {
     add({
-      activity: "hotspring",
-      name: hotspring,
-      lat: coordinate[1],
-      lng: coordinate[0],
-      temperature: temperature,
-      usgs_quadrangle: usgs_quadrangle,
+      activity: activity,
+      name: name,
+      lat: lat,
+      lng: lng,
+      type: type,
+      rating: rating,
     }).then(
       (event) => {
         console.log("ID Generated: ", event);
@@ -50,29 +44,33 @@ function HotspringsData(props) {
       }
     );
   }
+  console.log(props);
 
   return (
     <div>
-      {props.filter && submitted ? (
+      {props.filter ? (
         <section style={{ width: "100%" }}>
-          <h3>Hotsprings</h3>
+          <h3>Rock Climbing for: {search}</h3>
           {props.data.map((res, index) => {
+            let id = index + 1;
             return (
-              <div key={res._id}>
+              <div key={id}>
                 <Row>
                   <Col size="md-6">
-                    <Card className="hotspringCard" style={{ width: "30rem" }}>
+                    <Card className="climbingCard" style={{ width: "30rem" }}>
                       <Card.Body>
                         {currentUser ? (
                           <span
                             onClick={() => {
                               handleHeartBtn();
                               {
-                                handleHotsprings(
-                                  res.spring_name,
-                                  res.degrees_f,
-                                  res.loc.coordinates,
-                                  res.usgs_quadrangle
+                                handleClimb(
+                                  res.activity,
+                                  res.name,
+                                  res.rating,
+                                  res.lat,
+                                  res.lng,
+                                  res.type
                                 );
                               }
                             }}
@@ -87,20 +85,15 @@ function HotspringsData(props) {
                         ) : (
                           <LoginModal />
                         )}
-                        <Card.Title>
-                          {" "}
-                          Hotspring Name: {res.spring_name}{" "}
-                        </Card.Title>
-                        <Card.Text>Average Temp: {res.degrees_f}°</Card.Text>
+                        <Card.Text> Name: {res.name} </Card.Text>
+                        <Card.Text> Type: {res.type} </Card.Text>
+                        <Card.Text> Rating: {res.rating} </Card.Text>
+                        <Card.Text> Trail Condition: {res.condition}</Card.Text>
                         <Card.Text>
                           {" "}
-                          Coordinates to spring: {
-                            res.loc.coordinates[1]
-                          }°N, {res.loc.coordinates[0]}°W{" "}
+                          Elevation Change: {res.elevationChange} ft
                         </Card.Text>
-                        <Card.Text>
-                          USGS_Quadrangle: {res.usgs_quadrangle}
-                        </Card.Text>
+                        <img src={res.image} style={{ width: "50px" }} />
                       </Card.Body>
                     </Card>
                   </Col>
@@ -116,4 +109,4 @@ function HotspringsData(props) {
   );
 }
 
-export default HotspringsData;
+export default ClimbinData;

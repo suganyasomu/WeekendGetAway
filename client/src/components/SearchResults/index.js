@@ -19,6 +19,9 @@ import CampingData from "../CampingData";
 import WeatherData from "../WeatherData";
 import HotspringsData from "../HotspringsData";
 import HikingData from "../HikingData";
+import BikingData from "../BikingData";
+import ClimbingData from "../ClimbingData";
+
 function SearchResults(props) {
   // console.log(props);
 
@@ -66,11 +69,11 @@ function SearchResults(props) {
           <Row>
             <WeatherData
               filter={props.filter.weather}
-              searched={search}
               weatherCondition={props.weatherCondition}
             />
             <Col size="md-6">
               <CampingData
+                filter={props.filter.campsites}
                 data={props.results.campsites}
                 handleFormSubmit={handleFormSubmit}
               />
@@ -81,6 +84,14 @@ function SearchResults(props) {
               <HikingData
                 filter={props.filter.hiking}
                 data={props.results.hiking}
+              />
+              <BikingData
+                filter={props.filter.biking}
+                data={props.results.biking}
+              />
+              <ClimbingData
+                filter={props.filter.climbing}
+                data={props.results.climbing}
               />
             </Col>
             <Col size="md-4">

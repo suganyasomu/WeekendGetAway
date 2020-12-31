@@ -16,7 +16,7 @@ function ItineraryModal(props) {
         let year = dt.getFullYear(dt);
         let newDate = month + "/" + day + "/" + year;
         return newDate;
-      }
+    }
 
       function deleteActivity(itinId, actId) {
         API.deleteActivity(itinId, actId)
@@ -55,7 +55,7 @@ function ItineraryModal(props) {
                         return (
                             <Card key={activity._id}>
                                 <Card.Header>
-                                    <h4 style={{ float: "left" }}>Activity type: {activity.activity}</h4>
+                                    <h4 style={{ float: "left" }}>Activity type: {activity.activity.charAt(0).toUpperCase() + activity.activity.slice(1)}</h4>
                                     <DeleteBtn className="delete-btn" onClick={() => deleteActivity(props.trip._id, activity._id)} />
                                 </Card.Header>
                                 <Card.Body>
@@ -65,7 +65,7 @@ function ItineraryModal(props) {
                             </Card>
                         )
                     })}
-                    </Modal.Body>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                     Close

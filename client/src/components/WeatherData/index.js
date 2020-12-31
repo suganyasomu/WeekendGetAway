@@ -1,48 +1,51 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "react-bootstrap/Card";
-import CardDeck from "react-bootstrap/CardDeck";
+import Row from "../Row";
+import SearchContext from "../../utils/SearchContext";
+import SubmitBtnContext from "../../utils/SubmitBtnContext";
+import "./style.css";
 
 function WeatherData(props) {
   //   console.log(props);
+  const { search } = useContext(SearchContext);
+  const { submitted } = useContext(SubmitBtnContext);
+
+  // console.log(submitted); 
 
   return (
     <div>
-      {props.filter ? (
-        <section style={{ width: "100%" }}>
-          <h3>Weather Forecast For: {props.searched}</h3>
-          {props.weatherCondition.map((res, index) => {
-            let id = index + 1;
-            return (
-              <CardDeck
-                key={id}
-                style={{
-                  display: "inline-block",
-                  marginTop: 20,
-                  marginBottom: 20,
-                  marginRight: 10,
-                  width: "13rem",
-                }}
-              >
-                <Card
-                  className="weatherCard"
-                  // style={{marginTop: 20, marginBottom: 20, width: "10rem"}}
-                >
-                  <Card.Body>
-                    <Card.Text> Date: {res.date} </Card.Text>
-                    <Card.Text> Temp: {res.temp} </Card.Text>
-                    <Card.Text> Humidity: {res.humidity} </Card.Text>
-                    <Card.Text> Wind: {res.wind} </Card.Text>
-                    <Card.Text> Condition: {res.weather} </Card.Text>
-                  </Card.Body>
-                </Card>
-              </CardDeck>
-            );
-          })}
-        </section>
+      {/* If filter is select && search is submitted */}
+      {props.filter && submitted ? (
+        <div> 
+          <h3>Weather Forecast For: {search}</h3>
+          <div className="weatherContainer container">
+            <Row>
+                {props.weatherCondition.map((res, index) => {
+                  let id = index + 1;
+                  return (
+                      <Card key={id} className="weatherCard" >
+                        <Card.Body>
+                            <ul>
+                              <li style={{ fontWeight: 'bold' }}> Date: {res.date} </li>
+                              <li> Temp: {res.temp} </li>
+                              <li> Humidity: {res.humidity} </li>
+                              <li> Wind: {res.wind} </li>
+                              <li> Conditions: {res.weather} </li>
+                            </ul>
+                        </Card.Body>
+                      </Card>
+                  );                
+                })}
+                
+            </Row>
+        </div>
+
+        </div>
       ) : (
         <span> </span>
       )}
     </div>
+    
   );
 }
 

@@ -51,6 +51,16 @@ export const DBConfig = {
           keypath: "usgs_quadrangle",
           options: { unique: false },
         },
+        {
+          name: "rating",
+          keypath: "rating",
+          options: { unique: false },
+        },
+        {
+          name: "type",
+          keypath: "type",
+          options: { unique: false },
+        },
       ],
     },
   ],

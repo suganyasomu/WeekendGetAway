@@ -1,0 +1,19 @@
+.weatherContainer{
+    /* border: solid 1px grey;
+    border-radius: 8px; */
+}
+
+.weatherCard {
+    border: none;
+    display: inline;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: "10rem";
+    line-height: 1.5;
+
+}
+
+li {
+    list-style: none;
+}
