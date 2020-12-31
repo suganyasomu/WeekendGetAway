@@ -16,5 +16,9 @@ router
   router
   .route("/api/history/:uid")
   .post();
+
+router
+  .route("/:uid/activities/:id")
+  .delete(itineraryController.removeActivity);
   
 module.exports = router;
