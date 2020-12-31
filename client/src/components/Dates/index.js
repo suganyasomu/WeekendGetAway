@@ -35,8 +35,8 @@ function Dates(props) {
   }
   
   return (
-      <div className="row">
-        <section className="col-6">
+      <div className="row text-white">
+        <section className="col-6 justify-content-center">
           <span> Start Date: </span>
           <DatePicker
             // required
@@ -56,7 +56,7 @@ function Dates(props) {
           />
         </section>
 
-        <section className="col-6">
+        <section className="col-6 justify-content-center">
           <span> End Date: </span>
 
           <DatePicker
@@ -75,15 +75,17 @@ function Dates(props) {
             className="startDate"
           />
         </section>
-        <div className="row">
+        {/* <div className="row">
+          <div className="col-12">
           {dates.start != "" ? (
-            <h3>
+            <h3 className="text-center mt-2">
               Dates Selected: {dates.start} - {dates.end}
             </h3>
           ) : (
             ""
           )}
-        </div>
+          </div>
+        </div> */}
       </div>
   );
 };
