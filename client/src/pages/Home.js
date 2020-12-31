@@ -12,6 +12,8 @@ import SearchContainer from "../components/SearchContainer";
 import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 import SearchContext from "../utils/SearchContext";
+import SubmitBtnContext from "../utils/SubmitBtnContext";
+import SavedItems from "../components/SavedItems";
 import SavedBtn from "../components/SavedBtn";
 import Dates from "../components/Dates";
 import SignoutBtn from "../components/SignoutBtn";
@@ -23,6 +25,9 @@ function Home() {
   const [searchState, setSearchState] = useState({
     search: "",
   });
+  const [submitState, setSubmitState] = useState({
+    submitted: false
+  })
   const [city, setCity] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -176,6 +181,12 @@ function Home() {
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
+    // let other components know if a city has been searched for
+    setSubmitState({
+      ...submitState,
+      submitted: true
+    });
+
     // send the searched term to the function
     if (searchState.search === "") {
       alert("Please enter a city");
@@ -214,6 +225,7 @@ function Home() {
 
   return (
     <SearchContext.Provider value={searchState}>
+    <SubmitBtnContext.Provider value={submitState}>
       <div>
         <SearchContainer
           handleFormSubmit={handleFormSubmit}
@@ -256,8 +268,8 @@ function Home() {
             )}
           </div>
 
-          {/* Save all selected items to Itinerary */}
-          <SavedBtn />
+          {/* Modal to Save all selected items to Itinerary */}
+          <SavedItems />
 
           <div ref={resultsRef} className="row">
             <section className="col-12">
@@ -275,6 +287,7 @@ function Home() {
           </div>
         </div>
       </div>
+    </SubmitBtnContext.Provider>
     </SearchContext.Provider>
   );
 }

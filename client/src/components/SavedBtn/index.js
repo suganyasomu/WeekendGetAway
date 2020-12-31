@@ -3,7 +3,7 @@ import "./style.css";
 import { useIndexedDB } from "react-indexed-db";
 import API from "../../utils/API";
 
-function Save() {
+function SavedBtn() {
   const { getAll, clear } = useIndexedDB("activity");
   // const [activities, setActivity] = useState();
 
@@ -42,4 +42,4 @@ function Save() {
   );
 }
 
-export default Save;
+export default SavedBtn;

@@ -14,7 +14,7 @@ function ItineraryModal(props) {
         let year = dt.getFullYear(dt);
         let newDate = month + "/" + day + "/" + year;
         return newDate;
-      }
+    }
 
     // Login Modal
     const [show, setShow] = useState(false);

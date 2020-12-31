@@ -68,7 +68,6 @@ function SearchResults(props) {
           <Row>
             <WeatherData
               filter={props.filter.weather}
-              searched={search}
               weatherCondition={props.weatherCondition}
             />
             <Col size="md-6">
