@@ -42,6 +42,18 @@ function ItineraryModal(props) {
                     <h2>Campsite Fees:</h2> <p dangerouslySetInnerHTML={{__html: props.trip.campFee}}></p>
                     <h2>Campsite Phone:</h2><p> {props.trip.campPhone}</p>
                     <h2>Activities: </h2>
+                    <ul>
+                        {props.trip.activities.map((res, index) => {
+                            let id = index+1;
+                            return (
+                                <li key={id}>
+                                    {res.activity.charAt(0).toUpperCase() + res.activity.slice(1)}: {res.name}
+                                </li>
+
+                            )
+                        })}
+                    </ul>
+                    
                     </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
