@@ -38,8 +38,14 @@ export default {
     // console.log(uid);
     return axios.get("/api/itinerary/", { params: { user: uid } });
   },
+  getOneItinerary: function (id) {
+    return axios.get("/api/itinerary/" + id);
+  },
   deleteItinerary: function (id) {
     return axios.delete("/api/itinerary/" + id);
+  },
+  deleteActivity: function (uid, id) {
+    return axios.delete("/api/itinerary/" + uid + "/activities/" + id);
   },
   getDirections: function (coordinates) {
     // coordinates sent as an object
