@@ -26,12 +26,10 @@ function CampingData(props) {
     console.log(e.target);
     console.log(heartId);
     console.log(e.target.src);
-    
+
     // Use jQuery to update the image src
-    $(heartId).attr("src", {heartSolid} );
-
-
-  }
+    $(heartId).attr("src", { heartSolid });
+  };
 
   return (
     <div>
@@ -46,7 +44,7 @@ function CampingData(props) {
                   <Card.Body>
                     {currentUser ? (
                       <img
-                        src={ heartEmpty }
+                        src={heartEmpty}
                         style={{ width: "30px" }}
                         id={id}
                         onClick={(id) => {
@@ -76,9 +74,17 @@ function CampingData(props) {
                       <LoginModal />
                     )}
                     <Card.Title> Campsite: {res.name} </Card.Title>
-                    <Card.Text> Description: <Description description={res.description} /> </Card.Text>
+                    <Card.Text>
+                      {" "}
+                      Description: <Description
+                        description={res.description}
+                      />{" "}
+                    </Card.Text>
                     <Card.Text> Reservable: {res.reservable} </Card.Text>
-                    <Card.Text> Fee: <Fee description={res.fee} /> </Card.Text>
+                    <Card.Text>
+                      {" "}
+                      Fee: <Fee description={res.fee} />{" "}
+                    </Card.Text>
                     <Card.Text> Phone Number: {res.phone} </Card.Text>
                     <Card.Link href="#">Campsite Link</Card.Link>
                   </Card.Body>

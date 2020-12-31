@@ -30,6 +30,7 @@ function Home() {
   const [hotspring, setHotsprings] = useState([]);
   const [weather, setWeather] = useState([]);
   const [hiking, setHiking] = useState([]);
+  const [biking, setBiking] = useState([]);
   const [cityCoords, setCityCoords] = useState({});
 
   const [filter, setFilter] = useState({
@@ -37,6 +38,7 @@ function Home() {
     campsites: false,
     weather: false,
     hiking: false,
+    biking: false,
   });
 
   const resultsRef = useRef();
@@ -69,6 +71,10 @@ function Home() {
     if (filter.hiking === true) {
       searchHiking(searchState.search);
       console.log("Hiking is called");
+    }
+    if (filter.biking === true) {
+      searchBiking(searchState.search);
+      console.log("Biking is called");
     }
   }
 
@@ -122,9 +128,21 @@ function Home() {
 
     API.getHike(query)
       .then((res) => {
-        console.log("from hike page")
+        console.log("from hike page");
         console.log(res.data);
         setHiking(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  // Search for biking trails
+  function searchBiking(query) {
+    console.log(query);
+
+    API.getBike(query)
+      .then((res) => {
+        console.log(res.data);
+        setBiking(res.data);
       })
       .catch((err) => console.log(err));
   }
@@ -192,7 +210,7 @@ function Home() {
   results.campsites = campsites;
   results.hiking = hiking;
   results.hotsprings = hotspring;
-  
+  results.biking = biking;
 
   return (
     <SearchContext.Provider value={searchState}>
