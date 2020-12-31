@@ -63,4 +63,9 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  removeActivity: function (req, res) {
+    db.Itinerary.update({ _id: req.params.uid}, {$pull : { "activities" : { _id: req.params.id }}})
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
 };

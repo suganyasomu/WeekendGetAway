@@ -1,11 +1,13 @@
 import React, { useState } from"react";
-import {Modal, Button } from "react-bootstrap";
-import Login from "../../pages/Login";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from 'react-router-dom';
-
+import {Modal, Button, Card } from "react-bootstrap";
+import API from "../../utils/API";
+import DeleteBtn from "../DeleteBtn";
 
 function ItineraryModal(props) {
+    const [activities, setActivities] = useState([]);
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => {loadActivities(props.trip._id); setShow(true);}
 
     function convertDate(date) {
         let dt = new Date(date);
@@ -16,10 +18,17 @@ function ItineraryModal(props) {
         return newDate;
     }
 
-    // Login Modal
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+      function deleteActivity(itinId, actId) {
+        API.deleteActivity(itinId, actId)
+          .then((res) => loadActivities(itinId))
+          .catch((err) => console.log(err));
+      }
+
+      function loadActivities(id) {
+        API.getOneItinerary(id)
+          .then((res) => setActivities(res.data.activities))
+          .catch((err) => console.log(err));
+      }
 
     return (
         <>
@@ -33,28 +42,30 @@ function ItineraryModal(props) {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header>
-                    <Modal.Title>Full Itinerary</Modal.Title>
+                    <Modal.Title>Full Itinerary for {props.trip.campCity}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h2>Campsite:</h2>  <p>{props.trip.campsite}</p>
-                    <h2>Dates: </h2><p> {convertDate(props.trip.startDate)} - {convertDate(props.trip.endDate)}</p>
-                    <h2>Campsite Description: </h2> <p dangerouslySetInnerHTML={{__html: props.trip.campDescription}}></p>
-                    <h2>Campsite Fees:</h2> <p dangerouslySetInnerHTML={{__html: props.trip.campFee}}></p>
-                    <h2>Campsite Phone:</h2><p> {props.trip.campPhone}</p>
-                    <h2>Activities: </h2>
-                    <ul>
-                        {props.trip.activities.map((res, index) => {
-                            let id = index+1;
-                            return (
-                                <li key={id}>
-                                    {res.activity.charAt(0).toUpperCase() + res.activity.slice(1)}: {res.name}
-                                </li>
-
-                            )
-                        })}
-                    </ul>
-                    
-                    </Modal.Body>
+                    <h2 className="bg-dark text-white p-2">Campsite:</h2>  <p>{props.trip.campsite}</p>
+                    <h2 className="bg-dark text-white p-2">Dates: </h2><p> {convertDate(props.trip.startDate)} - {convertDate(props.trip.endDate)}</p>
+                    <h2 className="bg-dark text-white p-2">Campsite Description: </h2> <p dangerouslySetInnerHTML={{__html: props.trip.campDescription}}></p>
+                    <h2 className="bg-dark text-white p-2">Campsite Fees:</h2> <p dangerouslySetInnerHTML={{__html: props.trip.campFee}}></p>
+                    <h2 className="bg-dark text-white p-2">Campsite Phone:</h2><p> {props.trip.campPhone}</p>
+                    <h2 className="bg-dark text-white p-2">Activities: </h2>
+                    {activities.map((activity) => {
+                        return (
+                            <Card key={activity._id}>
+                                <Card.Header>
+                                    <h4 style={{ float: "left" }}>Activity type: {activity.activity.charAt(0).toUpperCase() + activity.activity.slice(1)}</h4>
+                                    <DeleteBtn className="delete-btn" onClick={() => deleteActivity(props.trip._id, activity._id)} />
+                                </Card.Header>
+                                <Card.Body>
+                                    <p>Activity Name: {activity.name}</p>
+                                    <p>Activity Location: {activity.lat}, {activity.lng}</p>
+                                </Card.Body>
+                            </Card>
+                        )
+                    })}
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                     Close
