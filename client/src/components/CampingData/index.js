@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../Auth.js";
 import SearchContext from "../../utils/SearchContext";
+import SubmitBtnContext from "../../utils/SubmitBtnContext";
 import Card from "react-bootstrap/Card";
 import Col from "../Col";
 import Row from "../Row";
@@ -18,6 +19,7 @@ function CampingData(props) {
   // Check if user is logged in or not:
   const { currentUser } = useContext(AuthContext);
   const { search } = useContext(SearchContext);
+  const { submitted } = useContext(SubmitBtnContext);
 
   // const [heart, setHeart] = useState(false);
 
@@ -30,12 +32,11 @@ function CampingData(props) {
     // Use jQuery to update the image src
     $(heartId).attr("src", {heartSolid} );
 
-
   }
 
   return (
     <div>
-      <h3>Campites for: {search}</h3>
+      {/* <h3>Campites for: {search}</h3> */}
       {props.data.map((res, index) => {
         let id = index + 1;
         return (

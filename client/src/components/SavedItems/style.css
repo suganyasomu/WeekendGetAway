@@ -1,0 +1,7 @@
+#modal-dialog {
+    background-color: rgb(124, 136, 124);
+    position: absolute;
+    left: 50px;
+    bottom: 20px;
+    z-index: +1;
+}
