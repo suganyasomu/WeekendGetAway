@@ -165,7 +165,7 @@ function Home() {
     API.getClimb(query)
       .then((res) => {
         console.log(res.data);
-        setBiking(res.data);
+        setClimbing(res.data);
       })
       .catch((err) => console.log(err));
   }

@@ -5,13 +5,6 @@ import API from "../../utils/API";
 
 function SavedBtn() {
   const { getAll, clear } = useIndexedDB("activity");
-  // const [activities, setActivity] = useState();
-
-  // useEffect(() => {
-  //   getAll().then((activitesFromDB) => {
-  //     setActivity(activitesFromDB);
-  //   });
-  // }, []);
 
   async function handleSaveBtn() {
     let activities = await getAll();
@@ -21,9 +14,6 @@ function SavedBtn() {
     }
 
     API.saveToItinerary(activities)
-      // .then((res) => {
-      //   console.log(res);
-      // })
       .then((res) => {
         alert("Campsite has now been saved to your itinerary!");
       })
@@ -36,7 +26,12 @@ function SavedBtn() {
   }
 
   return (
-    <span className="saveButton btn btn-outline-secondary" role="button" tabIndex="0" onClick={handleSaveBtn}>
+    <span
+      className="saveButton btn btn-outline-secondary"
+      role="button"
+      tabIndex="0"
+      onClick={handleSaveBtn}
+    >
       Save All to Itinerary
     </span>
   );
