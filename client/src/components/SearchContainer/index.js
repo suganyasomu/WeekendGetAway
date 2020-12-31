@@ -71,12 +71,17 @@ function SearchContainer(props) {
   });
 
   return (
-    <header className="header" style={{ backgroundImage: `url(${Background})`  }}>
+    <header
+      className="header"
+      style={{ backgroundImage: `url(${Background})` }}
+    >
       <div className="container">
         <Row>
-      
           <animated.section style={animation} className="col-12">
-            <h1  id="homeHeader"> Your next adventure is just a few clicks away... </h1>
+            <h1 id="homeHeader">
+              {" "}
+              Your next adventure is just a few clicks away...{" "}
+            </h1>
           </animated.section>
 
           <InputGroup className="searchField">
@@ -110,10 +115,9 @@ function SearchContainer(props) {
               </Button>
             </InputGroup.Append>
           </InputGroup>
-
         </Row>
 
-        <Row > 
+        <Row>
           <div className="col-sm-2 col-12"></div>
           <Checkbox
             name="campsites"
@@ -127,6 +131,22 @@ function SearchContainer(props) {
           <Checkbox
             name="hiking"
             checked={props.filter.hiking}
+            handleCheckbox={(e) => {
+              props.handleCheckboxChange(e);
+            }}
+          />
+
+          <Checkbox
+            name="biking"
+            checked={props.filter.biking}
+            handleCheckbox={(e) => {
+              props.handleCheckboxChange(e);
+            }}
+          />
+
+          <Checkbox
+            name="climbing"
+            checked={props.filter.climbing}
             handleCheckbox={(e) => {
               props.handleCheckboxChange(e);
             }}
@@ -148,7 +168,6 @@ function SearchContainer(props) {
             }}
           />
         </Row>
-
       </div>
     </header>
   );

@@ -26,8 +26,8 @@ function Home() {
     search: "",
   });
   const [submitState, setSubmitState] = useState({
-    submitted: false
-  })
+    submitted: false,
+  });
   const [city, setCity] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -35,6 +35,8 @@ function Home() {
   const [hotspring, setHotsprings] = useState([]);
   const [weather, setWeather] = useState([]);
   const [hiking, setHiking] = useState([]);
+  const [biking, setBiking] = useState([]);
+  const [climbing, setClimbing] = useState([]);
   const [cityCoords, setCityCoords] = useState({});
 
   const [filter, setFilter] = useState({
@@ -42,6 +44,8 @@ function Home() {
     campsites: false,
     weather: false,
     hiking: false,
+    biking: false,
+    climing: false,
   });
 
   const resultsRef = useRef();
@@ -74,6 +78,14 @@ function Home() {
     if (filter.hiking === true) {
       searchHiking(searchState.search);
       console.log("Hiking is called");
+    }
+    if (filter.biking === true) {
+      searchBiking(searchState.search);
+      console.log("Biking is called");
+    }
+    if (filter.climbing === true) {
+      searchClimbing(searchState.search);
+      console.log("Climbing is called");
     }
   }
 
@@ -127,9 +139,33 @@ function Home() {
 
     API.getHike(query)
       .then((res) => {
-        console.log("from hike page")
+        console.log("from hike page");
         console.log(res.data);
         setHiking(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  // Search for biking trails
+  function searchBiking(query) {
+    console.log(query);
+
+    API.getBike(query)
+      .then((res) => {
+        console.log(res.data);
+        setBiking(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  // Search for climbing routes
+  function searchClimbing(query) {
+    console.log(query);
+
+    API.getClimb(query)
+      .then((res) => {
+        console.log(res.data);
+        setBiking(res.data);
       })
       .catch((err) => console.log(err));
   }
@@ -166,7 +202,7 @@ function Home() {
     // let other components know if a city has been searched for
     setSubmitState({
       ...submitState,
-      submitted: true
+      submitted: true,
     });
 
     // send the searched term to the function
@@ -203,73 +239,74 @@ function Home() {
   results.campsites = campsites;
   results.hiking = hiking;
   results.hotsprings = hotspring;
-  
+  results.biking = biking;
+  results.climbing = climbing;
 
   return (
     <SearchContext.Provider value={searchState}>
-    <SubmitBtnContext.Provider value={submitState}>
-      <div>
-        <SearchContainer
-          handleFormSubmit={handleFormSubmit}
-          handleInputChange={handleInputChange}
-          results={city}
-          handleSelectedState={handleSelectedState}
-          filter={filter}
-          handleCheckboxChange={handleCheckbox}
-        />
+      <SubmitBtnContext.Provider value={submitState}>
+        <div>
+          <SearchContainer
+            handleFormSubmit={handleFormSubmit}
+            handleInputChange={handleInputChange}
+            results={city}
+            handleSelectedState={handleSelectedState}
+            filter={filter}
+            handleCheckboxChange={handleCheckbox}
+          />
 
-        <div className="container">
-          <Row>
-            <div className="col-2" />
-            <section className="col-8">
-              <Dates
-                handleStartDate={handleStartDate}
-                handleEndDate={handleEndDate}
-              />
-            </section>
-            <div className="col-2" />
-          </Row>
+          <div className="container">
+            <Row>
+              <div className="col-2" />
+              <section className="col-8">
+                <Dates
+                  handleStartDate={handleStartDate}
+                  handleEndDate={handleEndDate}
+                />
+              </section>
+              <div className="col-2" />
+            </Row>
 
-          <div className="row">
-            <span className="col-8"> </span>
+            <div className="row">
+              <span className="col-8"> </span>
 
-            {currentUser ? (
-              <span className="col-2" style={{ padding: "30px" }}>
-                <p> You are logged in! </p>
-              </span>
-            ) : (
-              <span className="col-4">
-                <p> Guest - Login to Save to your Itinerary </p>
-              </span>
-            )}
+              {currentUser ? (
+                <span className="col-2" style={{ padding: "30px" }}>
+                  <p> You are logged in! </p>
+                </span>
+              ) : (
+                <span className="col-4">
+                  <p> Guest - Login to Save to your Itinerary </p>
+                </span>
+              )}
 
-            {currentUser && (
-              <div className="col-2">
-                <SignoutBtn />
-              </div>
-            )}
-          </div>
+              {currentUser && (
+                <div className="col-2">
+                  <SignoutBtn />
+                </div>
+              )}
+            </div>
 
-          {/* Modal to Save all selected items to Itinerary */}
-          <SavedItems />
+            {/* Modal to Save all selected items to Itinerary */}
+            <SavedItems />
 
-          <div ref={resultsRef} className="row">
-            <section className="col-12">
-              <SearchResults
-                results={results}
-                filter={filter}
-                userStatus={currentUser}
-                weatherCondition={weather}
-                location={cityCoords}
-                startDate={startDate}
-                endDate={endDate}
-                activities={[hiking]}
-              />
-            </section>
+            <div ref={resultsRef} className="row">
+              <section className="col-12">
+                <SearchResults
+                  results={results}
+                  filter={filter}
+                  userStatus={currentUser}
+                  weatherCondition={weather}
+                  location={cityCoords}
+                  startDate={startDate}
+                  endDate={endDate}
+                  activities={[hiking]}
+                />
+              </section>
+            </div>
           </div>
         </div>
-      </div>
-    </SubmitBtnContext.Provider>
+      </SubmitBtnContext.Provider>
     </SearchContext.Provider>
   );
 }

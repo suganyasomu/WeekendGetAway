@@ -28,11 +28,12 @@ function CampingData(props) {
     console.log(e.target);
     console.log(heartId);
     console.log(e.target.src);
-    
+
     // Use jQuery to update the image src
     $(heartId).attr("src", {heartSolid} );
 
   }
+
 
   return (
     <div>
