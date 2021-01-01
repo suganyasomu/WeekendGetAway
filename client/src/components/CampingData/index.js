@@ -55,7 +55,7 @@ function CampingData(props) {
           <h3>Campites </h3>
 
           {props.data.map((res, index) => {
-            let id = index + 1;
+            let id = res.id;
             return (
               <div key={id}>
                 <Row>
@@ -102,7 +102,7 @@ function CampingData(props) {
                             </ReactTextCollapse>
                           </span>
                         <br/>
-                        <Card.Text> <strong>Reservable:</strong> {res.reservable} </Card.Text>
+                        <Card.Text> <strong>Reservable:</strong> {res.reservable ? "Yes" : "No"} </Card.Text>
                         <Card.Text> <strong>Fee:</strong> <Fee fee={res.fee} /> </Card.Text>
                         <Card.Text> <strong>Phone Number:</strong> {res.phone} </Card.Text>
                         <Card.Link href="#">Campsite Link</Card.Link>
