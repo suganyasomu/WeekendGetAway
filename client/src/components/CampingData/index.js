@@ -103,7 +103,7 @@ function CampingData(props) {
                           </span>
                         <br/>
                         <Card.Text> <strong>Reservable:</strong> {res.reservable} </Card.Text>
-                        <Card.Text> <strong>Fee:</strong> <Fee description={res.fee} /> </Card.Text>
+                        <Card.Text> <strong>Fee:</strong> <Fee fee={res.fee} /> </Card.Text>
                         <Card.Text> <strong>Phone Number:</strong> {res.phone} </Card.Text>
                         <Card.Link href="#">Campsite Link</Card.Link>
                       </Card.Body>
