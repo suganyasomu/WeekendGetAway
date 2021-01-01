@@ -12,6 +12,7 @@ import LoginModal from "../LoginModal";
 import Description from "../Description";
 import Fee from "../Fee";
 import $ from "jquery";
+import ReactTextCollapse from "react-text-collapse";
 
 function CampingData(props) {
   console.log(props);
@@ -22,6 +23,18 @@ function CampingData(props) {
   const { submitted } = useContext(SubmitBtnContext);
 
   // const [heart, setHeart] = useState(false);
+
+  const TEXT_COLLAPSE_OPTIONS = {
+    collapse: true, // default state when component rendered
+    collapseText: '... show more', // text to show when collapsed
+    expandText: 'show less', // text to show when expanded
+    minHeight: 100, // component height when closed
+    maxHeight: 450,
+    textStyle: { // pass the css for the collapseText and expandText here
+      color: "blue",
+      fontSize: "16px"
+    }
+  }
 
   let handleHeartBtn = (e) => {
     let heartId = e.target.id;
@@ -48,7 +61,7 @@ function CampingData(props) {
                 <Row>
                   <Col size="md-6">
                     <Card className="campsiteCard" style={{ width: "30rem" }}>
-                      <Card.Body>
+                      <Card.Header>
                         {currentUser ? (
                           <img
                             src={ heartEmpty }
@@ -80,11 +93,18 @@ function CampingData(props) {
                         ) : (
                           <LoginModal />
                         )}
-                        <Card.Title> Campsite: {res.name} </Card.Title>
-                        <Card.Text> Description: <Description description={res.description} /> </Card.Text>
-                        <Card.Text> Reservable: {res.reservable} </Card.Text>
-                        <Card.Text> Fee: <Fee description={res.fee} /> </Card.Text>
-                        <Card.Text> Phone Number: {res.phone} </Card.Text>
+                          <Card.Title> <strong>Campsite:</strong> {res.name} </Card.Title>
+                        </Card.Header>
+                        <Card.Body>
+                          <Card.Text>
+                            <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
+                              <Description description={res.description} /> 
+                            </ReactTextCollapse>
+                          </Card.Text>
+                        <br/>
+                        <Card.Text> <strong>Reservable:</strong> {res.reservable} </Card.Text>
+                        <Card.Text> <strong>Fee:</strong> <Fee description={res.fee} /> </Card.Text>
+                        <Card.Text> <strong>Phone Number:</strong> {res.phone} </Card.Text>
                         <Card.Link href="#">Campsite Link</Card.Link>
                       </Card.Body>
                     </Card>
