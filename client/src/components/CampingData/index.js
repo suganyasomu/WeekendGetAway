@@ -96,11 +96,11 @@ function CampingData(props) {
                           <Card.Title> <strong>Campsite:</strong> {res.name} </Card.Title>
                         </Card.Header>
                         <Card.Body>
-                          <Card.Text>
+                          <span>
                             <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
                               <Description description={res.description} /> 
                             </ReactTextCollapse>
-                          </Card.Text>
+                          </span>
                         <br/>
                         <Card.Text> <strong>Reservable:</strong> {res.reservable} </Card.Text>
                         <Card.Text> <strong>Fee:</strong> <Fee description={res.fee} /> </Card.Text>

@@ -63,12 +63,12 @@ function HikingData(props) {
           <h3>Hikes</h3>
           {props.data.map((res, index) => {
             console.log(index);
-            let id = index + 1;
             return (
-              <div key={id}>
+              <div key={res.id}>
                 <Row>
-                  <Col size="md-6">
+                  <Col size="md-12">
                     <Card className="hikingsCard" style={{ width: "30rem" }}>
+                      <img className="card-img-top" src={res.image} />
                       <Card.Body>
                         {currentUser ? (
                           <span
@@ -97,17 +97,16 @@ function HikingData(props) {
                         ) : (
                           <LoginModal />
                         )}
-                        <Card.Text> Name: {res.name} </Card.Text>
-                        <Card.Text> Difficulty: {res.difficulty} </Card.Text>
+                        <Card.Title> <strong>Name:</strong> {res.name} </Card.Title>
+                        <Card.Text> <strong>Difficulty:</strong> {res.difficulty} </Card.Text>
 
-                        <Card.Text> Summary: {res.summary} </Card.Text>
-                        <Card.Text> Length: {res.length} miles</Card.Text>
-                        <Card.Text> Trail Condition: {res.condition}</Card.Text>
+                        <Card.Text> <strong>Summary:</strong> {res.summary} </Card.Text>
+                        <Card.Text> <strong>Length:</strong> {res.length} miles</Card.Text>
+                        <Card.Text> <strong>Trail Condition:</strong> {res.condition}</Card.Text>
                         <Card.Text>
                           {" "}
-                          Elevation Change: {res.elevationChange} ft
+                          <strong>Elevation Change:</strong> {res.elevationChange} ft
                         </Card.Text>
-                        <img src={res.image} style={{ width: "50px" }} />
                       </Card.Body>
                     </Card>
                   </Col>
