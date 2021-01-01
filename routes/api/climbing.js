@@ -21,6 +21,7 @@ router.route("/").get(async (req, res) => {
 
       list.forEach(function (thisRoute) {
         let info = {
+          id: thisRoute.id,
           name: thisRoute.name,
           type: thisRoute.type,
           rating: thisRoute.rating,
@@ -28,7 +29,7 @@ router.route("/").get(async (req, res) => {
           lng: thisRoute.longitude,
           pitches: thisRoute.pitches !== "" ? thisRoute.pitches : 0,
           url: thisRoute.url,
-          image: thisRoute.imgSmall,
+          image: thisRoute.imgMedium,
           activity: "climbing",
         };
         routes.push(info);
