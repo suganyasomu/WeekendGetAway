@@ -87,20 +87,10 @@ function HotspringsData(props) {
                         ) : (
                           <LoginModal />
                         )}
-                        <Card.Title>
-                          {" "}
-                          Hotspring Name: {res.spring_name}{" "}
-                        </Card.Title>
-                        <Card.Text>Average Temp: {res.degrees_f}°</Card.Text>
-                        <Card.Text>
-                          {" "}
-                          Coordinates to spring: {
-                            res.loc.coordinates[1]
-                          }°N, {res.loc.coordinates[0]}°W{" "}
-                        </Card.Text>
-                        <Card.Text>
-                          USGS_Quadrangle: {res.usgs_quadrangle}
-                        </Card.Text>
+                        <Card.Title><strong>Name:</strong> {res.spring_name}</Card.Title>
+                        <Card.Text><strong>Average Temp:</strong> {res.degrees_f}°</Card.Text>
+                        <Card.Text><strong>Coordinates to spring:</strong> {res.loc.coordinates[1]}°N, {res.loc.coordinates[0]}°W </Card.Text>
+                        <Card.Text><strong>USGS_Quadrangle:</strong> {res.usgs_quadrangle}</Card.Text>
                       </Card.Body>
                     </Card>
                   </Col>
