@@ -35,6 +35,7 @@ router.route("/").get(async (req, res) => {
           .replace("Nf", "NF");
 
         let info = {
+          id: thisCampsite.FacilityID,
           name: name,
           lat: thisCampsite.FacilityLatitude,
           lng: thisCampsite.FacilityLongitude,
