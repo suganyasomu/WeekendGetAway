@@ -245,7 +245,7 @@ function Home() {
   return (
     <SearchContext.Provider value={searchState}>
       <SubmitBtnContext.Provider value={submitState}>
-        <div>
+        
           <SearchContainer
             handleFormSubmit={handleFormSubmit}
             handleInputChange={handleInputChange}
@@ -256,38 +256,32 @@ function Home() {
             handleStartDate={handleStartDate}
             handleEndDate={handleEndDate}
           />
-
-        <div className="row">
+        <div className="container">
+          <div className="row">
               <span className="col-8"> </span>
 
               {currentUser ? (
-                <span className="col-2">
-                  <p className="pt-2 float-right"> You are logged in! </p>
+                <span className="col-4">
+                  <p className="pt-2 float-right"> You are logged in! <SignoutBtn /> </p>
                 </span>
               ) : (
                 <span className="col-4">
                   <p> Guest - Login to Save to your Itinerary </p>
                 </span>
               )}
+          </div>
 
-              {currentUser && (
-                <div className="col-2">
-                  <SignoutBtn />
-                </div>
+          <div className="row">
+            <div className="col-12">
+              {startDate != "" ? (
+                <h3 className="text-center mt-2">
+                  Dates Selected: {startDate} - {endDate}
+                </h3>
+              ) : (
+                ""
               )}
+            </div>
           </div>
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                {startDate != "" ? (
-            <h3 className="text-center mt-2">
-              Dates Selected: {startDate} - {endDate}
-            </h3>
-          ) : (
-            ""
-          )}
-          </div>
-        </div>
 
             {/* Modal to Save all selected items to Itinerary */}
             {/* <IndexedDBModal /> */}
@@ -307,7 +301,7 @@ function Home() {
               </section>
             </div>
           </div>
-        </div>
+          
       </SubmitBtnContext.Provider>
     </SearchContext.Provider>
   );

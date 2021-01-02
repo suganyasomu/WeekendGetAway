@@ -86,7 +86,9 @@ function SearchContainer(props) {
   return (
     <header
       className="header"
-      style={{ backgroundImage: `url(${Background})`, boxShadow: "4px 4px 5px grey" }}
+      style={{ backgroundImage: `url(${Background})`, 
+      // boxShadow: "0 4px 2px -2px grey" 
+      }}
     >
       <div className="container">
         <Row>
