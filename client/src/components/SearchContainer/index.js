@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSpring, animated } from "react-spring";
 import Select from "react-select";
 import Checkbox from "../Checkbox";
-import Background from "../../Assets/searchHeader.jpg";
+import Background from "../../Assets/header4.jpg";
 import Row from "../Row";
 import Dates from "../Dates";
 
@@ -86,7 +86,7 @@ function SearchContainer(props) {
   return (
     <header
       className="header"
-      style={{ backgroundImage: `url(${Background})` }}
+      style={{ backgroundImage: `url(${Background})`, boxShadow: "4px 4px 5px grey" }}
     >
       <div className="container">
         <Row>
