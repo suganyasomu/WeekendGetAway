@@ -46,20 +46,20 @@ function ClimbinData(props) {
       }
     );
   }
-  console.log(props);
 
   return (
     <div>
       {props.filter && submitted ? (
         <section style={{ width: "100%" }}>
-          <h3>Rock Climbing for: {search}</h3>
+          <h3>Rock Climbing</h3>
           {props.data.map((res, index) => {
             let id = index + 1;
             return (
-              <div key={id}>
+              <div key={res.id}>
                 <Row>
-                  <Col size="md-6">
+                  <Col size="md-12">
                     <Card className="climbingCard" style={{ width: "30rem" }}>
+                    <img className="card-img-top" src={res.image} />
                       <Card.Body>
                         {currentUser ? (
                           <span
@@ -87,15 +87,9 @@ function ClimbinData(props) {
                         ) : (
                           <LoginModal />
                         )}
-                        <Card.Text> Name: {res.name} </Card.Text>
-                        <Card.Text> Type: {res.type} </Card.Text>
-                        <Card.Text> Rating: {res.rating} </Card.Text>
-                        <Card.Text> Trail Condition: {res.condition}</Card.Text>
-                        <Card.Text>
-                          {" "}
-                          Elevation Change: {res.elevationChange} ft
-                        </Card.Text>
-                        <img src={res.image} style={{ width: "50px" }} />
+                        <Card.Title><strong>Name:</strong> {res.name}</Card.Title>
+                        <Card.Text><strong>Type:</strong> {res.type}</Card.Text>
+                        <Card.Text><strong>Rating:</strong> {res.rating} </Card.Text>
                       </Card.Body>
                     </Card>
                   </Col>

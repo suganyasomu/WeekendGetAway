@@ -20,6 +20,7 @@ router.route("/").get(async (req, res) => {
 
       list.forEach(function (thisBike) {
         let info = {
+          id: thisBike.id,
           name: thisBike.name,
           lat: thisBike.latitude,
           lng: thisBike.longitude,
@@ -28,7 +29,7 @@ router.route("/").get(async (req, res) => {
           difficulty: thisBike.difficulty,
           url: thisBike.url,
           length: thisBike.length,
-          image: thisBike.imgSmall,
+          image: thisBike.imgMedium,
           condition: thisBike.conditionStatus,
           type: thisBike.type,
           activity: "biking",

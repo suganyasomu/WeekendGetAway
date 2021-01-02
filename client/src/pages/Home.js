@@ -171,7 +171,7 @@ function Home() {
     API.getClimb(query)
       .then((res) => {
         console.log(res.data);
-        setBiking(res.data);
+        setClimbing(res.data);
       })
       .catch((err) => console.log(err));
   }
@@ -260,14 +260,18 @@ function Home() {
             handleSelectedState={handleSelectedState}
             filter={filter}
             handleCheckboxChange={handleCheckbox}
+            handleStartDate={handleStartDate}
+            handleEndDate={handleEndDate}
           />
 
-          <section className="loginStatus" style={{ float: "right", marginTop: '10px', marginRight: '50px' }}>
+
+        <div className="row">
+              <span className="col-8"> </span>
+
               {currentUser ? (
-                <div>
-                  <p> You're logged in! <SignoutBtn /> </p>
-                  
-                </div>
+                <span className="col-2">
+                  <p className="pt-2 float-right"> You are logged in! <SignoutBtn /> </p>
+                </span>
               ) : (
                 <span >
                   <p> Guest - Login to Save to your Itinerary </p>
@@ -295,10 +299,25 @@ function Home() {
                     handleEndDate={handleEndDate}
                   />
                 </div>
-              </section>
-              <div className="col-md-3" />
-            </Row>
 
+//               </section>
+//               <div className="col-md-3" />
+//             </Row>
+
+              )}
+          </div>
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                {startDate != "" ? (
+            <h3 className="text-center mt-2">
+              Dates Selected: {startDate} - {endDate}
+            </h3>
+          ) : (
+            ""
+          )}
+          </div>
+        </div>
 
             {/* Modal to Save all selected items to Itinerary */}
             {/* <SavedItems /> */}

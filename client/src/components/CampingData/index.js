@@ -14,6 +14,7 @@ import Fee from "../Fee";
 import $ from "jquery";
 import Accordion from 'react-bootstrap/Accordion'
 import Button from 'react-bootstrap/Button'
+import ReactTextCollapse from "react-text-collapse";
 
 function CampingData(props) {
   console.log(props);
@@ -24,6 +25,18 @@ function CampingData(props) {
   const { submitted } = useContext(SubmitBtnContext);
 
   // const [heart, setHeart] = useState(false);
+
+  const TEXT_COLLAPSE_OPTIONS = {
+    collapse: true, // default state when component rendered
+    collapseText: '... show more', // text to show when collapsed
+    expandText: 'show less', // text to show when expanded
+    minHeight: 100, // component height when closed
+    maxHeight: 450,
+    textStyle: { // pass the css for the collapseText and expandText here
+      color: "blue",
+      fontSize: "16px"
+    }
+  }
 
   let handleHeartBtn = (e) => {
     let heartId = e.target.id;
@@ -44,14 +57,13 @@ function CampingData(props) {
           <h3>Campites </h3>
 
           {props.data.map((res, index) => {
-            let id = index + 1;
+            let id = res.id;
             return (
               <div key={id} style={{ paddingBottom: "20px"}}>
                 <Row>
-                  <Col size="md-8">
-                  <Accordion>
-                    <Card className="campsiteCard" style={{ width: "auto", boxShadow: " 0 4px 8px grey"}}>
-                      <Card.Body>
+                  <Col size="md-6">
+                    <Card className="campsiteCard" style={{ width: "30rem" }}>
+                      <Card.Header>
                         {currentUser ? (
                           <img
                             src={ heartEmpty }
@@ -83,19 +95,20 @@ function CampingData(props) {
                         ) : (
                           <LoginModal />
                         )}
-                        <Card.Title> Campsite: {res.name} </Card.Title>
 
-                        <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                          Click me for more info!
-                        </Accordion.Toggle>
-                        <Accordion.Collapse eventKey="0">
-                          <Card.Text> <Description description={res.description} /> </Card.Text>
-                        </Accordion.Collapse>
-
-                        <Card.Text> Reservable: {res.reservable ? "Yes" : "No"} </Card.Text>
-                        {/* <Card.Text> Fee: <Fee description={res.fee} /> </Card.Text> */}
-                        <Card.Text> Phone Number: {res.phone} </Card.Text>
-                        <Card.Link href="">Campsite Link</Card.Link>
+                          <Card.Title> <strong>Campsite:</strong> {res.name} </Card.Title>
+                        </Card.Header>
+                        <Card.Body>
+                          <span>
+                            <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
+                              <Description description={res.description} /> 
+                            </ReactTextCollapse>
+                          </span>
+                        <br/>
+                        <Card.Text> <strong>Reservable:</strong> {res.reservable ? "Yes" : "No"} </Card.Text>
+                        <Card.Text> <strong>Fee:</strong> <Fee fee={res.fee} /> </Card.Text>
+                        <Card.Text> <strong>Phone Number:</strong> {res.phone} </Card.Text>
+                        <Card.Link href="#">Campsite Link</Card.Link>
                       </Card.Body>
                     </Card>
                     </Accordion>

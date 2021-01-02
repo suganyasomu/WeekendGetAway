@@ -16,6 +16,7 @@ import { useIndexedDB } from "react-indexed-db";
 function BikingData(props) {
   const { currentUser } = useContext(AuthContext);
   const { search } = useContext(SearchContext);
+
   const { submitted } = useContext(SubmitBtnContext);
   const { add } = useIndexedDB("activity");
   const [heart, setHeart] = useState(false);
@@ -52,16 +53,16 @@ function BikingData(props) {
     <div>
       {props.filter && submitted ? (
         <section style={{ width: "100%" }}>
-          <h3>Bikings trails for: {search}</h3>
+          <h3>Mountain Biking</h3>
           {props.data.map((res, index) => {
-            let id = index + 1;
             return (
-              <div key={id}>
+              <div key={res.id}>
                 <Row>
-                  <Col size="md-6">
+                  <Col size="md-12">
                     <Card className="bikingCard" style={{ width: "30rem" }}>
+                        <img className="card-img-top" src={res.image} />
                       <Card.Body>
-                        {currentUser ? (
+                      {currentUser ? (
                           <span
                             onClick={() => {
                               handleHeartBtn();
@@ -88,17 +89,16 @@ function BikingData(props) {
                         ) : (
                           <LoginModal />
                         )}
-                        <Card.Text> Name: {res.name} </Card.Text>
-                        <Card.Text> Difficulty: {res.difficulty} </Card.Text>
+                        <Card.Title> <strong>Name:</strong> {res.name} </Card.Title>
+                        <Card.Text> <strong>Difficulty:</strong> {res.difficulty} </Card.Text>
 
-                        <Card.Text> Summary: {res.summary} </Card.Text>
-                        <Card.Text> Length: {res.length} miles</Card.Text>
-                        <Card.Text> Trail Condition: {res.condition}</Card.Text>
+                        <Card.Text> <strong>Summary:</strong> {res.summary} </Card.Text>
+                        <Card.Text> <strong>Length:</strong> {res.length} miles</Card.Text>
+                        <Card.Text> <strong>Trail Condition:</strong> {res.condition}</Card.Text>
                         <Card.Text>
                           {" "}
-                          Elevation Change: {res.elevationChange} ft
+                          <strong>Elevation Change:</strong> {res.elevationChange} ft
                         </Card.Text>
-                        <img src={res.image} style={{ width: "50px" }} />
                       </Card.Body>
                     </Card>
                   </Col>

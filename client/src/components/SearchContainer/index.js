@@ -7,6 +7,7 @@ import Select from "react-select";
 import Checkbox from "../Checkbox";
 import Background from "../../Assets/searchHeader.jpg";
 import Row from "../Row";
+import Dates from "../Dates";
 
 const States = [
   { value: "Alabama", label: "AL" },
@@ -63,6 +64,18 @@ const States = [
 
 function SearchContainer(props) {
   // console.log(props);
+  // const [startDate, setStartDate] = useState("");
+  // const [endDate, setEndDate] = useState("");
+
+  // const handleStartDate = (event) => {
+  //   // console.log(event);
+  //   setStartDate(event);
+  // };
+
+  // const handleEndDate = (event) => {
+  //   // console.log(event);
+  //   setEndDate(event);
+  // };
 
   const animation = useSpring({
     opacity: 1,
@@ -85,24 +98,42 @@ function SearchContainer(props) {
           </animated.section>
         </Row>
 
-        <Row>
-          <div className="col-12">
-            <Row>
-              <InputGroup className="searchField"
-                style={{
-                  borderRadius: "33px",
-                  boxShadow: " 0 4px 8px black"
-                }}
-              >
-                {/* Input Field */}
-                <FormControl
-                  type="text"
-                  className="searchBar form-control"
-                  name="search"
-                  value={props.results}
-                  onChange={props.handleInputChange}
-                  placeholder="Location"
-                  aria-label="search by location"
+          <div className="col-3" />
+          <section className="col-6 justify-content-center">
+            <Dates
+              handleStartDate={props.handleStartDate}
+              handleEndDate={props.handleEndDate}
+            />
+          </section>
+          <div className="col-3" />
+
+          <InputGroup className="searchField">
+            <FormControl
+              type="text"
+              className="searchBar form-control"
+              name="search"
+              value={props.results}
+              onChange={props.handleInputChange}
+              placeholder="Location"
+              aria-label="search by location"
+            />
+            <InputGroup.Append>
+              <Select
+                defaultInputValue="Select a State"
+                onChange={props.handleSelectedState}
+                className="all-states basic-single"
+                classNamePrefix="select"
+                name="States"
+                options={States}
+              />
+            </InputGroup.Append>
+            <InputGroup.Append>
+              <Button id="searchIcon">
+                <FontAwesomeIcon
+                  icon="search"
+                  size="lg"
+                  type="submit"
+                  onClick={props.handleFormSubmit}
                 />
 
                 {/* Dropdown for states */}
@@ -148,6 +179,7 @@ function SearchContainer(props) {
                   // disabled={ ? true : false}
                 />
               </div>
+
 
               <div className="col-lg-2 col-6">
                 <Checkbox
