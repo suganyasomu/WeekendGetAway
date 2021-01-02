@@ -132,8 +132,8 @@ function SearchResults(props) {
               </section>
               </div>
             </Col>
-            <Col size="md-4">
-              <Aside>
+            <Col size="md-4 sm-12">
+              <Aside className="mapContainer">
                 {props.results.campsites.length > 0 ? (
                   <Map
                     results={props.results.campsites}
