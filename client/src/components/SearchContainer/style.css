@@ -7,7 +7,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   text-align: center;
-  margin: 0;
+  margin: 0 0 60px 0;
   padding: 0;
   opacity: 80%;
 }
@@ -21,7 +21,7 @@
 }
 
 .searchField {
-  margin: 50px auto 0 auto;
+  margin: 40px auto 0 auto;
   width: 80%;
 }
 
@@ -34,18 +34,10 @@
 }
 
 .all-states {
-  width: 100px;
-}
-
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .all-states {
-    /* display: none; */
-  }
+  width: 150px;
 }
 
 .checkbox {
   padding-top: 5px;
   color: #FFF;
-  text-shadow: 4px 4px 4px #000000;
 }
