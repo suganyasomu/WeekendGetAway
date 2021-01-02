@@ -2,7 +2,7 @@ import React from "react";
 
 function Checkbox(props) {
   return (
-    <div className="col-sm-2 col-12 checkbox">
+    <div className="checkbox">
       <input
         type="checkbox"
         id={props.name}
