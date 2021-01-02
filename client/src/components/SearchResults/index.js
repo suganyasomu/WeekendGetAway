@@ -6,6 +6,7 @@ import "./style.css";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import API from "../../utils/API";
 import SearchContext from "../../utils/SearchContext";
+import SubmitBtnContext from "../../utils/SubmitBtnContext";
 import "react-datepicker/dist/react-datepicker.css";
 import Map from "../Map";
 import Aside from "../Aside";
@@ -27,6 +28,7 @@ function SearchResults(props) {
   // console.log(props);
 
   const { search } = useContext(SearchContext);
+  const { submitted } = useContext(SubmitBtnContext);
   const [save, setState] = useState([]);
   const { add } = useIndexedDB("activity");
 
@@ -74,7 +76,7 @@ function SearchResults(props) {
             />
 
             <Col size="md-2">
-            {search ? (
+            {search && submitted ? (
               <Scrollspy className="scrollspy" items={ ['camping-results', 'hotsprings-results', 'hiking-results', 'biking-results', 'climbing-results'] } currentClassName="is-current">
               <h5>Jump to Results</h5>
               <ul className="list-group">
@@ -98,35 +100,35 @@ function SearchResults(props) {
                 data={props.results.campsites}
                 handleFormSubmit={handleFormSubmit}
               />
-              {props.filter.campsites === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
+              {props.filter.campsites && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
               </section>
               <section id="hotsprings-results">
               <HotspringsData
                 filter={props.filter.hotsprings}
                 data={props.results.hotsprings}
               />
-              {props.filter.hotsprings === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
+              {props.filter.hotsprings && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
               </section>
               <section id="hiking-results">
               <HikingData
                 filter={props.filter.hiking}
                 data={props.results.hiking}
               />
-              {props.filter.hiking === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
+              {props.filter.hiking && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
               </section>
               <section id="biking-results">
               <BikingData
                 filter={props.filter.biking}
                 data={props.results.biking}
               />
-              {props.filter.biking === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
+              {props.filter.biking && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
               </section>
               <section id="climbing-results">
               <ClimbingData
                 filter={props.filter.climbing}
                 data={props.results.climbing}
               />
-              {props.filter.climbing === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
+              {props.filter.climbing && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
               </section>
               </div>
             </Col>
