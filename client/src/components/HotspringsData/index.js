@@ -58,11 +58,11 @@ function HotspringsData(props) {
           <h3>Hotsprings</h3>
           {props.data.map((res, index) => {
             return (
-              <div key={res._id}>
+              <div key={res._id} style={{ paddingBottom: '20px' }}>
                 <Row>
                   <Col size="md-6">
-                    <Card className="hotspringCard" style={{ width: "30rem" }}>
-                      <Card.Body>
+                    <Card className="hotspringCard" style={{ width: "30rem", boxShadow: "2px 2px 5px grey" }}>
+                      <Card.Header>
                         {currentUser ? (
                           <span
                             onClick={() => {
@@ -88,9 +88,11 @@ function HotspringsData(props) {
                           <LoginModal />
                         )}
                         <Card.Title><strong>Name:</strong> {res.spring_name}</Card.Title>
-                        <Card.Text><strong>Average Temp:</strong> {res.degrees_f}°</Card.Text>
-                        <Card.Text><strong>Coordinates to spring:</strong> {res.loc.coordinates[1]}°N, {res.loc.coordinates[0]}°W </Card.Text>
-                        <Card.Text><strong>USGS_Quadrangle:</strong> {res.usgs_quadrangle}</Card.Text>
+                      </Card.Header>
+                      <Card.Body>
+                          <Card.Text><strong>Average Temp:</strong> {res.degrees_f}°</Card.Text>
+                          <Card.Text><strong>Coordinates to spring:</strong> {res.loc.coordinates[1]}°N, {res.loc.coordinates[0]}°W </Card.Text>
+                          <Card.Text><strong>USGS_Quadrangle:</strong> {res.usgs_quadrangle}</Card.Text>
                       </Card.Body>
                     </Card>
                   </Col>

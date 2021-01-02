@@ -18,17 +18,17 @@ function ItineraryModal(props) {
         return newDate;
     }
 
-      function deleteActivity(itinId, actId) {
-        API.deleteActivity(itinId, actId)
-          .then((res) => loadActivities(itinId))
-          .catch((err) => console.log(err));
-      }
+    function deleteActivity(itinId, actId) {
+    API.deleteActivity(itinId, actId)
+        .then((res) => loadActivities(itinId))
+        .catch((err) => console.log(err));
+    }
 
-      function loadActivities(id) {
-        API.getOneItinerary(id)
-          .then((res) => setActivities(res.data.activities))
-          .catch((err) => console.log(err));
-      }
+    function loadActivities(id) {
+    API.getOneItinerary(id)
+        .then((res) => setActivities(res.data.activities))
+        .catch((err) => console.log(err));
+    }
 
     return (
         <>
