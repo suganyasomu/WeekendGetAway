@@ -12,6 +12,8 @@ import LoginModal from "../LoginModal";
 import Description from "../Description";
 import Fee from "../Fee";
 import $ from "jquery";
+import Accordion from 'react-bootstrap/Accordion'
+import Button from 'react-bootstrap/Button'
 
 function CampingData(props) {
   console.log(props);
@@ -44,10 +46,11 @@ function CampingData(props) {
           {props.data.map((res, index) => {
             let id = index + 1;
             return (
-              <div key={id}>
+              <div key={id} style={{ paddingBottom: "20px"}}>
                 <Row>
-                  <Col size="md-6">
-                    <Card className="campsiteCard" style={{ width: "30rem" }}>
+                  <Col size="md-8">
+                  <Accordion>
+                    <Card className="campsiteCard" style={{ width: "auto", boxShadow: " 0 4px 8px grey"}}>
                       <Card.Body>
                         {currentUser ? (
                           <img
@@ -81,13 +84,21 @@ function CampingData(props) {
                           <LoginModal />
                         )}
                         <Card.Title> Campsite: {res.name} </Card.Title>
-                        <Card.Text> Description: <Description description={res.description} /> </Card.Text>
-                        <Card.Text> Reservable: {res.reservable} </Card.Text>
-                        <Card.Text> Fee: <Fee description={res.fee} /> </Card.Text>
+
+                        <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                          Click me for more info!
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                          <Card.Text> <Description description={res.description} /> </Card.Text>
+                        </Accordion.Collapse>
+
+                        <Card.Text> Reservable: {res.reservable ? "Yes" : "No"} </Card.Text>
+                        {/* <Card.Text> Fee: <Fee description={res.fee} /> </Card.Text> */}
                         <Card.Text> Phone Number: {res.phone} </Card.Text>
-                        <Card.Link href="#">Campsite Link</Card.Link>
+                        <Card.Link href="">Campsite Link</Card.Link>
                       </Card.Body>
                     </Card>
+                    </Accordion>
                   </Col>
                 </Row>
               </div>

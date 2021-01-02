@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../Auth.js";
 import SearchContext from "../../utils/SearchContext";
+import SubmitBtnContext from "../../utils/SubmitBtnContext";
 import Card from "react-bootstrap/Card";
 import Col from "../Col";
 import Row from "../Row";
@@ -15,6 +16,7 @@ import { useIndexedDB } from "react-indexed-db";
 function ClimbinData(props) {
   const { currentUser } = useContext(AuthContext);
   const { search } = useContext(SearchContext);
+  const { submitted } = useContext(SubmitBtnContext);
   const { add } = useIndexedDB("activity");
   const [heart, setHeart] = useState(false);
 
@@ -48,7 +50,7 @@ function ClimbinData(props) {
 
   return (
     <div>
-      {props.filter ? (
+      {props.filter && submitted ? (
         <section style={{ width: "100%" }}>
           <h3>Rock Climbing for: {search}</h3>
           {props.data.map((res, index) => {

@@ -36,10 +36,9 @@ function Dates(props) {
   
   return (
       <div className="row">
-        <section className="col-6">
+        <section className="col-6" >
           <span> Start Date: </span>
           <DatePicker
-            // required
             selected={startDate}
             onChange={ (date) => {
               if( date >= new Date() ) {

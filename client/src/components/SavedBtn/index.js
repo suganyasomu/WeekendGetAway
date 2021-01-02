@@ -16,7 +16,7 @@ function SavedBtn() {
   async function handleSaveBtn() {
     let activities = await getAll();
 
-    if (activities == "") {
+    if (activities === "") {
       return alert("Please Save A Campsite");
     }
 

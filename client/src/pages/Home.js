@@ -13,8 +13,10 @@ import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 import SearchContext from "../utils/SearchContext";
 import SubmitBtnContext from "../utils/SubmitBtnContext";
-import SavedItems from "../components/SavedItems";
-import SavedBtn from "../components/SavedBtn";
+import { useIndexedDB } from "react-indexed-db";
+import IndexedDBContext from "../utils/IndexedDBContext";
+import SavedItems from "../components/IndexedDBModal";
+// import SavedBtn from "../components/SavedBtn";
 import Dates from "../components/Dates";
 import SignoutBtn from "../components/SignoutBtn";
 import Row from "../components/Row";
@@ -27,6 +29,10 @@ function Home() {
   });
   const [submitState, setSubmitState] = useState({
     submitted: false,
+  });
+  const { getAll } = useIndexedDB("activity");
+  const [indexedDBState, setindexedDBState] = useState({
+    indexeddb: [getAll()]
   });
   const [city, setCity] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -45,7 +51,7 @@ function Home() {
     weather: false,
     hiking: false,
     biking: false,
-    climing: false,
+    climbing: false,
   });
 
   const resultsRef = useRef();
@@ -245,6 +251,7 @@ function Home() {
   return (
     <SearchContext.Provider value={searchState}>
       <SubmitBtnContext.Provider value={submitState}>
+      <IndexedDBContext.Provider value={indexedDBState}>
         <div>
           <SearchContainer
             handleFormSubmit={handleFormSubmit}
@@ -255,40 +262,46 @@ function Home() {
             handleCheckboxChange={handleCheckbox}
           />
 
-          <div className="container">
-            <Row>
-              <div className="col-2" />
-              <section className="col-8">
-                <Dates
-                  handleStartDate={handleStartDate}
-                  handleEndDate={handleEndDate}
-                />
-              </section>
-              <div className="col-2" />
-            </Row>
-
-            <div className="row">
-              <span className="col-8"> </span>
-
+          <section className="loginStatus" style={{ float: "right", marginTop: '10px', marginRight: '50px' }}>
               {currentUser ? (
-                <span className="col-2" style={{ padding: "30px" }}>
-                  <p> You are logged in! </p>
-                </span>
+                <div>
+                  <p> You're logged in! <SignoutBtn /> </p>
+                  
+                </div>
               ) : (
-                <span className="col-4">
+                <span >
                   <p> Guest - Login to Save to your Itinerary </p>
                 </span>
               )}
 
-              {currentUser && (
-                <div className="col-2">
-                  <SignoutBtn />
+          </section>
+
+
+          <div className="container" style={{ marginTop: '40px' }} >
+            <Row>
+              <div className="col-md-3" />
+              <section className="col-md-6 col-12"
+                style={{
+                  borderRadius: "33px",
+                  boxShadow: " 0 4px 8px grey"
+                }}
+              >
+                <div style={{
+                    margin: '12px'
+                  }}
+                >
+                  <Dates
+                    handleStartDate={handleStartDate}
+                    handleEndDate={handleEndDate}
+                  />
                 </div>
-              )}
-            </div>
+              </section>
+              <div className="col-md-3" />
+            </Row>
+
 
             {/* Modal to Save all selected items to Itinerary */}
-            <SavedItems />
+            {/* <SavedItems /> */}
 
             <div ref={resultsRef} className="row">
               <section className="col-12">
@@ -306,6 +319,7 @@ function Home() {
             </div>
           </div>
         </div>
+        </IndexedDBContext.Provider>
       </SubmitBtnContext.Provider>
     </SearchContext.Provider>
   );

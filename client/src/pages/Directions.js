@@ -65,23 +65,32 @@ function Directions({ location }) {
       <Row>
         <h3> Directions </h3>
       </Row>
-        
-      {directions.map((res, index) => {
-        let id=index+1;
-        return(
-          <Row>
-            <Card key={id} style={{ width: '30rem' }}> 
-              <Card.Title> 
-                <img src={res.turnIcon} />
-                {res.narrative} 
-              </Card.Title>
-              <Card.Subtitle> {res.streets} </Card.Subtitle>
-
-            </Card>
-          </Row>
-        )
-      })}
-        
+      
+      <Row>
+        <div className="col-md-2"> </div>
+        <Card className="col-md-8 col-12" 
+          style={{ 
+            width: '30rem',
+            padding: '20px'
+        }}> 
+          <Card.Header> <Card.Title> Directions to your Campsite </Card.Title> </Card.Header>
+          {directions.map((res, index) => {
+            let id=index+1;
+            return(
+              <Row key={id}>
+                <Card.Body>
+                  <Card.Text> 
+                    <img src={res.turnIcon} style={{ marginRight: '10px' }} />
+                    {res.narrative} 
+                  </Card.Text>
+                  <Card.Subtitle style={{fontStyle: 'italic'}}> {res.streets} </Card.Subtitle>
+                </Card.Body>
+              </Row>
+            )
+          })}
+        </Card>
+      </Row>
+      <div className="col-md-2"> </div>
     </div>
   );
 }
