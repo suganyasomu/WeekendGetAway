@@ -5,7 +5,7 @@ import SavedBtn from "../SavedBtn";
 import Modal from 'react-bootstrap/Modal';
 import Draggable, {DraggableCore} from 'react-draggable';
 
-function SavedItems() {
+function IndexedDBModal() {
     const { getAll, clear } = useIndexedDB("activity");
     const [selectedItems, setSelectedItems ] = useState([]);
     const [ dragState, setDragState] = useState({
@@ -61,4 +61,4 @@ function SavedItems() {
     );
 }
 
-export default SavedItems;
+export default IndexedDBModal;

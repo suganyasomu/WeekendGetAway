@@ -55,10 +55,10 @@ function ClimbinData(props) {
           {props.data.map((res, index) => {
             let id = index + 1;
             return (
-              <div key={res.id}>
+              <div key={res.id} style={{ paddingBottom: '20px' }}>
                 <Row>
                   <Col size="md-12">
-                    <Card className="climbingCard" style={{ width: "30rem" }}>
+                    <Card className="climbingCard" style={{ width: "30rem", boxShadow: "2px 2px 5px grey" }}>
                     <img className="card-img-top" src={res.image} />
                       <Card.Body>
                         {currentUser ? (

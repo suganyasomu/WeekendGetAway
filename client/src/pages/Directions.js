@@ -62,25 +62,36 @@ function Directions({ location }) {
 
   return (
     <div className="container">
-      <Row>
+      {/* <Row> */}
         <h3> Directions </h3>
-      </Row>
+      {/* </Row> */}
         
-      {directions.map((res, index) => {
-        let id=index+1;
-        return(
-          <Row>
-            <Card key={id} style={{ width: '30rem' }}> 
-              <Card.Title> 
-                <img src={res.turnIcon} />
-                {res.narrative} 
-              </Card.Title>
-              <Card.Subtitle> {res.streets} </Card.Subtitle>
+      <Row>
+        <div className="col-2" />
+        <Card className="col-8"
+          style={{ 
+            width: '30rem',
+            boxShadow: "2px 2px 5px grey "
+          }}
+        >
+          <Card.Header> <Card.Title> <strong> Directions to your Campsite </strong> </Card.Title> </Card.Header>
+          {directions.map((res, index) => {
+            let id=index+1;
+            return(
+              <Card.Body key={id}> 
+                <Card.Text> 
+                  <img src={res.turnIcon} style={{ marginRight: '10px' }} />
+                  {res.narrative} 
+                </Card.Text>
+                <Card.Subtitle style={{fontStyle: 'italic'}}> {res.streets} </Card.Subtitle>
 
-            </Card>
-          </Row>
-        )
-      })}
+              </Card.Body>
+            )
+          })}
+        </Card>
+        <div className="col-2" />
+      </Row>
+      
         
     </div>
   );

@@ -55,10 +55,10 @@ function BikingData(props) {
           <h3>Mountain Biking</h3>
           {props.data.map((res, index) => {
             return (
-              <div key={res.id}>
+              <div key={res.id} style={{ paddingBottom: '20px' }}>
                 <Row>
                   <Col size="md-12">
-                    <Card className="bikingCard" style={{ width: "30rem" }}>
+                    <Card className="bikingCard" style={{ width: "30rem", boxShadow: "2px 2px 5px grey" }}>
                         <img className="card-img-top" src={res.image} />
                       <Card.Body>
                       {currentUser ? (

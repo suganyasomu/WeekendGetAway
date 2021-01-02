@@ -13,7 +13,7 @@ import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 import SearchContext from "../utils/SearchContext";
 import SubmitBtnContext from "../utils/SubmitBtnContext";
-import SavedItems from "../components/SavedItems";
+import IndexedDBModal from "../components/IndexedDBModal";
 import SavedBtn from "../components/SavedBtn";
 import Dates from "../components/Dates";
 import SignoutBtn from "../components/SignoutBtn";
@@ -290,7 +290,7 @@ function Home() {
         </div>
 
             {/* Modal to Save all selected items to Itinerary */}
-            <SavedItems />
+            <IndexedDBModal />
 
             <div ref={resultsRef} className="row">
               <section className="col-12">
