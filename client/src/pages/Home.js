@@ -45,7 +45,7 @@ function Home() {
     weather: false,
     hiking: false,
     biking: false,
-    climing: false,
+    climbing: false,
   });
 
   const resultsRef = useRef();
@@ -290,7 +290,7 @@ function Home() {
         </div>
 
             {/* Modal to Save all selected items to Itinerary */}
-            <IndexedDBModal />
+            {/* <IndexedDBModal /> */}
 
             <div ref={resultsRef} className="row">
               <section className="col-12">
