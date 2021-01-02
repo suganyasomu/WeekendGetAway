@@ -14,15 +14,18 @@
 
 #homeHeader {
   text-align: center;
-  margin: 0;
+  margin: 0 0 20px 0;
   padding: 30px;
   color: white;
-  text-shadow: 1px 1px 5px black;
+  font-weight: bold;
+  text-shadow: 4px 4px 5px black;
 }
 
 .searchField {
-  margin: 40px auto 0 auto;
+  margin: 20px auto 10px auto;
   width: 80%;
+  box-shadow: 6px 5px 4px black;
+  border-radius: 33px;
 }
 
 .searchBar {
@@ -34,10 +37,13 @@
 }
 
 .all-states {
-  width: 150px;
+  width: 100px;
 }
+
 
 .checkbox {
   padding-top: 5px;
   color: #FFF;
+  text-shadow: 6px 5px 4px black;
+  text-align: left;
 }

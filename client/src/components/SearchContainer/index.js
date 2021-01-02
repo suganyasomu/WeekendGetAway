@@ -92,19 +92,18 @@ function SearchContainer(props) {
         <Row>
           <animated.section style={animation} className="col-12">
             <h1 id="homeHeader">
-              {" "}
-              Your next adventure is just a few clicks away...{" "}
+              {" "} Weekend Getaway {" "}
             </h1>
           </animated.section>
 
-          <div className="col-3" />
-          <section className="col-6 justify-content-center">
+          <div className="col-md-3" />
+          <section className="col-md-6 col-12 justify-content-center">
             <Dates
               handleStartDate={props.handleStartDate}
               handleEndDate={props.handleEndDate}
             />
           </section>
-          <div className="col-3" />
+          <div className="col-md-3" />
 
           <InputGroup className="searchField">
             <FormControl
@@ -118,7 +117,7 @@ function SearchContainer(props) {
             />
             <InputGroup.Append>
               <Select
-                defaultInputValue="Select a State"
+                defaultInputValue="State"
                 onChange={props.handleSelectedState}
                 className="all-states basic-single"
                 classNamePrefix="select"
@@ -140,55 +139,72 @@ function SearchContainer(props) {
         </Row>
 
         <Row>
-          {/* <div className="col-sm-2 col-12"></div> */}
-          <Checkbox
-            name="campsites"
-            checked={props.filter.campsites}
-            handleCheckbox={(e) => {
-              props.handleCheckboxChange(e);
-            }}
-            // disabled={ ? true : false}
-          />
+          <div className="col-2"></div>
+          <section className="checkboxContainer col-8 " >
+            <Row>
+              <div className="col-lg-2 col-6">
+                <Checkbox
+                  name="campsites"
+                  checked={props.filter.campsites}
+                  handleCheckbox={(e) => {
+                    props.handleCheckboxChange(e);
+                  }}
+                  // disabled={ ? true : false}
+                />
+              </div>
 
-          <Checkbox
-            name="hiking"
-            checked={props.filter.hiking}
-            handleCheckbox={(e) => {
-              props.handleCheckboxChange(e);
-            }}
-          />
+              <div className="col-lg-2 col-6">
+                <Checkbox
+                  name="hiking"
+                  checked={props.filter.hiking}
+                  handleCheckbox={(e) => {
+                    props.handleCheckboxChange(e);
+                  }}
+                />
+              </div>
 
-          <Checkbox
-            name="biking"
-            checked={props.filter.biking}
-            handleCheckbox={(e) => {
-              props.handleCheckboxChange(e);
-            }}
-          />
+              <div className="col-lg-2 col-6">
+                <Checkbox
+                  name="biking"
+                  checked={props.filter.biking}
+                  handleCheckbox={(e) => {
+                    props.handleCheckboxChange(e);
+                  }}
+                />
+              </div>
 
-          <Checkbox
-            name="climbing"
-            checked={props.filter.climbing}
-            handleCheckbox={(e) => {
-              props.handleCheckboxChange(e);
-            }}
-          />
+              <div className="col-lg-2 col-6">
+                <Checkbox
+                  name="climbing"
+                  checked={props.filter.climbing}
+                  handleCheckbox={(e) => {
+                    props.handleCheckboxChange(e);
+                  }}
+                />
+              </div>
 
-          <Checkbox
-            name="hotsprings"
-            checked={props.filter.hotsprings}
-            handleCheckbox={(e) => {
-              props.handleCheckboxChange(e);
-            }}
-          />
+              <div className="col-lg-2 col-6">
+                <Checkbox
+                  name="hotsprings"
+                  checked={props.filter.hotsprings}
+                  handleCheckbox={(e) => {
+                    props.handleCheckboxChange(e);
+                  }}
+                />
+              </div>
 
-          <Checkbox
-            name="weather"
-            checked={props.filter.weather}
-            handleCheckbox={(e) => {
-              props.handleCheckboxChange(e);
-            }}
-          />
+              <div className="col-lg-2 col-6">
+                <Checkbox
+                  name="weather"
+                  checked={props.filter.weather}
+                  handleCheckbox={(e) => {
+                    props.handleCheckboxChange(e);
+                  }}
+                />
+              </div>
+            </Row>
+          </section>
+          <div className="col-2"></div>
         </Row>
       </div>
     </header>

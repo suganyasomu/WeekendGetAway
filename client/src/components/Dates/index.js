@@ -37,7 +37,7 @@ function Dates(props) {
   return (
       <div className="row text-white">
         <section className="col-6 justify-content-center">
-          <span> Start Date: </span>
+          <span style={{ textShadow: '1px 1px 5px black'}}> Start Date: </span>
           <DatePicker
             // required
             selected={startDate}
@@ -57,7 +57,7 @@ function Dates(props) {
         </section>
 
         <section className="col-6 justify-content-center">
-          <span> End Date: </span>
+          <span style={{ textShadow: '1px 1px 5px black'}}> End Date: </span>
 
           <DatePicker
             selected={endDate}
