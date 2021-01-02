@@ -12,8 +12,6 @@ import LoginModal from "../LoginModal";
 import Description from "../Description";
 import Fee from "../Fee";
 import $ from "jquery";
-import Accordion from 'react-bootstrap/Accordion'
-import Button from 'react-bootstrap/Button'
 import ReactTextCollapse from "react-text-collapse";
 
 function CampingData(props) {
@@ -59,7 +57,7 @@ function CampingData(props) {
           {props.data.map((res, index) => {
             let id = res.id;
             return (
-              <div key={id} style={{ paddingBottom: "20px"}}>
+              <div key={id}>
                 <Row>
                   <Col size="md-6">
                     <Card className="campsiteCard" style={{ width: "30rem" }}>
@@ -95,7 +93,6 @@ function CampingData(props) {
                         ) : (
                           <LoginModal />
                         )}
-
                           <Card.Title> <strong>Campsite:</strong> {res.name} </Card.Title>
                         </Card.Header>
                         <Card.Body>
@@ -111,7 +108,6 @@ function CampingData(props) {
                         <Card.Link href="#">Campsite Link</Card.Link>
                       </Card.Body>
                     </Card>
-                    </Accordion>
                   </Col>
                 </Row>
               </div>
