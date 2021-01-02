@@ -15,7 +15,8 @@ import { useIndexedDB } from "react-indexed-db";
 
 function BikingData(props) {
   const { currentUser } = useContext(AuthContext);
-  // const { search } = useContext(SearchContext);
+  const { search } = useContext(SearchContext);
+
   const { submitted } = useContext(SubmitBtnContext);
   const { add } = useIndexedDB("activity");
   const [heart, setHeart] = useState(false);

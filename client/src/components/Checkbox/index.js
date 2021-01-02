@@ -1,8 +1,9 @@
 import React from "react";
+import "./style.css";
 
 function Checkbox(props) {
   return (
-    <div className="col-sm-2 col-12 checkbox">
+    <div className="checkbox radio">
       <input
         type="checkbox"
         id={props.name}
