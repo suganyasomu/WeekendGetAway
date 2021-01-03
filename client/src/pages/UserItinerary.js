@@ -7,10 +7,12 @@ import Row from "../components/Row";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DeleteBtn from "../components/DeleteBtn";
 import ItineraryModal from "../components/ItineraryModal";
+import { useIndexedDB } from "react-indexed-db";
 
 function UserItinerary() {
   const [trips, setTrips] = useState([]);
   const { currentUser } = useContext(AuthContext);
+  const { add, clear } = useIndexedDB("directions");
   const uid = currentUser.uid;
 
   useEffect(() => {
@@ -46,45 +48,59 @@ function UserItinerary() {
 
       {trips.map((res, index) => {
         let id = index + 1;
-        let latitude = res.campLat;
-        let longitude = res.campLon;
 
         return (
           <div className="container" key={id}>
             <Row>
               <div className="col-3"> </div>
-              <Card className="savedCampsites col-6 mt-3" style={{ width: "30rem" }}>
+              <Card
+                className="savedCampsites col-6 mt-3"
+                style={{ width: "30rem" }}
+              >
                 <Card.Header>
                   <Link
                     to={{
                       pathname: "/directions",
-                      coordinates: {
-                        lat: latitude,
-                        lon: longitude,
-                      },
                     }}
                     className="btn directionsBtn"
                     title="Get Directions"
+                    onClick={() => {
+                      clear();
+                      add({
+                        name: res.campsite,
+                        lat: res.campLat,
+                        lon: res.campLon,
+                      }).then(
+                        (event) => {
+                          console.log("ID Generated: ", event.target);
+                        },
+                        (error) => {
+                          console.log(error);
+                        }
+                      );
+                    }}
                   >
                     <FontAwesomeIcon icon="directions" />
                   </Link>
                   <DeleteBtn onClick={() => deleteItinerary(res._id)} />
-                  <Card.Title className="mt-3"> Trip to {res.campCity} </Card.Title>
-                  </Card.Header>
-                  <Card.Body>
+                  <Card.Title className="mt-3">
+                    {" "}
+                    Trip to {res.campCity}{" "}
+                  </Card.Title>
+                </Card.Header>
+                <Card.Body>
                   <Card.Text>
                     Trip Dates: {convertDate(res.startDate)} -{" "}
                     {convertDate(res.endDate)}
                   </Card.Text>
-                  <Card.Text>
-                    Campsite: {res.campsite}
-                  </Card.Text>
-
-                  </Card.Body>
-                  <Button variant="secondary" className="btn btn-sm justify-content-center mb-2">
-                    <ItineraryModal trip={res}/>
-                    </Button>
-                
+                  <Card.Text>Campsite: {res.campsite}</Card.Text>
+                </Card.Body>
+                <Button
+                  variant="secondary"
+                  className="btn btn-sm justify-content-center mb-2"
+                >
+                  <ItineraryModal trip={res} />
+                </Button>
               </Card>
               <div className="col-3"> </div>
             </Row>

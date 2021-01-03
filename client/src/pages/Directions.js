@@ -1,20 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import API from "../utils/API";
+import { useIndexedDB } from "react-indexed-db";
 import Row from "../components/Row";
-import {Card} from 'react-bootstrap';
+import { Card } from "react-bootstrap";
 
-function Directions({ location }) {
-  // console.log(location.coordinates);
+function Directions() {
   const [directions, setDirections] = useState([]);
-
-  // object to send to
-  let coordinates = {
-    campLat: location.coordinates.lat,
-    campLon: location.coordinates.lon,
-    userLat: parseFloat(getCookie("lat")),
-    userLon: parseFloat(getCookie("lon")),
-  };
-  // console.log(coordinates);
+  const [campsite, setCampsite] = useState();
+  const { getAll } = useIndexedDB("directions");
 
   useEffect(() => {
     geoFindMe();
@@ -22,14 +15,22 @@ function Directions({ location }) {
   }, []);
 
   // Get pass coordinates to backend & get directions
-  function getDirections() {
-    // console.log(coordinates);
+  async function getDirections() {
+    const campsiteLoc = await getAll();
+
+    setCampsite(campsiteLoc[0].name);
+
+    let coordinates = {
+      campLat: campsiteLoc.lat,
+      campLon: campsiteLoc.lon,
+      userLat: parseFloat(getCookie("lat")),
+      userLon: parseFloat(getCookie("lon")),
+    };
 
     API.getDirections(coordinates)
       // .then((res) => console.log(res.data.directions))
-      .then(res => setDirections(res.data.directions) )
+      .then((res) => setDirections(res.data.directions))
       .catch((err) => console.log(err));
-
   }
 
   //Get user's geolocation
@@ -63,36 +64,46 @@ function Directions({ location }) {
   return (
     <div className="container">
       {/* <Row> */}
-        <h3> Directions </h3>
+      <h3> Directions </h3>
       {/* </Row> */}
-        
+
       <Row>
         <div className="col-2" />
-        <Card className="col-8"
-          style={{ 
-            width: '30rem',
-            boxShadow: "2px 2px 5px grey "
+        <Card
+          className="col-8"
+          style={{
+            width: "30rem",
+            boxShadow: "2px 2px 5px grey ",
           }}
         >
-          <Card.Header> <Card.Title> <strong> Directions to your Campsite </strong> </Card.Title> </Card.Header>
+          <Card.Header>
+            {" "}
+            <Card.Title>
+              {" "}
+              <strong>
+                {" "}
+                Directions to {campsite ? campsite : "your Campsite"}{" "}
+              </strong>{" "}
+            </Card.Title>{" "}
+          </Card.Header>
           {directions.map((res, index) => {
-            let id=index+1;
-            return(
-              <Card.Body key={id}> 
-                <Card.Text> 
-                  <img src={res.turnIcon} style={{ marginRight: '10px' }} />
-                  {res.narrative} 
+            let id = index + 1;
+            return (
+              <Card.Body key={id}>
+                <Card.Text>
+                  <img src={res.turnIcon} style={{ marginRight: "10px" }} />
+                  {res.narrative}
                 </Card.Text>
-                <Card.Subtitle style={{fontStyle: 'italic'}}> {res.streets} </Card.Subtitle>
-
+                <Card.Subtitle style={{ fontStyle: "italic" }}>
+                  {" "}
+                  {res.streets}{" "}
+                </Card.Subtitle>
               </Card.Body>
-            )
+            );
           })}
         </Card>
         <div className="col-2" />
       </Row>
-      
-        
     </div>
   );
 }

@@ -63,5 +63,14 @@ export const DBConfig = {
         },
       ],
     },
+    {
+      store: "directions",
+      storeConfig: { keyPath: "id", autoIncrement: true },
+      storeSchema: [
+        { name: "name", keypath: "name", options: { unique: false } },
+        { name: "lat", keypath: "lat", options: { unique: false } },
+        { name: "lon", keypath: "lon", options: { unique: false } },
+      ],
+    },
   ],
 };
