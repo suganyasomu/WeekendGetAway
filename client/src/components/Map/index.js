@@ -40,7 +40,7 @@ function Map(props) {
 
         {props.results.map((position, index) =>
 
-          <Marker position={position} key={index} />
+<Marker position={position} key={index} icon={{url: require("../../Assets/campsite.svg")}}  />
         )} <></>
       </GoogleMap>
     </LoadScript>
