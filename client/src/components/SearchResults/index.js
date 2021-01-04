@@ -139,19 +139,16 @@ function SearchResults(props) {
               </div>
             </Col>
             <Col size="md-5 sm-12">
-              {/* <Aside className="mapContainer"> */}
-              {/* <div className="mapContainer"> */}
-                {props.results.campsites.length > 0 ? (
-                  <Map
-                    results={props.results.campsites}
-                    location={props.location}
-                  />
-                ) : (
-                  <div />
-                )}
-              {/* </div> */}
 
-              {/* </Aside> */}
+              {props.results.campsites.length > 0 ? (
+                <Map
+                  results={props.results.campsites}
+                  location={props.location}
+                />
+              ) : (
+                <div />
+              )}
+                
             </Col>
           </Row>
         </div>
