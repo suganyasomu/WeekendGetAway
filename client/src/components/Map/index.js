@@ -3,13 +3,10 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 
 const containerStyle = {
-  boxShadow: '2px 2px 2px grey',
-  paddingTop: '20px',
-  width: '500px',
-  height: '500px',
-  position: 'fixed',
-  bottom: '0',
-  right: '0'
+  // boxShadow: '2px 2px 2px grey',
+  // paddingTop: '20px',
+  width: '400px',
+  height: '400px'
 };
 
 function Map(props) {
@@ -29,6 +26,7 @@ function Map(props) {
   }, [])
 
   return (
+    <div className="mapContainer">
     <LoadScript
       googleMapsApiKey={process.env.REACT_APP_MAPS_KEY}
     >
@@ -46,7 +44,8 @@ function Map(props) {
         )} <></>
       </GoogleMap>
     </LoadScript>
+    </div>
   )
 }
 
-export default Map
+export default Map;

@@ -58,10 +58,10 @@ function HotspringsData(props) {
           <h3>Hotsprings</h3>
           {props.data.map((res, index) => {
             return (
-              <div key={res._id} style={{ paddingBottom: '20px' }}>
+              <div key={res._id} style={{ padding: '20px' }}>
                 <Row>
                   <Col size="md-6">
-                    <Card className="hotspringCard" style={{ width: "30rem", boxShadow: "2px 2px 5px grey" }}>
+                    <Card className="hotspringCard" style={{ width: "auto", boxShadow: "2px 2px 5px grey" }}>
                       <Card.Header>
                         {currentUser ? (
                           <span

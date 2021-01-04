@@ -66,74 +66,81 @@ function SearchResults(props) {
   }
 
   return (
-    <div className="container">
-      <div className="row">
+    // <div className="container">
+      // <div className="row">
         <div className="resultsContainer">
           <Row>
-            <WeatherData
-              filter={props.filter.weather}
-              weatherCondition={props.weatherCondition}
-            />
+            <div className="col-12">
+              <WeatherData
+                filter={props.filter.weather}
+                weatherCondition={props.weatherCondition}
+              />
+            </div>
+          </Row>
 
-            <Col size="md-2">
-            {search && submitted ? (
-              <Scrollspy className="scrollspy" items={ ['camping-results', 'hotsprings-results', 'hiking-results', 'biking-results', 'climbing-results'] } currentClassName="is-current">
-              <h5>Jump to Results</h5>
-              <ul className="list-group">
-                {props.filter.campsites === true ? (<li className="list-group-item"><a href="#camping-results">Camping</a></li>) : ( <div/>)}
-                {props.filter.hotsprings === true ? (<li className="list-group-item"><a href="#hotsprings-results">Hotsprings</a></li>) : ( <div/>)}
-                {props.filter.hiking === true ? (<li className="list-group-item"><a href="#hiking-results">Hiking</a></li>) : ( <div/>)}
-                {props.filter.biking === true ? (<li className="list-group-item"><a href="#biking-results">Biking</a></li>) : ( <div/>)}
-                {props.filter.climbing === true ? (<li className="list-group-item"><a href="#climbing-results">Climbing</a></li>) : ( <div/>)}
-              </ul>
-            </Scrollspy>
-                ) : (
-                  <div />
-                )}
-
+          <Row>
+            <Col size="md-2 sm-12">
+              <section>
+              {search && submitted ? (
+                <Scrollspy className="scrollspy" items={ ['camping-results', 'hotsprings-results', 'hiking-results', 'biking-results', 'climbing-results'] } currentClassName="is-current">
+                  <h5>Jump to Results</h5>
+                  <ul className="list-group">
+                    {props.filter.campsites === true ? (<li className="list-group-item"><a href="#camping-results">Camping</a></li>) : ( <div/>)}
+                    {props.filter.hotsprings === true ? (<li className="list-group-item"><a href="#hotsprings-results">Hotsprings</a></li>) : ( <div/>)}
+                    {props.filter.hiking === true ? (<li className="list-group-item"><a href="#hiking-results">Hiking</a></li>) : ( <div/>)}
+                    {props.filter.biking === true ? (<li className="list-group-item"><a href="#biking-results">Biking</a></li>) : ( <div/>)}
+                    {props.filter.climbing === true ? (<li className="list-group-item"><a href="#climbing-results">Climbing</a></li>) : ( <div/>)}
+                  </ul>
+                </Scrollspy>
+              ) : (
+                <div />
+              )}
+              </section>
             </Col>
-            <Col size="md-6">
+
+            <Col size="md-5 sm-12">
               <div id="results">
-              <section id="camping-results">
-              <CampingData
-                filter={props.filter.campsites}
-                data={props.results.campsites}
-                handleFormSubmit={handleFormSubmit}
-              />
-              {props.filter.campsites && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
-              </section>
-              <section id="hotsprings-results">
-              <HotspringsData
-                filter={props.filter.hotsprings}
-                data={props.results.hotsprings}
-              />
-              {props.filter.hotsprings && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
-              </section>
-              <section id="hiking-results">
-              <HikingData
-                filter={props.filter.hiking}
-                data={props.results.hiking}
-              />
-              {props.filter.hiking && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
-              </section>
-              <section id="biking-results">
-              <BikingData
-                filter={props.filter.biking}
-                data={props.results.biking}
-              />
-              {props.filter.biking && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
-              </section>
-              <section id="climbing-results">
-              <ClimbingData
-                filter={props.filter.climbing}
-                data={props.results.climbing}
-              />
-              {props.filter.climbing && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
-              </section>
+                <section id="camping-results">
+                  <CampingData
+                    filter={props.filter.campsites}
+                    data={props.results.campsites}
+                    handleFormSubmit={handleFormSubmit}
+                  />
+                  {props.filter.campsites && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
+                </section>
+                <section id="hotsprings-results">
+                  <HotspringsData
+                    filter={props.filter.hotsprings}
+                    data={props.results.hotsprings}
+                  />
+                  {props.filter.hotsprings && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
+                </section>
+                <section id="hiking-results">
+                  <HikingData
+                    filter={props.filter.hiking}
+                    data={props.results.hiking}
+                  />
+                  {props.filter.hiking && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
+                </section>
+                <section id="biking-results">
+                  <BikingData
+                    filter={props.filter.biking}
+                    data={props.results.biking}
+                  />
+                  {props.filter.biking && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
+                </section>
+                <section id="climbing-results">
+                  <ClimbingData
+                    filter={props.filter.climbing}
+                    data={props.results.climbing}
+                  />
+                  {props.filter.climbing && submitted === true ? (<p><a href="#results">Back to Top</a></p>) : ( <div/>)}
+                </section>
               </div>
             </Col>
-            <Col size="md-4 sm-12">
-              <Aside className="mapContainer">
+            <Col size="md-5 sm-12">
+              {/* <Aside className="mapContainer"> */}
+              {/* <div className="mapContainer"> */}
                 {props.results.campsites.length > 0 ? (
                   <Map
                     results={props.results.campsites}
@@ -142,12 +149,14 @@ function SearchResults(props) {
                 ) : (
                   <div />
                 )}
-              </Aside>
+              {/* </div> */}
+
+              {/* </Aside> */}
             </Col>
           </Row>
         </div>
-      </div>
-    </div>
+      // </div>
+    // </div>
   );
 }
 

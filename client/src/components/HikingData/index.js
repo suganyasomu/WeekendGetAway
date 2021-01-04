@@ -64,10 +64,10 @@ function HikingData(props) {
           {props.data.map((res, index) => {
             console.log(index);
             return (
-              <div key={res.id} style={{ paddingBottom: '20px' }}>
+              <div key={res.id} style={{ padding: '20px' }}>
                 <Row>
                   <Col size="md-12">
-                    <Card className="hikingsCard" style={{ width: "30rem", boxShadow: "2px 2px 5px grey" }}>
+                    <Card className="hikingsCard" style={{ width: "auto", boxShadow: "2px 2px 5px grey" }}>
                       <img className="card-img-top" src={res.image} />
                       <Card.Body>
                         {currentUser ? (
