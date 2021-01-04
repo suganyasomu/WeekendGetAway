@@ -57,58 +57,60 @@ function CampingData(props) {
           {props.data.map((res, index) => {
             let id = res.id;
             return (
-              <div key={id} style={{ paddingBottom: '20px' }}>
+              <div key={id} style={{ padding: '20px' }}>
                 <Row>
-                  <Col size="md-6">
-                    <Card className="campsiteCard" style={{ width: "30rem", boxShadow: "2px 2px 5px grey" }}>
-                      <Card.Header>
-                        {currentUser ? (
-                          <img
-                            src={ heartEmpty }
-                            style={{ width: "30px" }}
-                            id={id}
-                            onClick={(id) => {
-                              handleHeartBtn(id);
-                              {
-                                props.handleFormSubmit(
-                                  res.name,
-                                  res.lat,
-                                  res.lng,
-                                  res.reservable,
-                                  res.fee,
-                                  res.phone,
-                                  res.activity,
-                                  res.description
-                                );
-                              }
-                            }}
-                            className="saveBtn"
-                            title="Save to Itinerary"
-                          >
-                            {/* <img
-                              src={true ? heartSolid : heartEmpty}
-                              style={{ width: "30px" }}
-                            /> */}
-                          </img>
-                        ) : (
-                          <LoginModal />
-                        )}
-                          <Card.Title> <strong>Campsite:</strong> {res.name} </Card.Title>
-                        </Card.Header>
-                        <Card.Body>
-                          <span>
-                            <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
-                              <Description description={res.description} /> 
-                            </ReactTextCollapse>
-                          </span>
-                        <br/>
-                        <Card.Text> <strong>Reservable:</strong> {res.reservable ? "Yes" : "No"} </Card.Text>
-                        <Card.Text> <strong>Fee:</strong> <Fee fee={res.fee} /> </Card.Text>
-                        <Card.Text> <strong>Phone Number:</strong> {res.phone} </Card.Text>
-                        {/* <Card.Link href="#">Campsite Link</Card.Link> */}
-                      </Card.Body>
-                    </Card>
-                  </Col>
+                  <Card className="campsiteCard" style={{ width: "100%", boxShadow: "2px 2px 5px grey" }}>
+                    <Card.Header>
+                        <strong>Campsite:</strong> {res.name}
+                          {currentUser ? (
+                            <span>
+                              <img
+                                src={ heartEmpty }
+                                style={{ width: "30px" }}
+                                id={id}
+                                onClick={(id) => {
+                                  handleHeartBtn(id);
+                                  {
+                                    props.handleFormSubmit(
+                                      res.name,
+                                      res.lat,
+                                      res.lng,
+                                      res.reservable,
+                                      res.fee,
+                                      res.phone,
+                                      res.activity,
+                                      res.description
+                                    );
+                                  }
+                                }}
+                                className="saveBtn"
+                                title="Save to Itinerary"
+                              >
+                                {/* <img
+                                  src={true ? heartSolid : heartEmpty}
+                                  style={{ width: "30px" }}
+                                /> */}
+                              </img>
+                            </span>
+                          ) : (
+                            <LoginModal />
+                          )}
+                          
+                    </Card.Header>
+
+                    <Card.Body>
+                        <span>
+                          <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
+                            <Description description={res.description} /> 
+                          </ReactTextCollapse>
+                        </span>
+                      <br/>
+                      <Card.Text> <strong>Reservable:</strong> {res.reservable ? "Yes" : "No"} </Card.Text>
+                      <Card.Text> <strong>Fee:</strong> <Fee fee={res.fee} /> </Card.Text>
+                      <Card.Text> <strong>Phone Number:</strong> {res.phone} </Card.Text>
+                      {/* <Card.Link href="#">Campsite Link</Card.Link> */}
+                    </Card.Body>
+                  </Card>
                 </Row>
               </div>
             );

@@ -13,7 +13,7 @@ function WeatherData(props) {
   // console.log(submitted); 
 
   return (
-    <div>
+    <div style={{ padding: '0 10px 30px 10px' }}>
       {/* If filter is select && search is submitted */}
       {props.filter && submitted ? (
         <div> 
@@ -26,7 +26,7 @@ function WeatherData(props) {
                       <Card key={id} className="weatherCard" >
                         <Card.Body>
                             <ul>
-                              <li style={{ fontWeight: 'bold' }}> Date: {res.date} </li>
+                              <li style={{ fontWeight: 'bold' }}> {res.date} </li>
                               <li> Temp: {res.temp} </li>
                               <li> Humidity: {res.humidity} </li>
                               <li> Wind: {res.wind} </li>
