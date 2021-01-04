@@ -11,6 +11,7 @@ import heartSolid from "../../Assets/heart-solid.svg";
 import LoginModal from "../LoginModal";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { useIndexedDB } from "react-indexed-db";
+import './style.css';
 // import { handleInputChange } from "react-select/src/utils";
 
 function HikingData(props) {
@@ -68,7 +69,9 @@ function HikingData(props) {
                 <Row>
                   <Col size="md-12">
                     <Card className="hikingsCard" style={{ width: "auto", boxShadow: "2px 2px 5px grey" }}>
+                      <div class="inner">
                       <img className="card-img-top" src={res.image} />
+                      </div>
                       <Card.Body>
                         {currentUser ? (
                           <span
