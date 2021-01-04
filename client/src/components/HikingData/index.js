@@ -11,7 +11,7 @@ import heartSolid from "../../Assets/heart-solid.svg";
 import LoginModal from "../LoginModal";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { useIndexedDB } from "react-indexed-db";
-import './style.css';
+import "./style.css";
 // import { handleInputChange } from "react-select/src/utils";
 
 function HikingData(props) {
@@ -30,23 +30,15 @@ function HikingData(props) {
   }
 
   // Add hiking info to indexedDB
-    function handleHikes(
-      activity,
-      name,
-      summary,
-      difficulty,
-      lat,
-      lng,
-      length
-    ) {
-      add({
-        activity: activity,
-        name: name,
-        lat: lat,
-        lng: lng,
-        length: length,
-        difficulty: difficulty,
-        summary: summary,
+  function handleHikes(activity, name, summary, difficulty, lat, lng, length) {
+    add({
+      activity: activity,
+      name: name,
+      lat: lat,
+      lng: lng,
+      length: length,
+      difficulty: difficulty,
+      summary: summary,
     }).then(
       (event) => {
         console.log("ID Generated: ", event);
@@ -65,12 +57,15 @@ function HikingData(props) {
           {props.data.map((res, index) => {
             console.log(index);
             return (
-              <div key={res.id} style={{ padding: '20px' }}>
+              <div key={res.id} style={{ padding: "20px" }}>
                 <Row>
                   <Col size="md-12">
-                    <Card className="hikingsCard" style={{ width: "auto", boxShadow: "2px 2px 5px grey" }}>
-                      <div class="inner">
-                      <img className="card-img-top" src={res.image} />
+                    <Card
+                      className="hikingsCard"
+                      style={{ width: "auto", boxShadow: "2px 2px 5px grey" }}
+                    >
+                      <div className="inner">
+                        <img className="card-img-top" src={res.image} />
                       </div>
                       <Card.Body>
                         {currentUser ? (
@@ -100,15 +95,31 @@ function HikingData(props) {
                         ) : (
                           <LoginModal />
                         )}
-                        <Card.Title> <strong>Name:</strong> {res.name} </Card.Title>
-                        <Card.Text> <strong>Difficulty:</strong> {res.difficulty} </Card.Text>
-
-                        <Card.Text> <strong>Summary:</strong> {res.summary} </Card.Text>
-                        <Card.Text> <strong>Length:</strong> {res.length} miles</Card.Text>
-                        <Card.Text> <strong>Trail Condition:</strong> {res.condition}</Card.Text>
+                        <Card.Title>
+                          {" "}
+                          <strong>Name:</strong> {res.name}{" "}
+                        </Card.Title>
                         <Card.Text>
                           {" "}
-                          <strong>Elevation Change:</strong> {res.elevationChange} ft
+                          <strong>Difficulty:</strong> {res.difficulty}{" "}
+                        </Card.Text>
+
+                        <Card.Text>
+                          {" "}
+                          <strong>Summary:</strong> {res.summary}{" "}
+                        </Card.Text>
+                        <Card.Text>
+                          {" "}
+                          <strong>Length:</strong> {res.length} miles
+                        </Card.Text>
+                        <Card.Text>
+                          {" "}
+                          <strong>Trail Condition:</strong> {res.condition}
+                        </Card.Text>
+                        <Card.Text>
+                          {" "}
+                          <strong>Elevation Change:</strong>{" "}
+                          {res.elevationChange} ft
                         </Card.Text>
                       </Card.Body>
                     </Card>
