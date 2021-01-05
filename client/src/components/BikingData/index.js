@@ -12,6 +12,7 @@ import LoginModal from "../LoginModal";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { useIndexedDB } from "react-indexed-db";
 import $ from "jquery";
+import IndexedDBContext from "../../utils/IndexedDBContext";
 
 import '../HikingData/style.css';
 // import { handleInputChange } from "react-select/src/utils";
@@ -21,7 +22,7 @@ function BikingData(props) {
   // const { search } = useContext(SearchContext);
   const { submitted } = useContext(SubmitBtnContext);
   const { add } = useIndexedDB("activity");
-  const [heart, setHeart] = useState(false);
+  const updateIBD = useContext(IndexedDBContext);
 
   let handleHeartBtn = (e) => {
     // console.log(e.target);
@@ -87,8 +88,9 @@ function BikingData(props) {
                                 src={ heartEmpty }
                                 style={{ width: "30px" }}
                                 id={id}
-                                onClick={(id) => {
-                                  handleHeartBtn(id);
+                                onClick={(index) => {
+                                  handleHeartBtn(index);
+                                  updateIBD.onClick([index]);
                                   {
                                     handleBike(
                                       res.activity,

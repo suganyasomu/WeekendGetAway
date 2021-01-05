@@ -31,9 +31,6 @@ function SearchResults(props) {
 
   const { search } = useContext(SearchContext);
   const { submitted } = useContext(SubmitBtnContext);
-  const { savedActivity } = useContext(IndexedDBContext);
-
-  const [saveAction, setSaveAction] = useState("");
   const { add } = useIndexedDB("activity");
 
   // Add campsite info to indexedDB
@@ -61,7 +58,6 @@ function SearchResults(props) {
       end: props.endDate,
     }).then(
       (event) => {
-        setSaveAction(event);
         console.log("ID Generated: ", event);
       },
       (error) => {
@@ -138,7 +134,7 @@ function SearchResults(props) {
                 </ul>
               </Scrollspy>
 
-              <IndexedDBModal key={saveAction} />
+              <IndexedDBModal />
               </div>
             ) : (
               <div />

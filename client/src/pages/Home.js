@@ -48,6 +48,16 @@ function Home() {
 
   const resultsRef = useRef();
 
+  // Update context to re-render when IndexedDB is updated:
+  const [pageState, setPageState] = useState({
+    savedActivity: [],
+    onClick: (savedActivity) => {
+      // Remember, the setter method on state does not merge like this.setState does
+      // We use the spread operator so that we don't lose our onClick method whenever the state is updated.
+      setPageState({ ...pageState, savedActivity });
+    }
+  });
+
   function handleCheckbox(event) {
     const { name, checked } = event.target;
     setFilter({
@@ -243,7 +253,7 @@ function Home() {
   return (
     <SearchContext.Provider value={searchState}>
       <SubmitBtnContext.Provider value={submitState}>
-      <IndexedDBContext.Provider value={[]}>
+      <IndexedDBContext.Provider value={pageState}>
 
           <SearchContainer
             handleFormSubmit={handleFormSubmit}
@@ -298,11 +308,11 @@ function Home() {
                 endDate={endDate}
                 activities={[hiking]}
               />
-            </section>
-          </div>
+              </section>
+            </div>
 
-          </div>
-          </IndexedDBContext.Provider>
+        </div>
+        </IndexedDBContext.Provider>
       </SubmitBtnContext.Provider>
     </SearchContext.Provider>
   );

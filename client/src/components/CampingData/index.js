@@ -14,6 +14,7 @@ import Fee from "../Fee";
 import $ from "jquery";
 import ReactTextCollapse from "react-text-collapse";
 import { useIndexedDB } from "react-indexed-db";
+import IndexedDBContext from "../../utils/IndexedDBContext";
 
 function CampingData(props) {
   console.log(props);
@@ -23,6 +24,7 @@ function CampingData(props) {
   const { search } = useContext(SearchContext);
   const { submitted } = useContext(SubmitBtnContext);
   const { deleteRecord } = useIndexedDB("activity");
+  const updateIBD = useContext(IndexedDBContext);
 
   // const [heart, setHeart] = useState(false);
 
@@ -71,9 +73,9 @@ function CampingData(props) {
 
           {props.data.map((res, index) => {
             // console.log(res);
-            let id = res.id;
+            // let id = res.id;
             return (
-              <div key={id} style={{ padding: "20px" }} id={res.id}>
+              <div key={res.id} style={{ padding: "20px" }} id={res.id}>
                 <Row>
                   <Card
                     className="campsiteCard"
@@ -86,9 +88,11 @@ function CampingData(props) {
                           <img
                             src={heartEmpty}
                             style={{ width: "30px" }}
-                            id={id}
-                            onClick={(id) => {
-                              handleHeartBtn(id);
+                            id={res.id}
+                            onClick={(index) => {
+                              handleHeartBtn(index);
+                              // console.log(updateIBD);
+                              updateIBD.onClick([index]);
                               {
                                 props.handleFormSubmit(
                                   res.name,

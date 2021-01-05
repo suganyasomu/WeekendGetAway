@@ -13,13 +13,14 @@ import { propTypes } from "react-bootstrap/esm/Image";
 import { useIndexedDB } from "react-indexed-db";
 import $ from "jquery";
 // import { handleInputChange } from "react-select/src/utils";
+import IndexedDBContext from "../../utils/IndexedDBContext";
 
 function HotspringsData(props) {
   const { currentUser } = useContext(AuthContext);
   const { search } = useContext(SearchContext);
   const { submitted } = useContext(SubmitBtnContext);
   const { add } = useIndexedDB("activity");
-  const [heart, setHeart] = useState(false);
+  const updateIBD = useContext(IndexedDBContext);
 
   let handleHeartBtn = (e) => {
     // Use jQuery to update the image src
@@ -85,8 +86,9 @@ function HotspringsData(props) {
                               src={ heartEmpty }
                               style={{ width: "30px" }}
                               id={id}
-                              onClick={(id) => {
-                                handleHeartBtn(id);
+                              onClick={(index) => {
+                                handleHeartBtn(index);
+                                updateIBD.onClick([index]);
                                 {
                                   handleHotsprings(
                                     res.spring_name,
