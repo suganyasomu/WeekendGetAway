@@ -28,15 +28,16 @@ function CampingData(props) {
 
   const TEXT_COLLAPSE_OPTIONS = {
     collapse: true, // default state when component rendered
-    collapseText: '... show more', // text to show when collapsed
-    expandText: 'show less', // text to show when expanded
+    collapseText: "... show more", // text to show when collapsed
+    expandText: "show less", // text to show when expanded
     minHeight: 100, // component height when closed
     maxHeight: 450,
-    textStyle: { // pass the css for the collapseText and expandText here
+    textStyle: {
+      // pass the css for the collapseText and expandText here
       color: "blue",
-      fontSize: "16px"
-    }
-  }
+      fontSize: "16px",
+    },
+  };
 
   let handleHeartBtn = (e) => {
     console.log(e.target);
@@ -62,7 +63,6 @@ function CampingData(props) {
     
   }
 
-
   return (
     <div>
       {props.filter && submitted ? (
@@ -70,54 +70,67 @@ function CampingData(props) {
           <h3>Campites </h3>
 
           {props.data.map((res, index) => {
+            // console.log(res);
             let id = res.id;
             return (
-              <div key={id} style={{ padding: '20px' }}>
+              <div key={id} style={{ padding: "20px" }} id={res.id}>
                 <Row>
-                  <Card className="campsiteCard" style={{ width: "100%", boxShadow: "2px 2px 5px grey" }}>
+                  <Card
+                    className="campsiteCard"
+                    style={{ width: "100%", boxShadow: "2px 2px 5px grey" }}
+                  >
                     <Card.Header>
-                        <strong>Campsite:</strong> {res.name}
-                          {currentUser ? (
-                            <span>
-                              <img
-                                src={ heartEmpty }
-                                style={{ width: "30px" }}
-                                id={id}
-                                onClick={(id) => {
-                                  handleHeartBtn(id);
-                                  {
-                                    props.handleFormSubmit(
-                                      res.name,
-                                      res.lat,
-                                      res.lng,
-                                      res.reservable,
-                                      res.fee,
-                                      res.phone,
-                                      res.activity,
-                                      res.description
-                                    );
-                                  }
-                                }}
-                                className="saveBtn"
-                                title="Save to Itinerary"
-                              />
-                            </span>
-                          ) : (
-                            <LoginModal />
-                          )}
-                          
+                      <strong>Campsite:</strong> {res.name}
+                      {currentUser ? (
+                        <span>
+                          <img
+                            src={heartEmpty}
+                            style={{ width: "30px" }}
+                            id={id}
+                            onClick={(id) => {
+                              handleHeartBtn(id);
+                              {
+                                props.handleFormSubmit(
+                                  res.name,
+                                  res.lat,
+                                  res.lng,
+                                  res.reservable,
+                                  res.fee,
+                                  res.phone,
+                                  res.activity,
+                                  res.description
+                                );
+                              }
+                            }}
+                            className="saveBtn"
+                            title="Save to Itinerary"
+                          />
+                        </span>
+                      ) : (
+                        <LoginModal />
+                      )}
                     </Card.Header>
 
                     <Card.Body>
-                        <span>
-                          <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
-                            <Description description={res.description} /> 
-                          </ReactTextCollapse>
-                        </span>
-                      <br/>
-                      <Card.Text> <strong>Reservable:</strong> {res.reservable ? "Yes" : "No"} </Card.Text>
-                      <Card.Text> <strong>Fee:</strong> <Fee fee={res.fee} /> </Card.Text>
-                      <Card.Text> <strong>Phone Number:</strong> {res.phone} </Card.Text>
+                      <span>
+                        <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
+                          <Description description={res.description} />
+                        </ReactTextCollapse>
+                      </span>
+                      <br />
+                      <Card.Text>
+                        {" "}
+                        <strong>Reservable:</strong>{" "}
+                        {res.reservable ? "Yes" : "No"}{" "}
+                      </Card.Text>
+                      <Card.Text>
+                        {" "}
+                        <strong>Fee:</strong> <Fee fee={res.fee} />{" "}
+                      </Card.Text>
+                      <Card.Text>
+                        {" "}
+                        <strong>Phone Number:</strong> {res.phone}{" "}
+                      </Card.Text>
                       {/* <Card.Link href="#">Campsite Link</Card.Link> */}
                     </Card.Body>
                   </Card>
