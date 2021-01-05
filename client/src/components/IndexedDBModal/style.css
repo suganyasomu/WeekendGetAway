@@ -1,7 +1,18 @@
-#modal-dialog {
-    background-color: rgb(124, 136, 124);
-    position: absolute;
-    left: 50px;
-    bottom: 20px;
-    z-index: +1;
+#indexedDBList {
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+#savedItems {
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 4px;
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    background-color: #fff;
+
+}
+
+.indexListItems {
+    padding-bottom: 5px;
 }

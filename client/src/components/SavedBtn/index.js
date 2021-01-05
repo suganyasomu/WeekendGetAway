@@ -32,7 +32,7 @@ function SavedBtn() {
       tabIndex="0"
       onClick={handleSaveBtn}
     >
-      Save All to Itinerary
+      Create Itinerary
     </span>
   );
 }

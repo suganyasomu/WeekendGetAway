@@ -86,8 +86,7 @@ function SearchContainer(props) {
   return (
     <header
       className="header"
-      style={{ backgroundImage: `url(${Background})`, 
-      // boxShadow: "0 4px 2px -2px grey" 
+      style={{ backgroundImage: `url(${Background})`
       }}
     >
       <div className="container">
@@ -99,12 +98,12 @@ function SearchContainer(props) {
           </animated.section>
 
           <div className="col-md-3" />
-          <section className="col-md-6 col-12 justify-content-center">
-            <Dates
-              handleStartDate={props.handleStartDate}
-              handleEndDate={props.handleEndDate}
-            />
-          </section>
+            <section className="col-md-6 col-12 justify-content-center">
+              <Dates
+                handleStartDate={props.handleStartDate}
+                handleEndDate={props.handleEndDate}
+              />
+            </section>
           <div className="col-md-3" />
 
           <InputGroup className="searchField">

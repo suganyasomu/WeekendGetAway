@@ -13,9 +13,6 @@ import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 import SearchContext from "../utils/SearchContext";
 import SubmitBtnContext from "../utils/SubmitBtnContext";
-import IndexedDBModal from "../components/IndexedDBModal";
-import SavedBtn from "../components/SavedBtn";
-import Dates from "../components/Dates";
 import SignoutBtn from "../components/SignoutBtn";
 import Row from "../components/Row";
 
@@ -256,6 +253,7 @@ function Home() {
             handleStartDate={handleStartDate}
             handleEndDate={handleEndDate}
           />
+          
         <div className="container">
           <div className="row">
               <span className="col-8"> </span>
@@ -282,9 +280,6 @@ function Home() {
               )}
             </div>
           </div>
-
-            {/* Modal to Save all selected items to Itinerary */}
-            {/* <IndexedDBModal /> */}
 
             <div ref={resultsRef} className="row">
               <section className="col-12">
