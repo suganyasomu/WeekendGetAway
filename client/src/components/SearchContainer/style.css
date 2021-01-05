@@ -27,14 +27,17 @@
 }
 
 .searchBar {
+  margin: 20px auto auto auto;
   border-radius: 33px;
 }
 
 #searchIcon {
+  margin: 20px auto auto auto;
   border-radius: 0 33px 33px 0;
 }
 
 .all-states {
+  margin: 20px auto auto auto;
   width: 100px;
 }
 
