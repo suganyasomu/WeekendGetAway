@@ -22,6 +22,8 @@ function SavedBtn() {
       })
       .then(clear())
       .catch((err) => console.log(err));
+
+    updateIBD.onClick([]);
   }
 
   // Clear all saved items (prior to saving to DB)
@@ -40,7 +42,9 @@ function SavedBtn() {
         className="saveButton btn btn-outline-secondary"
         role="button"
         tabIndex="0"
-        onClick={handleSaveBtn}
+        onClick={() => {
+          {handleSaveBtn()}
+        }}
       >
         Create Itinerary
       </span>
