@@ -37,10 +37,34 @@ function IndexedDBModal({key}) {
                 <ul className="indexListItems">
                     {selectedItems.map((res, index) => {
                         let id = res.id;
-                        console.log(res); // try to get key
+                        // console.log(res); // try to get key
 
                         return (
                             <li key={id}>
+                                {/* If IndexedDB is empty: display text */}
+                                {/* {res.length > 0 &&
+                                    <>
+                                    <DeleteBtn  
+                                        onClick={() => {
+                                            deleteRecord(id).then(
+                                                (event) => {
+                                                    console.log("Unsaved from IndexedDB");
+                                                    // re-render component:
+                                                    updateIBD.onClick([]);
+                                                },
+                                                (error) => {
+                                                    console.log(error);
+                                                }
+                                            );
+                                        }
+                                    } />
+                                    <strong> {res.activity.charAt(0).toUpperCase() + res.activity.slice(1)}: </strong>
+                                    {res.name}
+                                    </>
+                
+                                } */}
+
+
                                 <DeleteBtn  
                                     onClick={() => {
                                         deleteRecord(id).then(

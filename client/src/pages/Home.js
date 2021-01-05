@@ -288,7 +288,7 @@ function Home() {
             <div className="col-12">
               {startDate != "" ? (
                 <h3 className="text-center mt-2">
-                  Dates Selected: {startDate} - {endDate}
+                  Dates Selected: <h6> {startDate} - {endDate} </h6>
                 </h3>
               ) : (
                 ""
