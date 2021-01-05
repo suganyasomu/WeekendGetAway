@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./style.css";
 import { useIndexedDB } from "react-indexed-db";
 import API from "../../utils/API";
+import IndexedDBContext from "../../utils/IndexedDBContext";
 
 function SavedBtn() {
   const { getAll, clear } = useIndexedDB("activity");
+  const updateIBD = useContext(IndexedDBContext);
 
   // Save all selected activites to DB
   async function handleSaveBtn() {
@@ -47,7 +49,11 @@ function SavedBtn() {
         className="clearButton btn btn-outline-secondary"
         role="button"
         tabIndex="0"
-        onClick={handleClearBtn}
+        onClick={() => {
+          {handleClearBtn()}
+          updateIBD.onClick([]);
+        }}
+          
         >
         Clear All
       </span>
