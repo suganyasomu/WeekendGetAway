@@ -4,7 +4,7 @@ import { useIndexedDB } from "react-indexed-db";
 import SavedBtn from "../SavedBtn";
 import DeleteBtn from "../DeleteBtn";
 
-function IndexedDBModal() {
+function IndexedDBModal({key}) {
     const { getAll, clear } = useIndexedDB("activity");
     const [selectedItems, setSelectedItems ] = useState([]);
 
@@ -22,7 +22,7 @@ function IndexedDBModal() {
 
 
     return (
-        <section id="indexedDBList" >
+        <section id="indexedDBList" {...key} >
             <h5> Saved Items  </h5> 
             <div id="savedItems">
                 <ul className="indexListItems">

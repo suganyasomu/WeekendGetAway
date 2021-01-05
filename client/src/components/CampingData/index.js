@@ -37,14 +37,9 @@ function CampingData(props) {
   }
 
   let handleHeartBtn = (e) => {
-    let heartId = e.target.id;
-    console.log(e.target);
-    console.log(heartId);
-    console.log(e.target.src);
-
+    // console.log(e.target);
     // Use jQuery to update the image src
-    $(heartId).attr("src", {heartSolid} );
-
+    $(e.target).attr("src", heartSolid );
   }
 
 
@@ -85,12 +80,7 @@ function CampingData(props) {
                                 }}
                                 className="saveBtn"
                                 title="Save to Itinerary"
-                              >
-                                {/* <img
-                                  src={true ? heartSolid : heartEmpty}
-                                  style={{ width: "30px" }}
-                                /> */}
-                              </img>
+                              />
                             </span>
                           ) : (
                             <LoginModal />
