@@ -38,7 +38,7 @@ function Home() {
 
   const [filter, setFilter] = useState({
     hotsprings: false,
-    campsites: false,
+    campsites: true,
     weather: false,
     hiking: false,
     biking: false,
@@ -242,31 +242,33 @@ function Home() {
   return (
     <SearchContext.Provider value={searchState}>
       <SubmitBtnContext.Provider value={submitState}>
-        
-          <SearchContainer
-            handleFormSubmit={handleFormSubmit}
-            handleInputChange={handleInputChange}
-            results={city}
-            handleSelectedState={handleSelectedState}
-            filter={filter}
-            handleCheckboxChange={handleCheckbox}
-            handleStartDate={handleStartDate}
-            handleEndDate={handleEndDate}
-          />
-          
+        <SearchContainer
+          handleFormSubmit={handleFormSubmit}
+          handleInputChange={handleInputChange}
+          results={city}
+          handleSelectedState={handleSelectedState}
+          filter={filter}
+          handleCheckboxChange={handleCheckbox}
+          handleStartDate={handleStartDate}
+          handleEndDate={handleEndDate}
+        />
+
         <div className="container">
           <div className="row">
-              <span className="col-8"> </span>
+            <span className="col-8"> </span>
 
-              {currentUser ? (
-                <span className="col-4">
-                  <p className="pt-2 float-right"> You are logged in! <SignoutBtn /> </p>
-                </span>
-              ) : (
-                <span className="col-4">
-                  <p> Guest - Login to Save to your Itinerary </p>
-                </span>
-              )}
+            {currentUser ? (
+              <span className="col-4">
+                <p className="pt-2 float-right">
+                  {" "}
+                  You are logged in! <SignoutBtn />{" "}
+                </p>
+              </span>
+            ) : (
+              <span className="col-4">
+                <p> Guest - Login to Save to your Itinerary </p>
+              </span>
+            )}
           </div>
 
           <div className="row">
@@ -281,22 +283,21 @@ function Home() {
             </div>
           </div>
 
-            <div ref={resultsRef} className="row">
-              <section className="col-12">
-                <SearchResults
-                  results={results}
-                  filter={filter}
-                  userStatus={currentUser}
-                  weatherCondition={weather}
-                  location={cityCoords}
-                  startDate={startDate}
-                  endDate={endDate}
-                  activities={[hiking]}
-                />
-              </section>
-            </div>
+          <div ref={resultsRef} className="row">
+            <section className="col-12">
+              <SearchResults
+                results={results}
+                filter={filter}
+                userStatus={currentUser}
+                weatherCondition={weather}
+                location={cityCoords}
+                startDate={startDate}
+                endDate={endDate}
+                activities={[hiking]}
+              />
+            </section>
           </div>
-          
+        </div>
       </SubmitBtnContext.Provider>
     </SearchContext.Provider>
   );
