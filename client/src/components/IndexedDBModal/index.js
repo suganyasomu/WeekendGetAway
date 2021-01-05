@@ -6,9 +6,10 @@ import DeleteBtn from "../DeleteBtn";
 import IndexedDBContext from "../../utils/IndexedDBContext";
 
 function IndexedDBModal({key}) {
-    const { getAll, clear } = useIndexedDB("activity");
+    const { getAll, deleteRecord } = useIndexedDB("activity");
     const [selectedItems, setSelectedItems ] = useState([]);
     const { savedActivity } = useContext(IndexedDBContext);
+    const updateIBD = useContext(IndexedDBContext);
 
     useEffect(() => {
         getAll().then((activitesFromDB) => {
@@ -26,7 +27,6 @@ function IndexedDBModal({key}) {
         // Clear IndexedDB items that are being displayed
         setSelectedItems([]);
         
-        // need to re-render this component...
     }
 
 
@@ -36,13 +36,25 @@ function IndexedDBModal({key}) {
             <div id="savedItems">
                 <ul className="indexListItems">
                     {selectedItems.map((res, index) => {
-                        let id = index + 1;
+                        let id = res.id;
+                        console.log(res); // try to get key
+
                         return (
                             <li key={id}>
-                                {/* <DeleteBtn  
-                                    onClick={() => 
-                                        clear().then()
-                                    } /> */}
+                                <DeleteBtn  
+                                    onClick={() => {
+                                        deleteRecord(id).then(
+                                            (event) => {
+                                                console.log("Unsaved from IndexedDB");
+                                                // re-render component:
+                                                updateIBD.onClick([]);
+                                            },
+                                            (error) => {
+                                                console.log(error);
+                                            }
+                                        );
+                                    }
+                                } />
                                 <strong> {res.activity.charAt(0).toUpperCase() + res.activity.slice(1)}: </strong>
                                 {res.name}
                             </li>

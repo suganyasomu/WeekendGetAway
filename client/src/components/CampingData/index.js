@@ -54,7 +54,7 @@ function CampingData(props) {
 
       // deleteRecord( ).then(
       //   (event) => {
-      //     console.log("Unsaved");
+      //     console.log("Unsaved from IndexedDB");
       //   },
       //   (error) => {
       //     console.log(error);
