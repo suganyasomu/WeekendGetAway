@@ -79,7 +79,7 @@ function SearchResults(props) {
 
       <Row>
         <Col size="md-2 sm-12">
-          <section>
+          <section className="leftContainer">
             {search && submitted ? (
               <div>
               <Scrollspy
