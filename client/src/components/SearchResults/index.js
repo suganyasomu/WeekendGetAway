@@ -22,6 +22,7 @@ import HotspringsData from "../HotspringsData";
 import HikingData from "../HikingData";
 import BikingData from "../BikingData";
 import ClimbingData from "../ClimbingData";
+import IndexedDBModal from "../IndexedDBModal";
 import Scrollspy from "react-scrollspy";
 
 function SearchResults(props) {
@@ -66,8 +67,6 @@ function SearchResults(props) {
   }
 
   return (
-    // <div className="container">
-    // <div className="row">
     <div className="resultsContainer">
       <Row>
         <div className="col-12">
@@ -82,6 +81,7 @@ function SearchResults(props) {
         <Col size="md-2 sm-12">
           <section>
             {search && submitted ? (
+              <div>
               <Scrollspy
                 className="scrollspy"
                 items={[
@@ -132,10 +132,14 @@ function SearchResults(props) {
                   )}
                 </ul>
               </Scrollspy>
+
+              <IndexedDBModal />
+              </div>
             ) : (
               <div />
             )}
           </section>
+
         </Col>
 
         <Col size="md-5 sm-12">
@@ -209,21 +213,14 @@ function SearchResults(props) {
           </div>
         </Col>
         <Col size="md-5 sm-12">
-          {/* <Aside className="mapContainer"> */}
-          {/* <div className="mapContainer"> */}
           {props.results.campsites.length > 0 ? (
             <Map results={props.results.campsites} location={props.location} />
           ) : (
             <div />
           )}
-          {/* </div> */}
-
-          {/* </Aside> */}
         </Col>
       </Row>
     </div>
-    // </div>
-    // </div>
   );
 }
 
