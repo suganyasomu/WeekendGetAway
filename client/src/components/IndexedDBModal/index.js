@@ -1,23 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./style.css";
 import { useIndexedDB } from "react-indexed-db";
 import SavedBtn from "../SavedBtn";
 import DeleteBtn from "../DeleteBtn";
+import IndexedDBContext from "../../utils/IndexedDBContext";
 
 function IndexedDBModal({key}) {
     const { getAll, clear } = useIndexedDB("activity");
     const [selectedItems, setSelectedItems ] = useState([]);
+    const { savedActivity } = useContext(IndexedDBContext);
 
     useEffect(() => {
         getAll().then((activitesFromDB) => {
             setSelectedItems(activitesFromDB);
         });
-    }, []);
+    }, [savedActivity]);
     // console.log(selectedItems);
 
     const handleSave = (e) => {
         // Clear when previous items are saved to itinerary
         setSelectedItems([]);
+    }
+
+    const handleClear = (e) => {
+        // Clear IndexedDB items that are being displayed
+        setSelectedItems([]);
+        
+        // need to re-render this component...
     }
 
 
@@ -40,7 +49,7 @@ function IndexedDBModal({key}) {
                         );
                     })}
                 </ul>
-                <SavedBtn  handleSave={handleSave} />
+                <SavedBtn  handleSave={handleSave} handleClear={handleClear} />
 
             </div>
         </section>

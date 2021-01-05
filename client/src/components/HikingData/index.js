@@ -23,9 +23,26 @@ function HikingData(props) {
   const [heart, setHeart] = useState(false);
 
   let handleHeartBtn = (e) => {
-    // console.log(e.target);
+    console.log(e.target);
+
     // Use jQuery to update the image src
-    $(e.target).attr("src", heartSolid );
+    if( $(e.target).attr('src') === heartEmpty) {
+      $(e.target).attr("src", heartSolid );
+    }
+    else {
+      // undo save & remove from IndexedDB
+      $(e.target).attr("src", heartEmpty );
+
+      // deleteRecord( ).then(
+      //   (event) => {
+      //     console.log("Unsaved");
+      //   },
+      //   (error) => {
+      //     console.log(error);
+      //   }
+      // );
+
+    }
   }
 
   // Add hiking info to indexedDB
@@ -54,7 +71,7 @@ function HikingData(props) {
         <section style={{ width: "100%" }}>
           <h3>Hikes</h3>
           {props.data.map((res, index) => {
-            console.log(index);
+            // console.log(index);
             let id=res.id;
             return (
               <div key={id} style={{ padding: "20px" }}>

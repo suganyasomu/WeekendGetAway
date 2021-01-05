@@ -6,6 +6,7 @@ import API from "../../utils/API";
 function SavedBtn() {
   const { getAll, clear } = useIndexedDB("activity");
 
+  // Save all selected activites to DB
   async function handleSaveBtn() {
     let activities = await getAll();
 
@@ -19,21 +20,38 @@ function SavedBtn() {
       })
       .then(clear())
       .catch((err) => console.log(err));
+  }
 
-    //   clear().then(() => {
-    //     console.log("Saved list has been cleared");
-    //   });
+  // Clear all saved items (prior to saving to DB)
+  function handleClearBtn() {
+    // let activities = await getAll();
+
+    clear().then(() => {
+      console.log("IndexedDB has been cleared");
+    });
+    
   }
 
   return (
-    <span
-      className="saveButton btn btn-outline-secondary"
-      role="button"
-      tabIndex="0"
-      onClick={handleSaveBtn}
-    >
-      Create Itinerary
-    </span>
+    <div>
+      <span
+        className="saveButton btn btn-outline-secondary"
+        role="button"
+        tabIndex="0"
+        onClick={handleSaveBtn}
+      >
+        Create Itinerary
+      </span>
+
+      <span
+        className="clearButton btn btn-outline-secondary"
+        role="button"
+        tabIndex="0"
+        onClick={handleClearBtn}
+        >
+        Clear All
+      </span>
+    </div>
   );
 }
 
