@@ -22,9 +22,24 @@ function HotspringsData(props) {
   const [heart, setHeart] = useState(false);
 
   let handleHeartBtn = (e) => {
-    // console.log(e.target);
     // Use jQuery to update the image src
-    $(e.target).attr("src", heartSolid );
+    if( $(e.target).attr('src') === heartEmpty) {
+      $(e.target).attr("src", heartSolid );
+    }
+    else {
+      // undo save & remove from IndexedDB
+      $(e.target).attr("src", heartEmpty );
+
+      // deleteRecord( ).then(
+      //   (event) => {
+      //     console.log("Unsaved");
+      //   },
+      //   (error) => {
+      //     console.log(error);
+      //   }
+      // );
+
+    }
   }
 
   // Add campsite info to indexedDB

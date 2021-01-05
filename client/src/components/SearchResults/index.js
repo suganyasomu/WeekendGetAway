@@ -16,6 +16,7 @@ import Checkbox from "../Checkbox";
 // import Section from "../Section"
 // import { Last } from "react-bootstrap/esm/PageItem";
 import { useIndexedDB } from "react-indexed-db";
+import IndexedDBContext from "../../utils/IndexedDBContext";
 import CampingData from "../CampingData";
 import WeatherData from "../WeatherData";
 import HotspringsData from "../HotspringsData";
@@ -30,6 +31,8 @@ function SearchResults(props) {
 
   const { search } = useContext(SearchContext);
   const { submitted } = useContext(SubmitBtnContext);
+  const { savedActivity } = useContext(IndexedDBContext);
+
   const [saveAction, setSaveAction] = useState("");
   const { add } = useIndexedDB("activity");
 
@@ -68,6 +71,7 @@ function SearchResults(props) {
   }
 
   return (
+
     <div className="resultsContainer">
       <Row>
         <div className="col-12">

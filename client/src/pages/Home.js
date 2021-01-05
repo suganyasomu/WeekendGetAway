@@ -13,6 +13,7 @@ import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 import SearchContext from "../utils/SearchContext";
 import SubmitBtnContext from "../utils/SubmitBtnContext";
+import IndexedDBContext from "../utils/IndexedDBContext";
 import SignoutBtn from "../components/SignoutBtn";
 import Row from "../components/Row";
 
@@ -242,7 +243,8 @@ function Home() {
   return (
     <SearchContext.Provider value={searchState}>
       <SubmitBtnContext.Provider value={submitState}>
-        
+      <IndexedDBContext.Provider value={[]}>
+
           <SearchContainer
             handleFormSubmit={handleFormSubmit}
             handleInputChange={handleInputChange}
@@ -296,7 +298,7 @@ function Home() {
               </section>
             </div>
           </div>
-          
+          </IndexedDBContext.Provider>
       </SubmitBtnContext.Provider>
     </SearchContext.Provider>
   );

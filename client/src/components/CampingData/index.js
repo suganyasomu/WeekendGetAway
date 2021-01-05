@@ -13,6 +13,7 @@ import Description from "../Description";
 import Fee from "../Fee";
 import $ from "jquery";
 import ReactTextCollapse from "react-text-collapse";
+import { useIndexedDB } from "react-indexed-db";
 
 function CampingData(props) {
   console.log(props);
@@ -21,6 +22,7 @@ function CampingData(props) {
   const { currentUser } = useContext(AuthContext);
   const { search } = useContext(SearchContext);
   const { submitted } = useContext(SubmitBtnContext);
+  const { deleteRecord } = useIndexedDB("activity");
 
   // const [heart, setHeart] = useState(false);
 
@@ -37,9 +39,27 @@ function CampingData(props) {
   }
 
   let handleHeartBtn = (e) => {
-    // console.log(e.target);
+    console.log(e.target);
+
     // Use jQuery to update the image src
-    $(e.target).attr("src", heartSolid );
+    if( $(e.target).attr('src') === heartEmpty) {
+      $(e.target).attr("src", heartSolid );
+    }
+    else {
+      // undo save & remove from IndexedDB
+      $(e.target).attr("src", heartEmpty );
+
+      // deleteRecord( ).then(
+      //   (event) => {
+      //     console.log("Unsaved");
+      //   },
+      //   (error) => {
+      //     console.log(error);
+      //   }
+      // );
+
+    }
+    
   }
 
 
