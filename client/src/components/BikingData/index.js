@@ -11,6 +11,7 @@ import heartSolid from "../../Assets/heart-solid.svg";
 import LoginModal from "../LoginModal";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { useIndexedDB } from "react-indexed-db";
+import $ from "jquery";
 
 import '../HikingData/style.css';
 // import { handleInputChange } from "react-select/src/utils";
@@ -22,12 +23,10 @@ function BikingData(props) {
   const { add } = useIndexedDB("activity");
   const [heart, setHeart] = useState(false);
 
-  function handleHeartBtn() {
-    if (heart === true) {
-      setHeart(false);
-    } else {
-      setHeart(true);
-    }
+  let handleHeartBtn = (e) => {
+    // console.log(e.target);
+    // Use jQuery to update the image src
+    $(e.target).attr("src", heartSolid );
   }
 
   // Add biking info to indexedDB
@@ -56,8 +55,9 @@ function BikingData(props) {
         <section style={{ width: "100%" }}>
           <h3>Mountain Biking</h3>
           {props.data.map((res, index) => {
+            let id=res.id;
             return (
-              <div key={res.id} style={{ padding: '20px' }}>
+              <div key={id} style={{ padding: '20px' }}>
                 <Row>
                   <Col size="md-12">
                     <Card className="bikingCard" style={{ width: "auto", boxShadow: "2px 2px 5px grey" }}>
@@ -66,27 +66,27 @@ function BikingData(props) {
                         </div>
                       <Card.Body>
                       {currentUser ? (
-                          <span
-                            onClick={() => {
-                              handleHeartBtn();
-                              {
-                                handleBike(
-                                  res.activity,
-                                  res.name,
-                                  res.summary,
-                                  res.difficulty,
-                                  res.lat,
-                                  res.lng,
-                                  res.length
-                                );
-                              }
-                            }}
-                            className="saveBtn"
-                            title="Save to Itinerary"
-                          >
+                          <span>
                             <img
-                              src={heart ? heartSolid : heartEmpty}
-                              style={{ width: "30px" }}
+                                src={ heartEmpty }
+                                style={{ width: "30px" }}
+                                id={id}
+                                onClick={(id) => {
+                                  handleHeartBtn(id);
+                                  {
+                                    handleBike(
+                                      res.activity,
+                                      res.name,
+                                      res.summary,
+                                      res.difficulty,
+                                      res.lat,
+                                      res.lng,
+                                      res.length
+                                    );
+                                }
+                              }}
+                              className="saveBtn"
+                              title="Save to Itinerary"
                             />
                           </span>
                         ) : (

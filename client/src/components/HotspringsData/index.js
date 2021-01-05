@@ -11,6 +11,7 @@ import heartSolid from "../../Assets/heart-solid.svg";
 import LoginModal from "../LoginModal";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { useIndexedDB } from "react-indexed-db";
+import $ from "jquery";
 // import { handleInputChange } from "react-select/src/utils";
 
 function HotspringsData(props) {
@@ -20,13 +21,12 @@ function HotspringsData(props) {
   const { add } = useIndexedDB("activity");
   const [heart, setHeart] = useState(false);
 
-  function handleHeartBtn() {
-    if (heart === true) {
-      setHeart(false);
-    } else {
-      setHeart(true);
-    }
+  let handleHeartBtn = (e) => {
+    // console.log(e.target);
+    // Use jQuery to update the image src
+    $(e.target).attr("src", heartSolid );
   }
+
   // Add campsite info to indexedDB
   function handleHotsprings(
     hotspring,
@@ -57,6 +57,7 @@ function HotspringsData(props) {
         <section style={{ width: "100%" }}>
           <h3>Hotsprings</h3>
           {props.data.map((res, index) => {
+            let id=res.id;
             return (
               <div key={res._id} style={{ padding: '20px' }}>
                 <Row>
@@ -64,24 +65,24 @@ function HotspringsData(props) {
                     <Card className="hotspringCard" style={{ width: "auto", boxShadow: "2px 2px 5px grey" }}>
                       <Card.Header>
                         {currentUser ? (
-                          <span
-                            onClick={() => {
-                              handleHeartBtn();
-                              {
-                                handleHotsprings(
-                                  res.spring_name,
-                                  res.degrees_f,
-                                  res.loc.coordinates,
-                                  res.usgs_quadrangle
-                                );
-                              }
-                            }}
-                            className="saveBtn"
-                            title="Save to Itinerary"
-                          >
+                          <span>
                             <img
-                              src={heart ? heartSolid : heartEmpty}
+                              src={ heartEmpty }
                               style={{ width: "30px" }}
+                              id={id}
+                              onClick={(id) => {
+                                handleHeartBtn(id);
+                                {
+                                  handleHotsprings(
+                                    res.spring_name,
+                                    res.degrees_f,
+                                    res.loc.coordinates,
+                                    res.usgs_quadrangle
+                                  );
+                                }
+                              }}
+                              className="saveBtn"
+                              title="Save to Itinerary"
                             />
                           </span>
                         ) : (

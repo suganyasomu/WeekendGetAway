@@ -12,6 +12,7 @@ import LoginModal from "../LoginModal";
 import { propTypes } from "react-bootstrap/esm/Image";
 import { useIndexedDB } from "react-indexed-db";
 import "./style.css";
+import $ from "jquery";
 // import { handleInputChange } from "react-select/src/utils";
 
 function HikingData(props) {
@@ -21,12 +22,10 @@ function HikingData(props) {
   const { add } = useIndexedDB("activity");
   const [heart, setHeart] = useState(false);
 
-  function handleHeartBtn() {
-    if (heart === true) {
-      setHeart(false);
-    } else {
-      setHeart(true);
-    }
+  let handleHeartBtn = (e) => {
+    // console.log(e.target);
+    // Use jQuery to update the image src
+    $(e.target).attr("src", heartSolid );
   }
 
   // Add hiking info to indexedDB
@@ -56,8 +55,9 @@ function HikingData(props) {
           <h3>Hikes</h3>
           {props.data.map((res, index) => {
             console.log(index);
+            let id=res.id;
             return (
-              <div key={res.id} style={{ padding: "20px" }}>
+              <div key={id} style={{ padding: "20px" }}>
                 <Row>
                   <Col size="md-12">
                     <Card
@@ -69,28 +69,28 @@ function HikingData(props) {
                       </div>
                       <Card.Body>
                         {currentUser ? (
-                          <span
-                            onClick={() => {
-                              handleHeartBtn();
-                              {
-                                handleHikes(
-                                  res.activity,
-                                  res.name,
-                                  res.summary,
-                                  res.difficulty,
-                                  res.lat,
-                                  res.lng,
-                                  res.length
-                                );
-                              }
-                            }}
+                          <span>
+                            <img
+                              src={ heartEmpty }
+                              style={{ width: "30px" }}
+                              id={id}
+                              onClick={(id) => {
+                                handleHeartBtn(id);
+                                {
+                                  handleHikes(
+                                    res.activity,
+                                    res.name,
+                                    res.summary,
+                                    res.difficulty,
+                                    res.lat,
+                                    res.lng,
+                                    res.length
+                                  );
+                                }
+                              }}
                             className="saveBtn"
                             title="Save to Itinerary"
-                          >
-                            <img
-                              src={heart ? heartSolid : heartEmpty}
-                              style={{ width: "30px" }}
-                            />
+                          />
                           </span>
                         ) : (
                           <LoginModal />
