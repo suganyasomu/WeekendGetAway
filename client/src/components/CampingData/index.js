@@ -23,7 +23,7 @@ function CampingData(props) {
   const { currentUser } = useContext(AuthContext);
   const { search } = useContext(SearchContext);
   const { submitted } = useContext(SubmitBtnContext);
-  const { deleteRecord } = useIndexedDB("activity");
+  const { deleteRecord, getByIndex } = useIndexedDB("activity");
   const updateIBD = useContext(IndexedDBContext);
 
   const TEXT_COLLAPSE_OPTIONS = {
@@ -39,8 +39,9 @@ function CampingData(props) {
     },
   };
 
-  let handleHeartBtn = (e) => {
-    console.log(e.target);
+  // let handleHeartBtn = (e) => {
+    function handleHeartBtn(e, activity, name){
+    // console.log(e.target);
 
     // Use jQuery to update the image src
     if( $(e.target).attr('src') === heartEmpty) {
@@ -50,7 +51,20 @@ function CampingData(props) {
       // undo save & remove from IndexedDB
       $(e.target).attr("src", heartEmpty );
 
-      // deleteRecord( ).then(
+      // Get IndexDB key with matching activity & name selected & delete it from DB
+      let IDBkey;
+      getByIndex('name', name).then(
+        res => {
+          IDBkey = res.id;
+        },
+        error => {
+          console.log(error);
+        }
+      )
+
+      console.log("IDBkey: " + IDBkey);
+
+      // deleteRecord( IDBkey).then(
       //   (event) => {
       //     console.log("Unsaved from IndexedDB");
       //   },
@@ -88,8 +102,7 @@ function CampingData(props) {
                             style={{ width: "30px" }}
                             id={res.id}
                             onClick={(index) => {
-                              handleHeartBtn(index);
-                              // console.log(updateIBD);
+                              // handleHeartBtn(index, res.activity, res.name);
                               updateIBD.onClick([index]);
                               {
                                 props.handleFormSubmit(
