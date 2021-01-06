@@ -33,7 +33,14 @@ This app allows the user to find campsites and activites nearby based on the cit
 - Bootstrap
 - MongoDB
 - Firebase
-- APIs
+- APIs:
+    - Recreation.gov: https://ridb.recreation.gov/download 
+    - Hiking Project: https://www.hikingproject.com/ 
+    - MTB Project: https://www.mtbproject.com/ 
+    - OpenWeatherMap: https://openweathermap.org/ 
+    - MapQuest: https://developer.mapquest.com/ 
+    - MapBox: https://docs.mapbox.com/api/overview/ 
+    - NOAA Hot Springs Data: Excel sheet (Database Mongo) 
 
 ## Example
 
