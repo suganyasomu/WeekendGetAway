@@ -17,14 +17,12 @@
 
 .mapContainer {
   box-shadow: 2px 2px 2px grey;
-  width: 500px;
   position: -webkit-sticky;
   position: sticky;
   right: 0;
   margin: 0;
-  top: 20%;
+  top: 5%;
   z-index: 4;
-
 }
 
 .leftContainer {
