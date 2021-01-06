@@ -35,45 +35,51 @@ const Login = ({ history }) => {
   }
 
   return (
+    <div style={{
+      margin: '0', 
+      backgroundImage: "linear-gradient(#E8E8E4, white)", 
+      width: '100%', 
+      height: '100%'
+    }} > 
+      <div className="container">
+        <div className="row">
+          <h1 className="col-12 text-center" style={{ marginTop: '80px' }}> Log in to Your Account </h1>
+        </div>
+        
+        <div className="row">
+          <span className="col-2"></span>
+          <Form onSubmit={handleLogin} className="col-8">
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control name="email" type="email" placeholder="Enter email" />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
 
-    <div className="container" style={{ marginTop: '80px' }}>
-      <div className="row">
-        <h1 className="col-12 text-center"> Log in to Your Account </h1>
-      </div>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control name="password" type="password" placeholder="Password" />
+            </Form.Group>
+
+            <Button variant="primary" className="btn-outline-secondary" type="submit">
+              Submit
+            </Button>
+          </Form>
+          <span className="col-2"></span>
+        </div>
+
+        <div className="row mt-2">
+          <span className="col-2"></span>
+          <div className="col-8">
+          <Link to="/passwordReset">
+            <p>Forgot Password?</p>
+          </Link>
+          </div>
+          <span className="col-2"></span>
+          </div>
       
-      <div className="row">
-        <span className="col-2"></span>
-        <Form onSubmit={handleLogin} className="col-8">
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control name="email" type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control name="password" type="password" placeholder="Password" />
-          </Form.Group>
-
-          <Button variant="primary" className="btn-outline-secondary" type="submit">
-            Submit
-          </Button>
-        </Form>
-        <span className="col-2"></span>
       </div>
-
-      <div className="row mt-2">
-        <span className="col-2"></span>
-        <div className="col-8">
-        <Link to="/passwordReset">
-          <p>Forgot Password?</p>
-        </Link>
-        </div>
-        <span className="col-2"></span>
-        </div>
-    
     </div>
   );
 };

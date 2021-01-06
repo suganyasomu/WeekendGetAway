@@ -63,48 +63,55 @@ function Directions() {
   }
 
   return (
-    <div className="container" style={{ paddingTop: '30px' }}>
-      {/* <Row> */}
-      <h3> Directions </h3>
-      {/* </Row> */}
+    <div style={{
+      margin: '0', 
+      backgroundImage: "linear-gradient(#E8E8E4, white)", 
+      width: '100%', 
+      height: '100%'
+    }} >
 
-      <Row>
-        <div className="col-2" />
-        <Card
-          className="col-8"
-          style={{
-            width: "30rem",
-            boxShadow: "2px 2px 5px grey ",
-          }}
-        >
-          <Card.Header>
-            {" "}
-            <Card.Title>
+      <div className="container" style={{ paddingTop: '30px' }}>
+        <h3> Directions </h3>
+
+        <Row>
+          <div className="col-2" />
+          <Card
+            className="col-8"
+            style={{
+              width: "30rem",
+              boxShadow: "2px 2px 5px grey ",
+            }}
+          >
+            <Card.Header>
               {" "}
-              <strong>
+              <Card.Title>
                 {" "}
-                Directions to {campsite ? campsite : "your Campsite"}{" "}
-              </strong>{" "}
-            </Card.Title>{" "}
-          </Card.Header>
-          {directions.map((res, index) => {
-            let id = index + 1;
-            return (
-              <Card.Body key={id}>
-                <Card.Text>
-                  <img src={res.turnIcon} style={{ marginRight: "10px" }} />
-                  {res.narrative}
-                </Card.Text>
-                <Card.Subtitle style={{ fontStyle: "italic" }}>
+                <strong>
                   {" "}
-                  {res.streets}{" "}
-                </Card.Subtitle>
-              </Card.Body>
-            );
-          })}
-        </Card>
-        <div className="col-2" />
-      </Row>
+                  Directions to {campsite ? campsite : "your Campsite"}{" "}
+                </strong>{" "}
+              </Card.Title>{" "}
+            </Card.Header>
+            {directions.map((res, index) => {
+              let id = index + 1;
+              return (
+                <Card.Body key={id}>
+                  <Card.Text>
+                    <img src={res.turnIcon} style={{ marginRight: "10px" }} />
+                    {res.narrative}
+                  </Card.Text>
+                  <Card.Subtitle style={{ fontStyle: "italic" }}>
+                    {" "}
+                    {res.streets}{" "}
+                  </Card.Subtitle>
+                </Card.Body>
+              );
+            })}
+          </Card>
+          <div className="col-2" />
+        </Row>
+      </div>
+
     </div>
   );
 }

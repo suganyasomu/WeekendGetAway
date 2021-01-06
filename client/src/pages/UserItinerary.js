@@ -43,70 +43,77 @@ function UserItinerary() {
   }
 
   return (
-    <div className="container" style={{ paddingTop: '30px' }}>
-      <h3> Saved Trips </h3>
+    <div style={{
+      margin: '0', 
+      backgroundImage: "linear-gradient(#E8E8E4, white)", 
+      width: '100%', 
+      height: '100%'
+    }} >  
+      <div className="container" style={{ paddingTop: '30px' }}>
+        <h3> Saved Trips </h3>
 
-      {trips.map((res, index) => {
-        let id = index + 1;
+        {trips.map((res, index) => {
+          let id = index + 1;
 
-        return (
-          <div className="container" key={id}>
-            <Row>
-              <div className="col-3"> </div>
-              <Card
-                className="savedCampsites col-6 mt-3"
-                style={{ width: "30rem" }}
-              >
-                <Card.Header>
-                  <Link
-                    to={{
-                      pathname: "/directions",
-                    }}
-                    className="btn directionsBtn"
-                    title="Get Directions"
-                    onClick={() => {
-                      clear();
-                      add({
-                        name: res.campsite,
-                        lat: res.campLat,
-                        lon: res.campLon,
-                      }).then(
-                        (event) => {
-                          console.log("ID Generated: ", event.target);
-                        },
-                        (error) => {
-                          console.log(error);
-                        }
-                      );
-                    }}
-                  >
-                    <FontAwesomeIcon icon="directions" />
-                  </Link>
-                  <DeleteBtn onClick={() => deleteItinerary(res._id)} />
-                  <Card.Title className="mt-3">
-                    {" "}
-                    Trip to {res.campCity}{" "}
-                  </Card.Title>
-                </Card.Header>
-                <Card.Body>
-                  <Card.Text>
-                    Trip Dates: {convertDate(res.startDate)} -{" "}
-                    {convertDate(res.endDate)}
-                  </Card.Text>
-                  <Card.Text>Campsite: {res.campsite}</Card.Text>
-                </Card.Body>
-                <Button
-                  variant="secondary"
-                  className="btn btn-sm justify-content-center mb-2"
+          return (
+            <div className="container" key={id} style={{ paddingBottom: "20px"}}>
+              <Row>
+                <div className="col-3"> </div>
+                <Card
+                  className="savedCampsites col-6 mt-3"
+                  style={{ width: "30rem", boxShadow: "2px 2px 5px grey" }}
                 >
-                  <ItineraryModal trip={res} />
-                </Button>
-              </Card>
-              <div className="col-3"> </div>
-            </Row>
-          </div>
-        );
-      })}
+                  <Card.Header>
+                    <Link
+                      to={{
+                        pathname: "/directions",
+                      }}
+                      className="btn directionsBtn"
+                      title="Get Directions"
+                      onClick={() => {
+                        clear();
+                        add({
+                          name: res.campsite,
+                          lat: res.campLat,
+                          lon: res.campLon,
+                        }).then(
+                          (event) => {
+                            console.log("ID Generated: ", event.target);
+                          },
+                          (error) => {
+                            console.log(error);
+                          }
+                        );
+                      }}
+                    >
+                      <FontAwesomeIcon icon="directions" />
+                    </Link>
+                    <DeleteBtn onClick={() => deleteItinerary(res._id)} />
+                    <Card.Title className="mt-3">
+                      {" "}
+                      Trip to {res.campCity}{" "}
+                    </Card.Title>
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Text>
+                      Trip Dates: {convertDate(res.startDate)} -{" "}
+                      {convertDate(res.endDate)}
+                    </Card.Text>
+                    <Card.Text>Campsite: {res.campsite}</Card.Text>
+                  </Card.Body>
+                  <Button
+                    variant="secondary"
+                    className="btn btn-sm justify-content-center mb-2"
+                  >
+                    <ItineraryModal trip={res} />
+                  </Button>
+                </Card>
+                <div className="col-3"> </div>
+              </Row>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
