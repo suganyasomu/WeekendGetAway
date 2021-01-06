@@ -3,16 +3,16 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
-## Description 
+## Links 
 
 Deployed Application: https://murmuring-citadel-70969.herokuapp.com/
 
 Github Repository: https://github.com/suganyasomu/WeekendGetAway
 
 ## Table of Contents
-- [Description](#Description)
+- [Links](#Links)
 - [Installation](#Installation)
-- [Usage](#Usage)
+- [Description](#Description)
 - [Technologies](#Technologies)
 - [Example](#Example)
 - [License](#License)
@@ -23,7 +23,7 @@ Github Repository: https://github.com/suganyasomu/WeekendGetAway
 ## Installation
 `npm install`
     
-## Usage
+## Description
 This app allows the user to find campsites and activites nearby based on the city they search. The user is able to filter by which activities (camping, hiking, biking, rock climbing, and hotsprings) they want to view, as well as view the current weather forecast of the selected location if they desire. The user can create an account, and once logged in they are able to save the different campgrounds and activities and create an itinerary. The user can view all of their saved itineraries and get directions to the campground from their current location. This application utilizes ReactJS, Bootstrap, MongoDB, and Firebase.  
 
 
