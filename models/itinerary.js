@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-//work in progress
 const ItinerarySchema = new Schema({
   user: { type: String, required: true },
   campsite: { type: String, required: true },
@@ -26,6 +25,7 @@ const ItinerarySchema = new Schema({
       rating: { type: String, required: false },
       type: { type: String, required: false },
       temperature: { type: String, required: false },
+      elevationChange: { type: Number, required: false }
     },
   ],
 });
