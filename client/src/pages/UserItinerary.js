@@ -43,7 +43,7 @@ function UserItinerary() {
   }
 
   return (
-    <div className="container">
+    <div className="container" style={{ paddingTop: '30px' }}>
       <h3> Saved Trips </h3>
 
       {trips.map((res, index) => {
