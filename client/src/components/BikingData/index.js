@@ -86,22 +86,22 @@ function BikingData(props) {
                         {currentUser ? (
                           <span>
                             <img
-                              src={heartEmpty}
-                              style={{ width: "30px" }}
-                              id={id}
-                              onClick={(index) => {
-                                handleHeartBtn(index);
-                                updateIBD.onClick([index]);
-                                {
-                                  handleBike(
-                                    res.activity,
-                                    res.name,
-                                    res.summary,
-                                    res.difficulty,
-                                    res.lat,
-                                    res.lng,
-                                    res.length
-                                  );
+                                src={ heartEmpty }
+                                style={{ width: "30px" }}
+                                id={id}
+                                onClick={(index) => {
+                                  // handleHeartBtn(index);
+                                  updateIBD.onClick([index]);
+                                  {
+                                    handleBike(
+                                      res.activity,
+                                      res.name,
+                                      res.summary,
+                                      res.difficulty,
+                                      res.lat,
+                                      res.lng,
+                                      res.length
+                                    );
                                 }
                               }}
                               className="saveBtn"

@@ -34,7 +34,7 @@ function IndexedDBModal({key}) {
         <section id="indexedDBList" {...key} >
             <h5> Saved Items  </h5> 
             <div id="savedItems">
-                <ul className="indexListItems">
+                <ul className="indexListItems overflow-auto">
                     {selectedItems.map((res, index) => {
                         let id = res.id;
                         console.log(res); // get key id
