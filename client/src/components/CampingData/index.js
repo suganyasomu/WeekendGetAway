@@ -40,7 +40,7 @@ function CampingData(props) {
   };
 
   // let handleHeartBtn = (e) => {
-    function handleHeartBtn(e, activity, name){
+  function handleHeartBtn(e, activity, name) {
     // console.log(e.target);
 
     // Use jQuery to update the image src
@@ -52,14 +52,14 @@ function CampingData(props) {
 
       // Get IndexDB key with matching activity & name selected & delete it from DB
       let IDBkey;
-      getByIndex('name', name).then(
-        res => {
+      getByIndex("name", name).then(
+        (res) => {
           IDBkey = res.id;
         },
-        error => {
+        (error) => {
           console.log(error);
         }
-      )
+      );
 
       console.log("IDBkey: " + IDBkey);
 
@@ -72,7 +72,7 @@ function CampingData(props) {
       //   }
       // );
     }
-  };
+  }
 
   return (
     <div>
@@ -86,66 +86,69 @@ function CampingData(props) {
             return (
               <div key={res.id} style={{ padding: "20px" }} id={res.id}>
                 <Row>
-                  <Card
-                    className="campsiteCard"
-                    style={{ width: "100%", boxShadow: "2px 2px 5px grey" }}
-                  >
-                    <Card.Header>
-                      <strong>Campsite:</strong> {res.name}
-                      {currentUser ? (
-                        <span>
-                          <img
-                            src={heartEmpty}
-                            style={{ width: "30px" }}
-                            id={res.id}
-                            onClick={(index) => {
-                              // handleHeartBtn(index, res.activity, res.name);
-                              updateIBD.onClick([index]);
-                              {
-                                props.handleFormSubmit(
-                                  res.name,
-                                  res.lat,
-                                  res.lng,
-                                  res.reservable,
-                                  res.fee,
-                                  res.phone,
-                                  res.activity,
-                                  res.description
-                                );
-                              }
-                            }}
-                            className="saveBtn"
-                            title="Save to Itinerary"
-                          />
-                        </span>
-                      ) : (
-                        <LoginModal />
-                      )}
-                    </Card.Header>
+                  <Col size="md-12">
+                    <Card
+                      className="campsiteCard"
+                      style={{ width: "100%", boxShadow: "2px 2px 5px grey" }}
+                    >
+                      <Card.Header>
+                        <strong>Campsite:</strong> {res.name}
+                        {currentUser ? (
+                          <span>
+                            <img
+                              src={heartEmpty}
+                              style={{ width: "30px" }}
+                              id={res.id}
+                              onClick={(index) => {
+                                handleHeartBtn(index);
+                                // console.log(updateIBD);
+                                updateIBD.onClick([index]);
+                                {
+                                  props.handleFormSubmit(
+                                    res.name,
+                                    res.lat,
+                                    res.lng,
+                                    res.reservable,
+                                    res.fee,
+                                    res.phone,
+                                    res.activity,
+                                    res.description
+                                  );
+                                }
+                              }}
+                              className="saveBtn"
+                              title="Save to Itinerary"
+                            />
+                          </span>
+                        ) : (
+                          <LoginModal />
+                        )}
+                      </Card.Header>
 
-                    <Card.Body>
-                      <span>
-                        <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
-                          <Description description={res.description} />
-                        </ReactTextCollapse>
-                      </span>
-                      <br />
-                      <Card.Text>
-                        {" "}
-                        <strong>Reservable:</strong>{" "}
-                        {res.reservable ? "Yes" : "No"}{" "}
-                      </Card.Text>
-                      <Card.Text>
-                        {" "}
-                        <strong>Fee:</strong> <Fee fee={res.fee} />{" "}
-                      </Card.Text>
-                      <Card.Text>
-                        {" "}
-                        <strong>Phone Number:</strong> {res.phone}{" "}
-                      </Card.Text>
-                      {/* <Card.Link href="#">Campsite Link</Card.Link> */}
-                    </Card.Body>
-                  </Card>
+                      <Card.Body>
+                        <span>
+                          <ReactTextCollapse options={TEXT_COLLAPSE_OPTIONS}>
+                            <Description description={res.description} />
+                          </ReactTextCollapse>
+                        </span>
+                        <br />
+                        <Card.Text>
+                          {" "}
+                          <strong>Reservable:</strong>{" "}
+                          {res.reservable ? "Yes" : "No"}{" "}
+                        </Card.Text>
+                        <Card.Text>
+                          {" "}
+                          <strong>Fee:</strong> <Fee fee={res.fee} />{" "}
+                        </Card.Text>
+                        <Card.Text>
+                          {" "}
+                          <strong>Phone Number:</strong> {res.phone}{" "}
+                        </Card.Text>
+                        {/* <Card.Link href="#">Campsite Link</Card.Link> */}
+                      </Card.Body>
+                    </Card>
+                  </Col>
                 </Row>
               </div>
             );
