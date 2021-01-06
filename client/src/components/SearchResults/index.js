@@ -158,7 +158,7 @@ function SearchResults(props) {
 
         {/* </Col> */}
 
-        <Col size="md-6 sm-12">
+        <Col size="md-6 sm-12 lg-5">
           <div id="results">
             <section id="camping-results">
               <CampingData
@@ -228,7 +228,7 @@ function SearchResults(props) {
             </section>
           </div>
         </Col>
-        <Col size="md-6 sm-12">
+        <Col size="md-6 sm-12 lg-5">
           {props.results.campsites.length > 0 ? (
             <Map results={props.results.campsites} location={props.location} />
           ) : (
