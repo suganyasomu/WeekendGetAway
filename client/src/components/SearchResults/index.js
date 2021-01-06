@@ -16,6 +16,7 @@ import Checkbox from "../Checkbox";
 // import Section from "../Section"
 // import { Last } from "react-bootstrap/esm/PageItem";
 import { useIndexedDB } from "react-indexed-db";
+import IndexedDBContext from "../../utils/IndexedDBContext";
 import CampingData from "../CampingData";
 import WeatherData from "../WeatherData";
 import HotspringsData from "../HotspringsData";
@@ -24,13 +25,13 @@ import BikingData from "../BikingData";
 import ClimbingData from "../ClimbingData";
 import IndexedDBModal from "../IndexedDBModal";
 import Scrollspy from "react-scrollspy";
+import tent from "../../Assets/tent.svg";
 
 function SearchResults(props) {
   // console.log(props);
 
   const { search } = useContext(SearchContext);
   const { submitted } = useContext(SubmitBtnContext);
-  const [save, setState] = useState([]);
   const { add } = useIndexedDB("activity");
 
   // Add campsite info to indexedDB
@@ -78,10 +79,12 @@ function SearchResults(props) {
       </Row>
 
       <Row>
-        <Col size="md-2 sm-12">
-          <section className="leftContainer">
-            {search && submitted ? (
-              <div>
+        {/* <Col size="md-2 sm-12"> */}
+        {/* <section className="leftContainer"> */}
+        {search && submitted ? (
+          <Col size="lg-2 sm-12">
+            <section className="leftContainer">
+              {/* <div> */}
               <Scrollspy
                 className="scrollspy"
                 items={[
@@ -134,15 +137,28 @@ function SearchResults(props) {
               </Scrollspy>
 
               <IndexedDBModal />
-              </div>
-            ) : (
-              <div />
-            )}
-          </section>
+              {/* </div> */}
+            </section>
+          </Col>
+        ) : (
+          <div className="col-12">
+            <Row>
+              <h2 className="col-12" style={{ textAlign: "center" }}>
+                Search by city to start planning your trip!
+                <img
+                  src={tent}
+                  style={{ width: "30px" }}
+                  alt="campground icon"
+                />
+              </h2>
+            </Row>
+          </div>
+        )}
+        {/* </section> */}
 
-        </Col>
+        {/* </Col> */}
 
-        <Col size="md-5 sm-12">
+        <Col size="md-6 sm-12 lg-5">
           <div id="results">
             <section id="camping-results">
               <CampingData
@@ -212,7 +228,7 @@ function SearchResults(props) {
             </section>
           </div>
         </Col>
-        <Col size="md-5 sm-12">
+        <Col size="md-6 sm-12 lg-5">
           {props.results.campsites.length > 0 ? (
             <Map results={props.results.campsites} location={props.location} />
           ) : (

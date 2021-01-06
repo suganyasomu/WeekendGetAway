@@ -105,7 +105,9 @@ function SearchContainer(props) {
               />
             </section>
           <div className="col-md-3" />
+        </Row>
 
+        <Row>
           <InputGroup className="searchField">
             <FormControl
               type="text"

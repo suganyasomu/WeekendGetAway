@@ -1,6 +1,16 @@
 .btn {
+  color: white;
   border: #39521d solid 1px;
   background-color: #39521d;
-  color: white;
-  margin: 10px;
+}
+
+.saveButton {
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.clearButton {
+  border: #a54027 solid 1px;
+  background-color: #a54027;
+  width: 100%;
 }

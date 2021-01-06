@@ -13,6 +13,7 @@ import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 import SearchContext from "../utils/SearchContext";
 import SubmitBtnContext from "../utils/SubmitBtnContext";
+import IndexedDBContext from "../utils/IndexedDBContext";
 import SignoutBtn from "../components/SignoutBtn";
 import Row from "../components/Row";
 
@@ -38,7 +39,7 @@ function Home() {
 
   const [filter, setFilter] = useState({
     hotsprings: false,
-    campsites: false,
+    campsites: true,
     weather: false,
     hiking: false,
     biking: false,
@@ -46,6 +47,16 @@ function Home() {
   });
 
   const resultsRef = useRef();
+
+  // Update context to re-render when IndexedDB is updated:
+  const [pageState, setPageState] = useState({
+    savedActivity: [],
+    onClick: (savedActivity) => {
+      // Remember, the setter method on state does not merge like this.setState does
+      // We use the spread operator so that we don't lose our onClick method whenever the state is updated.
+      setPageState({ ...pageState, savedActivity });
+    }
+  });
 
   function handleCheckbox(event) {
     const { name, checked } = event.target;
@@ -242,7 +253,8 @@ function Home() {
   return (
     <SearchContext.Provider value={searchState}>
       <SubmitBtnContext.Provider value={submitState}>
-        
+      <IndexedDBContext.Provider value={pageState}>
+
           <SearchContainer
             handleFormSubmit={handleFormSubmit}
             handleInputChange={handleInputChange}
@@ -256,24 +268,27 @@ function Home() {
           
         <div className="container">
           <div className="row">
-              <span className="col-8"> </span>
+            <span className="col-8"> </span>
 
-              {currentUser ? (
-                <span className="col-4">
-                  <p className="pt-2 float-right"> You are logged in! <SignoutBtn /> </p>
-                </span>
-              ) : (
-                <span className="col-4">
-                  <p> Guest - Login to Save to your Itinerary </p>
-                </span>
-              )}
+            {currentUser ? (
+              <span className="col-4">
+                <p className="pt-2 float-right">
+                  {" "}
+                  You are logged in! <SignoutBtn />{" "}
+                </p>
+              </span>
+            ) : (
+              <span className="col-4">
+                <p> Guest - Login to Save to your Itinerary </p>
+              </span>
+            )}
           </div>
 
           <div className="row">
             <div className="col-12">
               {startDate != "" ? (
                 <h3 className="text-center mt-2">
-                  Dates Selected: {startDate} - {endDate}
+                  Dates Selected: <h6> {startDate} - {endDate} </h6>
                 </h3>
               ) : (
                 ""
@@ -281,22 +296,23 @@ function Home() {
             </div>
           </div>
 
-            <div ref={resultsRef} className="row">
-              <section className="col-12">
-                <SearchResults
-                  results={results}
-                  filter={filter}
-                  userStatus={currentUser}
-                  weatherCondition={weather}
-                  location={cityCoords}
-                  startDate={startDate}
-                  endDate={endDate}
-                  activities={[hiking]}
-                />
+          <div ref={resultsRef} className="row">
+            <section className="col-12">
+              <SearchResults
+                results={results}
+                filter={filter}
+                userStatus={currentUser}
+                weatherCondition={weather}
+                location={cityCoords}
+                startDate={startDate}
+                endDate={endDate}
+                activities={[hiking]}
+              />
               </section>
             </div>
-          </div>
-          
+
+        </div>
+        </IndexedDBContext.Provider>
       </SubmitBtnContext.Provider>
     </SearchContext.Provider>
   );

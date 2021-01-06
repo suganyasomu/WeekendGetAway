@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./style.css";
 import { useIndexedDB } from "react-indexed-db";
 import SavedBtn from "../SavedBtn";
 import DeleteBtn from "../DeleteBtn";
+import IndexedDBContext from "../../utils/IndexedDBContext";
 
-function IndexedDBModal() {
-    const { getAll, clear } = useIndexedDB("activity");
+function IndexedDBModal({key}) {
+    const { getAll, deleteRecord } = useIndexedDB("activity");
     const [selectedItems, setSelectedItems ] = useState([]);
+    const { savedActivity } = useContext(IndexedDBContext);
+    const updateIBD = useContext(IndexedDBContext);
 
     useEffect(() => {
         getAll().then((activitesFromDB) => {
             setSelectedItems(activitesFromDB);
         });
-    }, []);
+    }, [savedActivity]);
     // console.log(selectedItems);
 
     const handleSave = (e) => {
@@ -20,27 +23,69 @@ function IndexedDBModal() {
         setSelectedItems([]);
     }
 
+    const handleClear = (e) => {
+        // Clear IndexedDB items that are being displayed
+        setSelectedItems([]);
+        
+    }
+
 
     return (
-        <section id="indexedDBList" >
+        <section id="indexedDBList" {...key} >
             <h5> Saved Items  </h5> 
             <div id="savedItems">
                 <ul className="indexListItems">
                     {selectedItems.map((res, index) => {
-                        let id = index + 1;
+                        let id = res.id;
+                        // console.log(res); // try to get key
+
                         return (
                             <li key={id}>
-                                {/* <DeleteBtn  
-                                    onClick={() => 
-                                        clear().then()
-                                    } /> */}
+                                {/* If IndexedDB is empty: display text */}
+                                {/* {res.length > 0 &&
+                                    <>
+                                    <DeleteBtn  
+                                        onClick={() => {
+                                            deleteRecord(id).then(
+                                                (event) => {
+                                                    console.log("Unsaved from IndexedDB");
+                                                    // re-render component:
+                                                    updateIBD.onClick([]);
+                                                },
+                                                (error) => {
+                                                    console.log(error);
+                                                }
+                                            );
+                                        }
+                                    } />
+                                    <strong> {res.activity.charAt(0).toUpperCase() + res.activity.slice(1)}: </strong>
+                                    {res.name}
+                                    </>
+                
+                                } */}
+
+
+                                <DeleteBtn  
+                                    onClick={() => {
+                                        deleteRecord(id).then(
+                                            (event) => {
+                                                console.log("Unsaved from IndexedDB");
+                                                // re-render component:
+                                                updateIBD.onClick([]);
+                                            },
+                                            (error) => {
+                                                console.log(error);
+                                            }
+                                        );
+                                    }
+                                } />
                                 <strong> {res.activity.charAt(0).toUpperCase() + res.activity.slice(1)}: </strong>
                                 {res.name}
                             </li>
                         );
                     })}
                 </ul>
-                <SavedBtn  handleSave={handleSave} />
+                <SavedBtn  handleSave={handleSave} handleClear={handleClear} />
 
             </div>
         </section>

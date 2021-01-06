@@ -62,7 +62,7 @@ function Directions() {
   }
 
   return (
-    <div className="container">
+    <div className="container" style={{ paddingTop: '30px' }}>
       {/* <Row> */}
       <h3> Directions </h3>
       {/* </Row> */}

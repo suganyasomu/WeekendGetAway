@@ -32,7 +32,8 @@ router.route("/").get((req, res) => {
       });
       route.directions = legs;
       res.json(route);
-    });
+    })
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;

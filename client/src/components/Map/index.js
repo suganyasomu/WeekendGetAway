@@ -2,12 +2,11 @@ import React from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 const containerStyle = {
-  height: '75vh'
+  height: "75vh",
   // height: '500px'
 };
 
 function Map(props) {
-  console.log(props);
   console.log(props);
   const [map, setMap] = React.useState(null);
   const center = { lat: props.location.lat, lng: props.location.lng };
@@ -22,6 +21,12 @@ function Map(props) {
     setMap(null);
   }, []);
 
+  function markerId(id) {
+    const element = document.getElementById(id);
+
+    element.scrollIntoView();
+  }
+
   return (
     <div className="mapContainer">
       <LoadScript googleMapsApiKey={process.env.REACT_APP_MAPS_KEY}>
@@ -32,14 +37,20 @@ function Map(props) {
           onLoad={onLoad}
           onUnmount={onUnmount}
         >
-          {props.results.map((position, index) => (
-            <Marker
-              position={position}
-              key={index}
-              icon={{ url: require("../../Assets/campsite.svg") }}
-            />
-          ))}{" "}
-          <></>
+          {props.results.map((position, index) => {
+            // console.log(position.lat, index);
+            return (
+              <Marker
+                position={{ lat: position.lat, lng: position.lng }}
+                key={index}
+                icon={{ url: require("../../Assets/campsite.svg") }}
+                title={position.name}
+                onClick={() => {
+                  markerId(position.id);
+                }}
+              />
+            );
+          })}
         </GoogleMap>
       </LoadScript>
     </div>
