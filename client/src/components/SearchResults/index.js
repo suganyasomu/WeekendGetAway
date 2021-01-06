@@ -26,6 +26,7 @@ import ClimbingData from "../ClimbingData";
 import IndexedDBModal from "../IndexedDBModal";
 import Scrollspy from "react-scrollspy";
 import tent from "../../Assets/tent.svg";
+import upArrow from "../../Assets/upArrow.svg";
 
 function SearchResults(props) {
   // console.log(props);
@@ -130,10 +131,18 @@ function SearchResults(props) {
                   ) : (
                     <div />
                   )}
+                  <li className="list-group-item">
+                    <a href="#results">
+                      Back to Top 
+                      <img src={upArrow} style={{ width: "20px", paddingLeft: '10px' }} alt="button to scroll to top of page" />
+                    </a>
+                  </li>
                 </ul>
               </Scrollspy>
 
               <IndexedDBModal />
+
+
             </section>
           </Col>
         ) : (
@@ -159,65 +168,30 @@ function SearchResults(props) {
                 data={props.results.campsites}
                 handleFormSubmit={handleFormSubmit}
               />
-              {props.filter.campsites && submitted === true ? (
-                <p>
-                  <a href="#results">Back to Top</a>
-                </p>
-              ) : (
-                <div />
-              )}
             </section>
             <section id="hotsprings-results">
               <HotspringsData
                 filter={props.filter.hotsprings}
                 data={props.results.hotsprings}
               />
-              {props.filter.hotsprings && submitted === true ? (
-                <p>
-                  <a href="#results">Back to Top</a>
-                </p>
-              ) : (
-                <div />
-              )}
             </section>
             <section id="hiking-results">
               <HikingData
                 filter={props.filter.hiking}
                 data={props.results.hiking}
               />
-              {props.filter.hiking && submitted === true ? (
-                <p>
-                  <a href="#results">Back to Top</a>
-                </p>
-              ) : (
-                <div />
-              )}
             </section>
             <section id="biking-results">
               <BikingData
                 filter={props.filter.biking}
                 data={props.results.biking}
               />
-              {props.filter.biking && submitted === true ? (
-                <p>
-                  <a href="#results">Back to Top</a>
-                </p>
-              ) : (
-                <div />
-              )}
             </section>
             <section id="climbing-results">
               <ClimbingData
                 filter={props.filter.climbing}
                 data={props.results.climbing}
               />
-              {props.filter.climbing && submitted === true ? (
-                <p>
-                  <a href="#results">Back to Top</a>
-                </p>
-              ) : (
-                <div />
-              )}
             </section>
           </div>
         </Col>

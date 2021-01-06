@@ -37,34 +37,11 @@ function IndexedDBModal({key}) {
                 <ul className="indexListItems">
                     {selectedItems.map((res, index) => {
                         let id = res.id;
-                        // console.log(res); // try to get key
+                        console.log(res); // get key id
 
                         return (
                             <li key={id}>
-                                {/* If IndexedDB is empty: display text */}
-                                {/* {res.length > 0 &&
-                                    <>
-                                    <DeleteBtn  
-                                        onClick={() => {
-                                            deleteRecord(id).then(
-                                                (event) => {
-                                                    console.log("Unsaved from IndexedDB");
-                                                    // re-render component:
-                                                    updateIBD.onClick([]);
-                                                },
-                                                (error) => {
-                                                    console.log(error);
-                                                }
-                                            );
-                                        }
-                                    } />
-                                    <strong> {res.activity.charAt(0).toUpperCase() + res.activity.slice(1)}: </strong>
-                                    {res.name}
-                                    </>
-                
-                                } */}
-
-
+                                
                                 <DeleteBtn  
                                     onClick={() => {
                                         deleteRecord(id).then(
@@ -81,11 +58,20 @@ function IndexedDBModal({key}) {
                                 } />
                                 <strong> {res.activity.charAt(0).toUpperCase() + res.activity.slice(1)}: </strong>
                                 {res.name}
+
+
                             </li>
                         );
                     })}
                 </ul>
+
+                { selectedItems.length===0  &&
+                    <div style={{ paddingBottom: '20px' }} > 
+                        <span style={{ fontStyle: 'italic', fontSize: 'smaller' }}> No Campsites or Activities have been saved yet  </span>
+                    </div>
+                }
                 <SavedBtn  handleSave={handleSave} handleClear={handleClear} />
+                
 
             </div>
         </section>
