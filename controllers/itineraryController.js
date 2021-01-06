@@ -44,6 +44,7 @@ module.exports = {
           difficulty: thisPlan.difficulty,
           length: thisPlan.length,
           summary: thisPlan.summary,
+          elevationChange: thisPlan.elevationChange
         };
         activities.push(activity);
       } else if (thisPlan.activity === "climbing") {
