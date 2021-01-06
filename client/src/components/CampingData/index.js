@@ -17,7 +17,7 @@ import { useIndexedDB } from "react-indexed-db";
 import IndexedDBContext from "../../utils/IndexedDBContext";
 
 function CampingData(props) {
-  console.log(props);
+  // console.log(props);
 
   // Check if user is logged in or not:
   const { currentUser } = useContext(AuthContext);
@@ -44,12 +44,11 @@ function CampingData(props) {
     // console.log(e.target);
 
     // Use jQuery to update the image src
-    if( $(e.target).attr('src') === heartEmpty) {
-      $(e.target).attr("src", heartSolid );
-    }
-    else {
+    if ($(e.target).attr("src") === heartEmpty) {
+      $(e.target).attr("src", heartSolid);
+    } else {
       // undo save & remove from IndexedDB
-      $(e.target).attr("src", heartEmpty );
+      $(e.target).attr("src", heartEmpty);
 
       // Get IndexDB key with matching activity & name selected & delete it from DB
       let IDBkey;
@@ -72,10 +71,8 @@ function CampingData(props) {
       //     console.log(error);
       //   }
       // );
-
     }
-    
-  }
+  };
 
   return (
     <div>

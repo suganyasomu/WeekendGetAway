@@ -14,7 +14,7 @@ import { useIndexedDB } from "react-indexed-db";
 import $ from "jquery";
 import IndexedDBContext from "../../utils/IndexedDBContext";
 
-import '../HikingData/style.css';
+import "../HikingData/style.css";
 // import { handleInputChange } from "react-select/src/utils";
 
 function BikingData(props) {
@@ -27,12 +27,11 @@ function BikingData(props) {
   let handleHeartBtn = (e) => {
     // console.log(e.target);
     // Use jQuery to update the image src
-    if( $(e.target).attr('src') === heartEmpty) {
-      $(e.target).attr("src", heartSolid );
-    }
-    else {
+    if ($(e.target).attr("src") === heartEmpty) {
+      $(e.target).attr("src", heartSolid);
+    } else {
       // undo save & remove from IndexedDB
-      $(e.target).attr("src", heartEmpty );
+      $(e.target).attr("src", heartEmpty);
 
       // deleteRecord( ).then(
       //   (event) => {
@@ -42,9 +41,8 @@ function BikingData(props) {
       //     console.log(error);
       //   }
       // );
-
     }
-  }
+  };
 
   // Add biking info to indexedDB
   function handleBike(activity, name, summary, difficulty, lat, lng, length) {
@@ -72,17 +70,20 @@ function BikingData(props) {
         <section style={{ width: "100%" }}>
           <h3>Mountain Biking</h3>
           {props.data.map((res, index) => {
-            let id=res.id;
+            let id = res.id;
             return (
-              <div key={id} style={{ padding: '20px' }}>
+              <div key={id} style={{ padding: "20px" }}>
                 <Row>
                   <Col size="md-12">
-                    <Card className="bikingCard" style={{ width: "auto", boxShadow: "2px 2px 5px grey" }}>
-                      <div class="inner">
+                    <Card
+                      className="bikingCard"
+                      style={{ width: "auto", boxShadow: "2px 2px 5px grey" }}
+                    >
+                      <div className="inner">
                         <img className="card-img-top" src={res.image} />
-                        </div>
+                      </div>
                       <Card.Body>
-                      {currentUser ? (
+                        {currentUser ? (
                           <span>
                             <img
                                 src={ heartEmpty }
@@ -110,15 +111,31 @@ function BikingData(props) {
                         ) : (
                           <LoginModal />
                         )}
-                        <Card.Title> <strong>Name:</strong> {res.name} </Card.Title>
-                        <Card.Text> <strong>Difficulty:</strong> {res.difficulty} </Card.Text>
-
-                        <Card.Text> <strong>Summary:</strong> {res.summary} </Card.Text>
-                        <Card.Text> <strong>Length:</strong> {res.length} miles</Card.Text>
-                        <Card.Text> <strong>Trail Condition:</strong> {res.condition}</Card.Text>
+                        <Card.Title>
+                          {" "}
+                          <strong>Name:</strong> {res.name}{" "}
+                        </Card.Title>
                         <Card.Text>
                           {" "}
-                          <strong>Elevation Change:</strong> {res.elevationChange} ft
+                          <strong>Difficulty:</strong> {res.difficulty}{" "}
+                        </Card.Text>
+
+                        <Card.Text>
+                          {" "}
+                          <strong>Summary:</strong> {res.summary}{" "}
+                        </Card.Text>
+                        <Card.Text>
+                          {" "}
+                          <strong>Length:</strong> {res.length} miles
+                        </Card.Text>
+                        <Card.Text>
+                          {" "}
+                          <strong>Trail Condition:</strong> {res.condition}
+                        </Card.Text>
+                        <Card.Text>
+                          {" "}
+                          <strong>Elevation Change:</strong>{" "}
+                          {res.elevationChange} ft
                         </Card.Text>
                       </Card.Body>
                     </Card>
