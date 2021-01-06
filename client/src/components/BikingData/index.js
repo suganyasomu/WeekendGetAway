@@ -45,7 +45,7 @@ function BikingData(props) {
   };
 
   // Add biking info to indexedDB
-  function handleBike(activity, name, summary, difficulty, lat, lng, length) {
+  function handleBike(activity, name, summary, difficulty, lat, lng, length, elevationChange) {
     add({
       activity: activity,
       name: name,
@@ -54,6 +54,7 @@ function BikingData(props) {
       length: length,
       difficulty: difficulty,
       summary: summary,
+      elevationChange: elevationChange,
     }).then(
       (event) => {
         console.log("ID Generated: ", event);
@@ -100,7 +101,8 @@ function BikingData(props) {
                                     res.difficulty,
                                     res.lat,
                                     res.lng,
-                                    res.length
+                                    res.length,
+                                    res.elevationChange
                                   );
                                 }
                               }}
