@@ -70,14 +70,18 @@ function SearchResults(props) {
 
   return (
     <div className="resultsContainer">
-      <Row>
-        <div className="col-12">
-          <WeatherData
-            filter={props.filter.weather}
-            weatherCondition={props.weatherCondition}
-          />
-        </div>
-      </Row>
+      {props.filter.weather ? (
+        <Row>
+          <div className="col-12">
+            <WeatherData
+              filter={props.filter.weather}
+              weatherCondition={props.weatherCondition}
+            />
+          </div>
+        </Row>
+      ) : (
+        <div />
+      )}
 
       <Row>
         {search && submitted ? (
@@ -133,16 +137,18 @@ function SearchResults(props) {
                   )}
                   <li className="list-group-item">
                     <a href="#results">
-                      Back to Top 
-                      <img src={upArrow} style={{ width: "20px", paddingLeft: '10px' }} alt="button to scroll to top of page" />
+                      Back to Top
+                      <img
+                        src={upArrow}
+                        style={{ width: "20px", paddingLeft: "10px" }}
+                        alt="button to scroll to top of page"
+                      />
                     </a>
                   </li>
                 </ul>
               </Scrollspy>
 
               <IndexedDBModal />
-
-
             </section>
           </Col>
         ) : (

@@ -29,7 +29,6 @@ router.route("/").get(async (req, res) => {
       let forecast = [];
 
       list.forEach((thisDay) => {
-        console.log(thisDay);
         unixTime(thisDay.dt);
 
         let info = {
