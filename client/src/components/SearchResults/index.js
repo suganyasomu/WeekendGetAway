@@ -79,12 +79,9 @@ function SearchResults(props) {
       </Row>
 
       <Row>
-        {/* <Col size="md-2 sm-12"> */}
-        {/* <section className="leftContainer"> */}
         {search && submitted ? (
           <Col size="lg-2 sm-12">
             <section className="leftContainer">
-              {/* <div> */}
               <Scrollspy
                 className="scrollspy"
                 items={[
@@ -137,7 +134,6 @@ function SearchResults(props) {
               </Scrollspy>
 
               <IndexedDBModal />
-              {/* </div> */}
             </section>
           </Col>
         ) : (
@@ -154,9 +150,6 @@ function SearchResults(props) {
             </Row>
           </div>
         )}
-        {/* </section> */}
-
-        {/* </Col> */}
 
         <Col size="md-6 sm-12">
           <div id="results">

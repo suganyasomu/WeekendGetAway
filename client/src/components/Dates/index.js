@@ -62,12 +62,12 @@ function Dates(props) {
           <DatePicker
             selected={endDate}
             onChange={ (date) => {
-              if( date >= new Date() ) {
+              if( date >= startDate ) {
                 handleEndDate(date);
                 {props.handleEndDate( handleEndDate(date) )}
               }
               else {
-                alert("Please pick a date greater than day's date");
+                alert("Please pick a date greater than the start date");
                 // return <AlertModal modalState="true" />
               }
 
