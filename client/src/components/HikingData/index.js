@@ -47,7 +47,7 @@ function HikingData(props) {
   }
 
   // Add hiking info to indexedDB
-  function handleHikes(activity, name, summary, difficulty, lat, lng, length) {
+  function handleHikes(activity, name, summary, difficulty, lat, lng, length, elevationChange) {
     add({
       activity: activity,
       name: name,
@@ -55,6 +55,7 @@ function HikingData(props) {
       lng: lng,
       length: length,
       difficulty: difficulty,
+      elevationChange: elevationChange,
       summary: summary,
     }).then(
       (event) => {
@@ -103,7 +104,8 @@ function HikingData(props) {
                                     res.difficulty,
                                     res.lat,
                                     res.lng,
-                                    res.length
+                                    res.length,
+                                    res.elevationChange
                                   );
                                 }
                               }}
