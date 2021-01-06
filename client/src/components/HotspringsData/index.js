@@ -24,12 +24,11 @@ function HotspringsData(props) {
 
   let handleHeartBtn = (e) => {
     // Use jQuery to update the image src
-    if( $(e.target).attr('src') === heartEmpty) {
-      $(e.target).attr("src", heartSolid );
-    }
-    else {
+    if ($(e.target).attr("src") === heartEmpty) {
+      $(e.target).attr("src", heartSolid);
+    } else {
       // undo save & remove from IndexedDB
-      $(e.target).attr("src", heartEmpty );
+      $(e.target).attr("src", heartEmpty);
 
       // deleteRecord( ).then(
       //   (event) => {
@@ -39,9 +38,8 @@ function HotspringsData(props) {
       //     console.log(error);
       //   }
       // );
-
     }
-  }
+  };
 
   // Add campsite info to indexedDB
   function handleHotsprings(
@@ -73,17 +71,20 @@ function HotspringsData(props) {
         <section style={{ width: "100%" }}>
           <h3>Hotsprings</h3>
           {props.data.map((res, index) => {
-            let id=res.id;
+            let id = res.id;
             return (
-              <div key={res._id} style={{ padding: '20px' }}>
+              <div key={res._id} style={{ padding: "20px" }}>
                 <Row>
-                  <Col size="md-6">
-                    <Card className="hotspringCard" style={{ width: "auto", boxShadow: "2px 2px 5px grey" }}>
+                  <Col size="md-12">
+                    <Card
+                      className="hotspringCard"
+                      style={{ width: "auto", boxShadow: "2px 2px 5px grey" }}
+                    >
                       <Card.Header>
                         {currentUser ? (
                           <span>
                             <img
-                              src={ heartEmpty }
+                              src={heartEmpty}
                               style={{ width: "30px" }}
                               id={id}
                               onClick={(index) => {
@@ -105,12 +106,22 @@ function HotspringsData(props) {
                         ) : (
                           <LoginModal />
                         )}
-                        <Card.Title><strong>Name:</strong> {res.spring_name}</Card.Title>
+                        <Card.Title>
+                          <strong>Name:</strong> {res.spring_name}
+                        </Card.Title>
                       </Card.Header>
                       <Card.Body>
-                          <Card.Text><strong>Average Temp:</strong> {res.degrees_f}°</Card.Text>
-                          <Card.Text><strong>Coordinates to spring:</strong> {res.loc.coordinates[1]}°N, {res.loc.coordinates[0]}°W </Card.Text>
-                          <Card.Text><strong>USGS_Quadrangle:</strong> {res.usgs_quadrangle}</Card.Text>
+                        <Card.Text>
+                          <strong>Average Temp:</strong> {res.degrees_f}°F
+                        </Card.Text>
+                        <Card.Text>
+                          <strong>Coordinates to spring:</strong>{" "}
+                          {res.loc.coordinates[1]}°N, {res.loc.coordinates[0]}°W{" "}
+                        </Card.Text>
+                        <Card.Text>
+                          <strong>USGS Quadrangle:</strong>{" "}
+                          {res.usgs_quadrangle}
+                        </Card.Text>
                       </Card.Body>
                     </Card>
                   </Col>
