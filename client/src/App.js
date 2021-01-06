@@ -15,11 +15,11 @@ import PasswordReset from "./pages/PasswordReset";
 import { AuthProvider } from "./Auth";
 // import PrivateRoute from "./PrivateRoute";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faHeart, faDirections, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faDirections, faSearch, faCampground } from "@fortawesome/free-solid-svg-icons";
 import { DBConfig } from "./utils/DBConfig";
 import { initDB } from "react-indexed-db";
 
-library.add(faHeart, faDirections, faSearch); // initialize font-awesome library w/ selected icons
+library.add(faHeart, faDirections, faSearch, faCampground); // initialize font-awesome library w/ selected icons
 initDB(DBConfig);
 
 function App() {

@@ -26,8 +26,6 @@ function CampingData(props) {
   const { deleteRecord } = useIndexedDB("activity");
   const updateIBD = useContext(IndexedDBContext);
 
-  // const [heart, setHeart] = useState(false);
-
   const TEXT_COLLAPSE_OPTIONS = {
     collapse: true, // default state when component rendered
     collapseText: "... show more", // text to show when collapsed
