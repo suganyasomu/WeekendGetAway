@@ -12,7 +12,6 @@ module.exports = {
     );
     let long = location.data.results[0].locations[0].latLng.lng;
     let lat = location.data.results[0].locations[0].latLng.lat;
-    console.log(long, lat);
 
     let milesToRadian = function (miles) {
       var earthRadiusInMiles = 3963;
@@ -22,7 +21,6 @@ module.exports = {
     var query = {
       loc: { $geoWithin: { $centerSphere: [[long, lat], milesToRadian(25)] } },
     };
-    console.log(query);
 
     db.Hotspring.find({
       loc: { $geoWithin: { $centerSphere: [[long, lat], milesToRadian(25)] } },
