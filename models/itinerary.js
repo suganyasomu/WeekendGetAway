@@ -20,7 +20,12 @@ const ItinerarySchema = new Schema({
       name: { type: String, required: false },
       lat: { type: Number, required: false },
       lng: { type: Number, required: false },
-      date_planned: { type: Date, required: false },
+      length: { type: Number, required: false },
+      difficulty: { type: String, required: false },
+      summary: { type: String, required: false },
+      rating: { type: String, required: false },
+      type: { type: String, required: false },
+      temperature: { type: String, required: false },
     },
   ],
 });

@@ -33,7 +33,6 @@ function SavedBtn() {
     clear().then(() => {
       console.log("IndexedDB has been cleared");
     });
-    
   }
 
   return (
@@ -43,7 +42,7 @@ function SavedBtn() {
         role="button"
         tabIndex="0"
         onClick={() => {
-          {handleSaveBtn()}
+          handleSaveBtn();
         }}
       >
         Create Itinerary
@@ -54,11 +53,12 @@ function SavedBtn() {
         role="button"
         tabIndex="0"
         onClick={() => {
-          {handleClearBtn()}
+          {
+            handleClearBtn();
+          }
           updateIBD.onClick([]);
         }}
-          
-        >
+      >
         Clear All
       </span>
     </div>

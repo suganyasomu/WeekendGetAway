@@ -11,7 +11,7 @@ function Directions() {
 
   useEffect(() => {
     geoFindMe();
-    getDirections();
+    // await getDirections();
   }, []);
 
   // Get pass coordinates to backend & get directions
@@ -53,6 +53,7 @@ function Directions() {
 
       navigator.geolocation.getCurrentPosition(success, error);
     }
+    getDirections();
   }
 
   function getCookie(name) {

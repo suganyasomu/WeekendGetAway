@@ -32,12 +32,37 @@ module.exports = {
         plan.campLon = thisPlan.lon;
         plan.startDate = thisPlan.start;
         plan.endDate = thisPlan.end;
+      } else if (
+        thisPlan.activity === "hiking" ||
+        thisPlan.activity === "biking"
+      ) {
+        let activity = {
+          activity: thisPlan.activity,
+          name: thisPlan.name,
+          lat: thisPlan.lat,
+          lng: thisPlan.lng,
+          difficulty: thisPlan.difficulty,
+          length: thisPlan.length,
+          summary: thisPlan.summary,
+        };
+        activities.push(activity);
+      } else if (thisPlan.activity === "climbing") {
+        let activity = {
+          activity: thisPlan.activity,
+          name: thisPlan.name,
+          lat: thisPlan.lat,
+          lng: thisPlan.lng,
+          rating: thisPlan.rating,
+          type: thisPlan.type,
+        };
+        activities.push(activity);
       } else {
         let activity = {
           activity: thisPlan.activity,
           name: thisPlan.name,
           lat: thisPlan.lat,
           lng: thisPlan.lng,
+          temperature: thisPlan.temperature,
         };
         activities.push(activity);
       }
@@ -46,7 +71,7 @@ module.exports = {
     if (activities.length > 0) {
       plan.activities = activities;
     }
-    console.log(plan);
+    // console.log(plan);
 
     db.Itinerary.create(plan)
       .then((dbModel) => res.json(dbModel))
@@ -64,7 +89,10 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   removeActivity: function (req, res) {
-    db.Itinerary.update({ _id: req.params.uid}, {$pull : { "activities" : { _id: req.params.id }}})
+    db.Itinerary.update(
+      { _id: req.params.uid },
+      { $pull: { activities: { _id: req.params.id } } }
+    )
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
