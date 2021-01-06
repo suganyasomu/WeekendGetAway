@@ -251,72 +251,79 @@ function Home() {
   results.climbing = climbing;
 
   return (
-    <SearchContext.Provider value={searchState}>
-      <SubmitBtnContext.Provider value={submitState}>
-        <IndexedDBContext.Provider value={pageState}>
-          <SearchContainer
-            handleFormSubmit={handleFormSubmit}
-            handleInputChange={handleInputChange}
-            results={city}
-            handleSelectedState={handleSelectedState}
-            filter={filter}
-            handleCheckboxChange={handleCheckbox}
-            handleStartDate={handleStartDate}
-            handleEndDate={handleEndDate}
-          />
+    <div style={{
+      margin: '0', 
+      backgroundImage: "linear-gradient(#E8E8E4, white)", 
+      width: '100%', 
+      height: '100%'
+    }} > 
+      <SearchContext.Provider value={searchState}>
+        <SubmitBtnContext.Provider value={submitState}>
+          <IndexedDBContext.Provider value={pageState}>
+            <SearchContainer
+              handleFormSubmit={handleFormSubmit}
+              handleInputChange={handleInputChange}
+              results={city}
+              handleSelectedState={handleSelectedState}
+              filter={filter}
+              handleCheckboxChange={handleCheckbox}
+              handleStartDate={handleStartDate}
+              handleEndDate={handleEndDate}
+            />
 
-          <div className="container">
-            <div className="row">
-              <span className="col-8"> </span>
+            <div className="container">
+              <div className="row">
+                <span className="col-8"> </span>
 
-              {currentUser ? (
-                <span className="col-4">
-                  <p className="pt-2 float-right">
-                    {" "}
-                    You are logged in! <SignoutBtn />{" "}
-                  </p>
-                </span>
-              ) : (
-                <span className="col-4">
-                  <p> Guest - Login to Save to your Itinerary </p>
-                </span>
-              )}
-            </div>
-
-            <div className="row">
-              <div className="col-12">
-                {startDate != "" ? (
-                  <h3 className="text-center mt-2">
-                    Dates Selected:{" "}
-                    <h6>
+                {currentUser ? (
+                  <span className="col-4">
+                    <p className="pt-2 float-right">
                       {" "}
-                      {startDate} - {endDate}{" "}
-                    </h6>
-                  </h3>
+                      You are logged in! <SignoutBtn />{" "}
+                    </p>
+                  </span>
                 ) : (
-                  ""
+                  <span className="col-4">
+                    <p> Guest - Login to Save to your Itinerary </p>
+                  </span>
                 )}
               </div>
-            </div>
 
-            <div ref={resultsRef} className="row">
-              <section className="col-12">
-                <SearchResults
-                  results={results}
-                  filter={filter}
-                  userStatus={currentUser}
-                  weatherCondition={weather}
-                  location={cityCoords}
-                  startDate={startDate}
-                  endDate={endDate}
-                  activities={[hiking]}
-                />
-              </section>
+              <div className="row">
+                <div className="col-12">
+                  {startDate != "" ? (
+                    <h3 className="text-center mt-2">
+                      Dates Selected:{" "}
+                      <h6>
+                        {" "}
+                        {startDate} - {endDate}{" "}
+                      </h6>
+                    </h3>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+
+              <div ref={resultsRef} className="row">
+                <section className="col-12">
+                  <SearchResults
+                    results={results}
+                    filter={filter}
+                    userStatus={currentUser}
+                    weatherCondition={weather}
+                    location={cityCoords}
+                    startDate={startDate}
+                    endDate={endDate}
+                    activities={[hiking]}
+                  />
+                </section>
+              </div>
             </div>
-          </div>
-        </IndexedDBContext.Provider>
-      </SubmitBtnContext.Provider>
-    </SearchContext.Provider>
+          </IndexedDBContext.Provider>
+        </SubmitBtnContext.Provider>
+      </SearchContext.Provider>
+    </div>
   );
 }
 
