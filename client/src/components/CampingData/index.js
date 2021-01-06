@@ -81,8 +81,6 @@ function CampingData(props) {
           <h3>Campites </h3>
 
           {props.data.map((res, index) => {
-            // console.log(res);
-            // let id = res.id;
             return (
               <div key={res.id} style={{ padding: "20px" }} id={res.id}>
                 <Row>
@@ -100,8 +98,7 @@ function CampingData(props) {
                               style={{ width: "30px" }}
                               id={res.id}
                               onClick={(index) => {
-                                handleHeartBtn(index);
-                                // console.log(updateIBD);
+                                // handleHeartBtn(index);
                                 updateIBD.onClick([index]);
                                 {
                                   props.handleFormSubmit(

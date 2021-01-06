@@ -4,7 +4,6 @@
 
 
 ## Description 
-This application utilizes React JS. 
 
 Deployed Application: https://murmuring-citadel-70969.herokuapp.com/
 
@@ -22,10 +21,10 @@ Github Repository: https://github.com/suganyasomu/WeekendGetAway
 
 
 ## Installation
-
+`npm install`
     
 ## Usage
-This app allows the user to find campsites and activites based on the city they search.  
+This app allows the user to find campsites and activites nearby based on the city they search. The user is able to filter by which activities (camping, hiking, biking, rock climbing, and hotsprings) they want to view, as well as view the current weather forecast of the selected location if they desire. The user can create an account, and once logged in they are able to save the different campgrounds and activities and create an itinerary. The user can view all of their saved itineraries and get directions to the campground from their current location. This application utilizes ReactJS, Bootstrap, MongoDB, and Firebase.  
 
 
 ## Technologies
@@ -33,10 +32,16 @@ This app allows the user to find campsites and activites based on the city they 
 - React JS
 - Bootstrap
 - MongoDB
+- Firebase
+- APIs
 
 ## Example
 
-![Webpage](/. PNG)
+<img src="./client/src/Assets/website1.PNG" width="80%" />
+<img src="./client/src/Assets/website2.PNG" width="80%" />
+<img src="./client/src/Assets/website3.PNG" width="80%" />
+<img src="./client/src/Assets/website4.PNG" width="80%" />
+<img src="./client/src/Assets/website5.PNG" width="80%" />
 
 
 ## License
