@@ -94,7 +94,7 @@ function HikingData(props) {
                               style={{ width: "30px" }}
                               id={id}
                               onClick={(index) => {
-                                handleHeartBtn(index);
+                                // handleHeartBtn(index);
                                 updateIBD.onClick([index]);
                                 {
                                   handleHikes(
