@@ -59,8 +59,31 @@ function ItineraryModal(props) {
                                     <DeleteBtn className="delete-btn" onClick={() => deleteActivity(props.trip._id, activity._id)} />
                                 </Card.Header>
                                 <Card.Body>
-                                    <p>Activity Name: {activity.name}</p>
-                                    <p>Activity Location: {activity.lat}, {activity.lng}</p>
+                                    <p><strong>Activity Name:</strong> {activity.name}<br/>
+                                    <strong>Location:</strong> {activity.lat}, {activity.lng}<br/></p>
+
+                                    {activity.activity === "biking" ? (
+                                    <p>
+                                    <strong>Summary:</strong> {activity.summary}<br/>
+                                    <strong>Length:</strong> {activity.length} miles<br/>
+                                    <strong>Difficulty:</strong> {activity.difficulty}<br/>
+                                    <strong>Elevation Change:</strong> {activity.elevationChange} ft </p>
+                                    ) : (<div/>) }
+
+                                    {activity.activity === "hiking" ? (
+                                    <p>
+                                    <strong>Summary:</strong> {activity.summary}<br/>
+                                    <strong>Length:</strong> {activity.length} miles<br/>
+                                    <strong>Difficulty:</strong> {activity.difficulty}<br/>
+                                    <strong>Elevation Change:</strong> {activity.elevationChange} ft </p>
+                                    ) : (<div/>) }
+
+                                    {activity.activity === "climbing" ? (
+                                    <p>
+                                    <strong>Type:</strong> {activity.type}<br/>
+                                    <strong>Rating:</strong> {activity.rating} </p>
+                                    ) : (<div/>) }
+
                                 </Card.Body>
                             </Card>
                         )
