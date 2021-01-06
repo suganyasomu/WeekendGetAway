@@ -68,7 +68,6 @@ function SearchResults(props) {
   }
 
   return (
-
     <div className="resultsContainer">
       <Row>
         <div className="col-12">
@@ -81,10 +80,10 @@ function SearchResults(props) {
 
       <Row>
         {/* <Col size="md-2 sm-12"> */}
-          {/* <section className="leftContainer"> */}
-            {search && submitted ? (
-              <Col size="md-2 sm-12">
-              <section className="leftContainer">
+        {/* <section className="leftContainer"> */}
+        {search && submitted ? (
+          <Col size="lg-2 sm-12">
+            <section className="leftContainer">
               {/* <div> */}
               <Scrollspy
                 className="scrollspy"
@@ -139,25 +138,27 @@ function SearchResults(props) {
 
               <IndexedDBModal />
               {/* </div> */}
-              </section>
-              </Col>
-            ) : (
-              <div className="col-12" >
-                <Row>
-                  <h2 className="col-12" style={{ textAlign: 'center'}}> 
-                    Search by city to start planning your trip! 
-                    <img src={tent} style={{ width: "30px" }} alt="campground icon" />
-                  </h2>
-                  
-                  
-                </Row>
-              </div>
-            )}
-          {/* </section> */}
+            </section>
+          </Col>
+        ) : (
+          <div className="col-12">
+            <Row>
+              <h2 className="col-12" style={{ textAlign: "center" }}>
+                Search by city to start planning your trip!
+                <img
+                  src={tent}
+                  style={{ width: "30px" }}
+                  alt="campground icon"
+                />
+              </h2>
+            </Row>
+          </div>
+        )}
+        {/* </section> */}
 
         {/* </Col> */}
 
-        <Col size="md-5 sm-12">
+        <Col size="md-6 sm-12">
           <div id="results">
             <section id="camping-results">
               <CampingData
@@ -227,7 +228,7 @@ function SearchResults(props) {
             </section>
           </div>
         </Col>
-        <Col size="md-5 sm-12">
+        <Col size="md-6 sm-12">
           {props.results.campsites.length > 0 ? (
             <Map results={props.results.campsites} location={props.location} />
           ) : (

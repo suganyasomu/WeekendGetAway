@@ -12,8 +12,6 @@ router.route("/").get((req, res) => {
     .then(function (results) {
       let response = results.data.route;
 
-      console.log(response);
-
       let list = response.legs[0].maneuvers;
 
       let route = {};
@@ -35,7 +33,7 @@ router.route("/").get((req, res) => {
       route.directions = legs;
       res.json(route);
     })
-    .catch((err) => res.json(err));
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;
