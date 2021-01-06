@@ -5,17 +5,16 @@ import React, {
   useCallback,
   useContext,
 } from "react";
-// import { withRouter, Redirect } from "react-router";
+
 import SearchResults from "../components/SearchResults";
 import SearchContainer from "../components/SearchContainer";
-// import firebase from "firebase";
 import { AuthContext } from "../Auth.js";
 import API from "../utils/API";
 import SearchContext from "../utils/SearchContext";
 import SubmitBtnContext from "../utils/SubmitBtnContext";
 import IndexedDBContext from "../utils/IndexedDBContext";
 import SignoutBtn from "../components/SignoutBtn";
-import Row from "../components/Row";
+// import Row from "../components/Row";
 
 function Home() {
   // initialize state variables
@@ -64,8 +63,6 @@ function Home() {
       ...filter,
       [name]: checked,
     });
-    console.log("from home page");
-    console.log(filter);
   }
 
   function getFilter() {
@@ -73,33 +70,27 @@ function Home() {
 
     if (filter.campsites === true) {
       searchCampsites(searchState.search);
-      console.log("campsites is called");
     }
     if (filter.hotsprings === true) {
       searchHotsprings(searchState.search);
-      console.log("Hotspring is called");
     }
     if (filter.weather === true) {
       searchWeather(searchState.search);
-      console.log("Weather is called");
     }
     if (filter.hiking === true) {
       searchHiking(searchState.search);
-      console.log("Hiking is called");
     }
     if (filter.biking === true) {
       searchBiking(searchState.search);
-      console.log("Biking is called");
     }
     if (filter.climbing === true) {
       searchClimbing(searchState.search);
-      console.log("Climbing is called");
     }
   }
 
   // Get location City and State
   function searchLocation(query) {
-    console.log(query);
+    // console.log(query);
     API.getLocation(query)
       .then((res) => {
         let cityState = res.data.location.city + ", " + res.data.location.state;
@@ -117,12 +108,8 @@ function Home() {
 
   //getHotsprings
   function searchHotsprings(query) {
-    // console.log(query);
-
     API.getHotspring(query)
-      // .then((res) => console.log(res.data))
       .then(function (res) {
-        console.log(res);
         setHotsprings(res.data);
       })
       .catch((err) => console.log(err));
@@ -130,12 +117,8 @@ function Home() {
 
   //getWeather
   function searchWeather(query) {
-    // console.log(query);
-
     API.getWeather(query)
-      // .then((res) => console.log(res.data))
       .then(function (res) {
-        console.log(res.data);
         setWeather(res.data);
       })
       .catch((err) => console.log(err));
@@ -143,12 +126,8 @@ function Home() {
 
   // Search for hiking trails
   function searchHiking(query) {
-    console.log(query);
-
     API.getHike(query)
       .then((res) => {
-        console.log("from hike page");
-        console.log(res.data);
         setHiking(res.data);
       })
       .catch((err) => console.log(err));
@@ -156,11 +135,8 @@ function Home() {
 
   // Search for biking trails
   function searchBiking(query) {
-    console.log(query);
-
     API.getBike(query)
       .then((res) => {
-        console.log(res.data);
         setBiking(res.data);
       })
       .catch((err) => console.log(err));
@@ -168,11 +144,8 @@ function Home() {
 
   // Search for climbing routes
   function searchClimbing(query) {
-    console.log(query);
-
     API.getClimb(query)
       .then((res) => {
-        console.log(res.data);
         setClimbing(res.data);
       })
       .catch((err) => console.log(err));
@@ -183,10 +156,7 @@ function Home() {
 
   // Search API's base on  user input (campsite)
   function searchCampsites(query) {
-    // console.log(query);
-
     API.getCampsites(query)
-      // .then((res) => console.log(res.data))
       .then(function (res) {
         setCampsites(res.data);
       })
@@ -219,7 +189,6 @@ function Home() {
     } else {
       getFilter(searchState.search);
     }
-    console.log(campsites);
     setCity("");
 
     // Scroll down to results:
@@ -227,12 +196,10 @@ function Home() {
   };
 
   const handleStartDate = (event) => {
-    // console.log(event);
     setStartDate(event);
   };
 
   const handleEndDate = (event) => {
-    // console.log(event);
     setEndDate(event);
   };
 
@@ -251,12 +218,14 @@ function Home() {
   results.climbing = climbing;
 
   return (
-    <div style={{
-      margin: '0', 
-      backgroundImage: "linear-gradient(#E8E8E4, white)", 
-      width: '100%', 
-      height: '100%'
-    }} > 
+    <div
+      style={{
+        margin: "0",
+        backgroundImage: "linear-gradient(#E8E8E4, white)",
+        width: "100%",
+        height: "100%",
+      }}
+    >
       <SearchContext.Provider value={searchState}>
         <SubmitBtnContext.Provider value={submitState}>
           <IndexedDBContext.Provider value={pageState}>

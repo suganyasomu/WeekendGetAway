@@ -43,20 +43,26 @@ function UserItinerary() {
   }
 
   return (
-    <div style={{
-      margin: '0', 
-      backgroundImage: "linear-gradient(#E8E8E4, white)", 
-      width: '100%', 
-      height: '100%'
-    }} >  
-      <div className="container" style={{ paddingTop: '30px' }}>
+    <div
+      style={{
+        margin: "0",
+        backgroundImage: "linear-gradient(#E8E8E4, white)",
+        width: "100%",
+        height: "100%",
+      }}
+    >
+      <div className="container" style={{ paddingTop: "30px" }}>
         <h3> Saved Trips </h3>
 
         {trips.map((res, index) => {
           let id = index + 1;
 
           return (
-            <div className="container" key={id} style={{ paddingBottom: "20px"}}>
+            <div
+              className="container"
+              key={id}
+              style={{ paddingBottom: "20px" }}
+            >
               <Row>
                 <div className="col-3"> </div>
                 <Card
@@ -78,7 +84,7 @@ function UserItinerary() {
                           lon: res.campLon,
                         }).then(
                           (event) => {
-                            console.log("ID Generated: ", event.target);
+                            console.log("ID Generated: ", event);
                           },
                           (error) => {
                             console.log(error);
