@@ -32,7 +32,8 @@ This app allows the user to find campsites and activities nearby based on the ci
 - React JS
 - React Bootstrap/Spring 
 - IndexedDB
-- Express
+- Node JS
+- Express JS
 - MongoDB
 - Firebase
 - APIs:
