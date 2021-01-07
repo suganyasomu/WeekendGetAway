@@ -24,7 +24,7 @@ Github Repository: https://github.com/suganyasomu/WeekendGetAway
 `npm install`
     
 ## Description
-This app allows the user to find campsites and activites nearby based on the city they search. The user is able to filter by which activities (camping, hiking, biking, rock climbing, and hotsprings) they want to view, as well as view the current weather forecast of the selected location if they desire. The user can create an account, and once logged in they are able to save the different campgrounds and activities and create an itinerary. The user can view all of their saved itineraries and get directions to the campground from their current location. This application utilizes ReactJS, Bootstrap, MongoDB, and Firebase.  
+This app allows the user to find campsites and activities nearby based on the city they search. The user is able to filter by which activities (camping, hiking, biking, rock climbing, and hotsprings) they want to view, as well as view the current weather forecast of the selected location if they desire. The user can create an account, and once logged in they are able to save the different campgrounds and activities and create an itinerary. The user can view all of their saved itineraries and get directions to the campground from their current location. This application utilizes ReactJS, Bootstrap, MongoDB, and Firebase.  
 
 
 ## Technologies
