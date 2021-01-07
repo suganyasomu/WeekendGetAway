@@ -39,7 +39,7 @@ This app allows the user to find campsites and activites nearby based on the cit
     - MTB Project: https://www.mtbproject.com/ 
     - OpenWeatherMap: https://openweathermap.org/ 
     - MapQuest: https://developer.mapquest.com/ 
-    - MapBox: https://docs.mapbox.com/api/overview/ 
+    - Google Maps: https://developers.google.com/maps/documentation  
     - NOAA Hot Springs Data: Excel sheet (Database Mongo) 
 
 ## Example
