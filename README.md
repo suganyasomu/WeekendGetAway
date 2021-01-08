@@ -65,4 +65,4 @@ This application is covered under MIT.
 
 ## Questions
 
-If you have any questions, please contact us through email: [Mia](mailto:mariannedehaan14@gmail.com), [Kalen](mailto:k.pegeder@gmail.com), [Megan] (mailto:megtej@gmail.com), [Suganya](mailto:sweetsugan12@gmail.com)
+If you have any questions, please contact us through email: [Mia](mailto:mariannedehaan14@gmail.com), [Kalen](mailto:k.pegeder@gmail.com), [Megan](mailto:megtej@gmail.com), [Suganya](mailto:sweetsugan12@gmail.com)
